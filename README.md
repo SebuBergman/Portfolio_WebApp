@@ -77,11 +77,10 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 <!-- Features -->
 ### :dart: Features
 
-- Login & register
-- Add todos
-- Edit todos
-- Delete todos
-- Change settings
+- Navbar
+- Text telling all about me and my skills
+- Amazing framer motion transitions
+- Amazing css using sass
 
 <!-- Color Reference -->
 ### :art: Color Reference
