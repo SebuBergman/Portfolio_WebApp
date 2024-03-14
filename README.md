@@ -68,29 +68,9 @@ In the todo app you can login / register, add todos, edit and delete. You can al
   <summary>Client</summary>
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://expressjs.com">Node.js Express</a></li>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-  </ul>
-</details>
-
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
-
-<details>
-<summary>DevOps</summary>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker??</a></li>
+    <li><a href="https://vitejs.dev">Vite</a></li>
+    <li><a href="https://www.framer.com/motion/">Framer motion</a></li>
+    <li><a href="https://sass-lang.com">Sass</a></li>
   </ul>
 </details>
 
