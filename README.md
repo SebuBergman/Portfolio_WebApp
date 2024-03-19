@@ -12,7 +12,7 @@ Maybe you can mention me or this repo in the acknowledgements too
   <h1>Portfolio Website</h1>
   
   <p>
-    I will start to code a portfolio website using html, css, javascript (React) The website will have an overview of my skills, My path, known languages and projects plus contact info
+    I will start to code a portfolio website using html, css (sass), javascript (React) and framer motion (also vite for the development environment). The website will have an overview of my skills, My path, known languages and projects plus contact info
   </p>
    
 </div>
