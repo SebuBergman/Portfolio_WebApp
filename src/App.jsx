@@ -3,6 +3,8 @@ import Navbar from "./components/navbar/Navbar";
 import CoverImage from "./components/coverPhoto/CoverImage";
 import Projects from "./components/projects/Projects";
 import About from "./components/aboutMe/About";
+import Intermediate from "./components/intermediate/Intermediate";
+import Contact from "./components/contact/Contact";
 
 const App = () => {
   return (
@@ -11,12 +13,19 @@ const App = () => {
           <Navbar/>
           <CoverImage/>
         </section>
-        <section id="About"><About/></section>
-        <section id="Projects"><Projects/></section>
-        <section id="Overview">Overview</section>
-        <section id="My Path">My Path</section>
-        <section id="Tech">Tech</section>
-        <section id="Contact">Contact</section>
+        <section id="Services">
+          <Intermediate type="services" />
+        </section>
+        <section id="About">
+          <About/>
+        </section>
+        <section id="Projects">
+          <Intermediate type="projects" />
+        </section>
+        <Projects />
+        <section id="Contact">
+          <Contact />
+        </section>
       </div>
   );
 }

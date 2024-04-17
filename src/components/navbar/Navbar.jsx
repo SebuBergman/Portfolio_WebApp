@@ -1,7 +1,7 @@
 import Sidebar from "../sidebar/Sidebar";
 import "./navbar.scss";
 
-function navigationBar() {
+function Navbar() {
   return (
       <div className="navbar">
         <Sidebar/>
@@ -19,4 +19,4 @@ function navigationBar() {
   );
 }
 
-export default navigationBar;
+export default Navbar;
