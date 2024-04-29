@@ -1,5 +1,5 @@
 const Links = () => {
-    const items = ["About", "Overview", "My Path", "Tech", "Projects", "Contact"];
+    const items = ["About", "Projects", "Contact"];
     return (
         <div className="links">{items.map(item=>(
             <a href={`#${item}`} key={item}>{item}</a>

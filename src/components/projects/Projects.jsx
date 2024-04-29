@@ -17,6 +17,12 @@ const items = [
     desc:"Website for a Finnish entrepreneur who offers website, newsletter & seo optimization services",
     linktosite:"www.avone.fi"
   },
+  {
+    id: 2,
+    title:"EcoHub",
+    img:"/ecohub.png",
+    desc:"EcoHub was a figma prototype i created as part of my thesis about user-based design and it's affects on programming outcomes. This might become a full programming project for me"
+  },
 ];
 
 const Single = ({ item }) => {
@@ -62,7 +68,7 @@ const Projects = () => {
   return (
     <div className="projects" ref={ref}>
       <div className="references">
-        <h1>References / portfolio</h1>
+        <h1>Projects / portfolio</h1>
         <motion.div style={{ scaleX }} className="progressBar"></motion.div>
       </div>
       {items.map((item) => (

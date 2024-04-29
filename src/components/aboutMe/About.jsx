@@ -88,6 +88,10 @@ return (
           <img src="/git-logo.png" alt="" />
           <h2>Git</h2>
         </motion.div>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+          <img src="/UX_logo.png" alt="" />
+          <h2>UX/UI design</h2>
+        </motion.div>
       </motion.div>
     </motion.div>
   </motion.div>
