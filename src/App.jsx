@@ -5,6 +5,7 @@ import Projects from "./components/projects/Projects";
 import About from "./components/aboutMe/About";
 import Intermediate from "./components/intermediate/Intermediate";
 import Contact from "./components/contact/Contact";
+import Tech from "./components/techStack/Tech";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
         </section>
         <section id="About">
           <About/>
+        </section>
+        <section id="Tech">
+          <Tech />
         </section>
         <section id="Projects">
           <Intermediate type="projects" />

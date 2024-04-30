@@ -26,7 +26,7 @@ const About = () => {
 
 return (
   <motion.div
-    className="projects"
+    className="about"
     variants={variants}
     initial="initial"
     // animate="animate"
@@ -47,54 +47,14 @@ return (
       </div>
     </motion.div>
     <motion.div className="aboutContainer" variants={variants}>
-      <p>
-        Hello! I am a novice programmer with a Bachelor's in Business Information Technology from Haaga-Helia University of Applied Sciences. Over three years, 
-        I've developed expertise in programming languages like React, React Native, JavaScript, Java, Python, and more. 
-        My skills also include project management with Scrum and Kanban, website design, and user-centered design. 
-        I'm passionate about IT, with a knack for problem-solving and quick learning. Fluent in English and Finnish, I'm eager to explore new opportunities in the tech world. 
-      </p>
+      <p>I am a novice programmer with a Bachelor's in Business Information Technology from Haaga-Helia University of Applied Sciences. Over three years, 
+        I've developed expertise in programming languages like React, React Native, JavaScript, Java, Python, and more. </p>
+      <p>My skills also include project management with Scrum and Kanban, website design, and user-centered design. 
+        I'm passionate about IT, with a knack for problem-solving and quick learning.  </p>
+      <p>Fluent in English and Finnish, I'm eager to explore new opportunities in the tech world.</p>
       <p>Let's connect and bring exciting projects to life!</p>
     </motion.div>
-    <motion.div className="listContainer" variants={variants}>
-      <motion.div className="aboutText">
-        <h3>My Skills</h3>
-      </motion.div>
-      <motion.div className="skillsContainer" variants={variants}>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/react-logo.svg" alt="" />
-          <h2>React</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/javascript-logo.png" alt="" />
-          <h2>JavaScript</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/typescript-logo.png" alt="" />
-          <h2>TypeScript</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/CSS-HTML5-logo.png" alt="" />
-          <h2>HTML & CSS</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/java-logo.png" alt="" />
-          <h2>Java</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/wordpress-logo.svg" alt="" />
-          <h2>WordPress</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/git-logo.png" alt="" />
-          <h2>Git</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/UX_logo.png" alt="" />
-          <h2>UX/UI design</h2>
-        </motion.div>
-      </motion.div>
     </motion.div>
-  </motion.div>
   );
 };
 

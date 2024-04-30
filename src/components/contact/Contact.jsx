@@ -1,7 +1,7 @@
 import "./contact.scss";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-//import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 const variants = {
   initial: {
@@ -21,27 +21,25 @@ const variants = {
 const Contact = () => {
   const ref = useRef();
   const formRef = useRef();
-  //const [error, setError] = useState(false);
-  //const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    /*emailjs
+    emailjs
       .sendForm(
-        "service_94y20xo",
-        "template_v10u2oh",
+        "service_069tnqb",
+        "template_k9ajxqi",
         formRef.current,
-        "pX_2hasGmGcuvjXIW"
+        "waQ5U0JaLJVMzdW5t"
       )
-      .then(
-        (result) => {
+      .then((result) => {
           setSuccess(true)
-        },
-        (error) => {
-          setError(true);
+        }, (error) => {
+          setError(true)
         }
-      );*/
+      );
   };
 
   return (
@@ -62,10 +60,12 @@ const Contact = () => {
           ref={formRef}
           onSubmit={sendEmail}
         >
-          <input type="text" required placeholder="Name" />
-          <input type="email" required placeholder="Email" />
-          <textarea rows={8} placeholder="Message"></textarea>
+          <input type="text" required placeholder="Name" name="name"/>
+          <input type="email" required placeholder="Email" name="email"/>
+          <textarea rows={8} placeholder="Message" name="message" />
           <button>Submit</button>
+          {error && "Error"}
+          {success && "Success"}
         </motion.form>
       </motion.div>
   </motion.div>

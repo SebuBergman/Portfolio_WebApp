@@ -1,6 +1,6 @@
 @import "../../app.scss";
 
-.projects {
+.about {
     background: linear-gradient(180deg, #0c0c1d, #111132);
     height: 100%;
     display: flex;
@@ -14,17 +14,32 @@
         align-items: center;
         gap: 20px;
 
+        @include mobile {
+            align-self: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
         p {
             font-weight: 200;
             font-size: 20px;
             color: gray;
             text-align: right;
+
+            @include mobile {
+                font-size: 15px;
+                padding-top: 10px;
+            }
         }
 
         hr {
             width: 500px;
             border: none;
             border-top: 0.5px solid gray;
+
+            @include mobile {
+                width: 300px;
+            }
         }
     }
 
@@ -34,60 +49,38 @@
         flex-direction: column;
         align-items: center;
 
+        @include mobile {
+            width: 100%;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+
+            @include mobile {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
         h1 {
             font-size: 96px;
             font-weight: 10;
+
+            @include mobile {
+                font-size: 36px;
+            }
+        }
         }
     }
 
     .aboutContainer {
-        flex: 1;
+        flex: 2;
         display: flex;
         flex-direction: column;
         text-align: center;
         margin: auto;
         max-width: 1000px;
-    }
-
-    .listContainer {
-        flex: 1;
-        max-width: 1366px;
-        margin: auto;
-
-        .aboutText {
-            text-align: center;
-
-            p {
-                font-size: 16px;
-                text-align: center;
-            }
-
-            h3 {
-                font-size: 24px;
-            }
-        }
-        
-        .skillsContainer {
-            display: flex;
-            max-width: 1366px;
-            margin: auto;
-
-            .box {
-                padding: 50px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                text-align: center;
-        
-                img {
-                    height: 60px;
-                }
-        
-                h2 {
-                    font-size: 20px;
-                }
-            }
-        }
     }
 }
