@@ -82,5 +82,9 @@
         text-align: center;
         margin: auto;
         max-width: 1000px;
+
+        @include mobile {
+            padding: 15px
+        }
     }
 }

@@ -43,8 +43,8 @@ const CoverImage = () => {
                     <motion.h2 variants={textVariants}>Sebastian Bergman</motion.h2>
                     <motion.h1 variants={textVariants}>Web developer and UI/UX Designer</motion.h1>
                     <motion.div className="buttons">
-                        <motion.button variants={textVariants}>See my latest work</motion.button>
-                        <motion.button variants={textVariants}>Contact me</motion.button>
+                        <a href="#Projects"><motion.button variants={textVariants}>See my latest work</motion.button></a>
+                        <a href="#Contact"><motion.button variants={textVariants}>Contact me</motion.button></a>
                     </motion.div>
                 </motion.div>
                 <motion.div
@@ -55,7 +55,7 @@ const CoverImage = () => {
                     Front-end development UX/UI design IT knowledge
                 </motion.div>
                 <div className="imageContainer">
-                    <img src="/PictureSebu_Ilmantaustaa.png" alt="" />
+                    <img src="/SebuKuva_IlmanTaustaa.png" alt="" />
                 </div>
             </div>
         </div>

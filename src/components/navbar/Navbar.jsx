@@ -10,9 +10,9 @@ function Navbar() {
           <span>BergmanWebWorks</span>
           </div>
           <div className="social">
-            <a href="#"><img src="/Instagram.webp" alt="" /></a>
-            <a href="#"><img src="/LinkedIn.webp" alt="" /></a>
-            <a href="#"><img src="/Github.png" alt="" /></a>
+            <a href="https://www.instagram.com/sebu.bersman/" target="_blank"><img src="/Instagram.webp" alt="Instagram" /></a>
+            <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank"><img src="/LinkedIn.webp" alt="LinkedIn logo" /></a>
+            <a href="https://github.com/SebuBergman" target="_blank"><img src="/github-mark-white.png" alt="Github logo" /></a>
           </div>
         </div>
       </div>

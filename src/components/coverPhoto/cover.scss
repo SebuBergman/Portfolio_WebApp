@@ -42,6 +42,8 @@
             }
     
             .buttons {
+                z-index: 1;
+                
                 button {
                     padding: 20px;
                     border: 1px solid white;

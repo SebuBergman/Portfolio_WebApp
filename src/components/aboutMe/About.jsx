@@ -48,9 +48,9 @@ return (
     </motion.div>
     <motion.div className="aboutContainer" variants={variants}>
       <p>I am a novice programmer with a Bachelor's in Business Information Technology from Haaga-Helia University of Applied Sciences. Over three years, 
-        I've developed expertise in programming languages like React, React Native, JavaScript, Java, Python, and more. </p>
-      <p>My skills also include project management with Scrum and Kanban, website design, and user-centered design. 
-        I'm passionate about IT, with a knack for problem-solving and quick learning.  </p>
+        I've developed expertise in programming languages like <b>React, Javascript, TypeScript, Java, Python</b>, and more. </p>
+      <p>My skills also include project management with <b>Scrum and Kanban, website design, and user-centered design</b>. 
+        I'm passionate about IT, with a knack for <b>problem-solving and quick learning</b>.  </p>
       <p>Fluent in English and Finnish, I'm eager to explore new opportunities in the tech world.</p>
       <p>Let's connect and bring exciting projects to life!</p>
     </motion.div>
