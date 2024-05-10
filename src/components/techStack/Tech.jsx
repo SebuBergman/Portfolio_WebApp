@@ -34,7 +34,7 @@ return (
   >
     <motion.div className="textContainer" variants={variants}>
       <p>
-        I am novice in front-end development,<br />UX/UI design & user-based design principles
+        I am novice programmer<br />with a diverse set of skills
       </p>
       <hr />
     </motion.div>
@@ -62,6 +62,10 @@ return (
           <h2>HTML & CSS</h2>
         </motion.div>
         <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+          <img src="/java-logo.png" alt="" />
+          <h2>Java</h2>
+        </motion.div>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
           <img src="/wordpress-logo.svg" alt="" />
           <h2>WordPress</h2>
         </motion.div>
@@ -73,10 +77,7 @@ return (
           <img src="/UX_logo.png" alt="" />
           <h2>UX/UI design</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
-          <img src="/java-logo.png" alt="" />
-          <h2>Java</h2>
-        </motion.div>
+        
       </motion.div>
   </motion.div>
   );

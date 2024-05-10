@@ -8,20 +8,21 @@ const items = [
     title:"tukikeskustelut.com",
     img:"/tukikeskustelut.png",
     desc:"Website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching",
-    linktosite:"www.tukikeskustelut.com"
+    linktosite:"https://www.tukikeskustelut.com"
   },
   {
     id: 2,
     title:"avone.fi",
     img:"/avone.png",
     desc:"Website for a Finnish entrepreneur who offers website, newsletter & seo optimization services",
-    linktosite:"www.avone.fi"
+    linktosite:"https://www.avone.fi"
   },
   {
     id: 2,
     title:"EcoHub",
     img:"/ecohub.png",
-    desc:"EcoHub was a figma prototype i created as part of my thesis about user-based design and it's affects on programming outcomes. This might become a full programming project for me"
+    desc:"EcoHub was a figma prototype i created as part of my thesis about user-based design and it's affects on programming outcomes. This might become a full programming project for me",
+    linktosite:"https://www.figma.com/proto/SLd2mjiyNSjfWAPjqlxLRV/Ympäristön-kestävyyden-keskus?node-id=262-7167&t=uJ6anyye2OS2PmGd-0&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=262%3A7167&hide-ui=1"
   },
 ];
 
