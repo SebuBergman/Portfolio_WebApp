@@ -93,7 +93,6 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Primary Color | ![#121212](https://via.placeholder.com/10/222831?text=+) #121212 |
-| Accent Color | ![#FFA500](https://via.placeholder.com/10/00ADB5?text=+) #FFA500 |
 | Text Color | ![#ffffff](https://via.placeholder.com/10/EEEEEE?text=+) #ffffff |
 
 
