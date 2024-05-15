@@ -12,7 +12,9 @@ Maybe you can mention me or this repo in the acknowledgements too
   
   <p>
     Here's a portfolio website created with React, framer motion for animations, sass for styles and vite for the development environment.
-    Still need to do some mobile optimization. 2 of the pages do not show up on mobile at all
+  </p>
+  <p>
+    Still need to do some mobile optimization. Two of the pages do not show up on mobile at all
   </p>
    
 </div>
