@@ -67,9 +67,15 @@ In the todo app you can login / register, add todos, edit and delete. You can al
   <summary>Client</summary>
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
-    <li><a href="https://vitejs.dev">Vite</a></li>
     <li><a href="https://www.framer.com/motion/">Framer motion</a></li>
     <li><a href="https://sass-lang.com">Sass</a></li>
+  </ul>
+</details>
+
+<details>
+  <summary>Development Server</summary>
+  <ul>
+    <li><a href="https://vitejs.dev">Vite</a></li>
   </ul>
 </details>
 
