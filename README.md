@@ -31,7 +31,6 @@ Maybe you can mention me or this repo in the acknowledgements too
   * [Color Reference](#art-color-reference)
 - [Getting Started](#toolbox-getting-started)
   * [Prerequisites](#bangbang-prerequisites)
-  * [Installation](#gear-installation)
   * [Run Locally](#running-run-locally)
   * [Deployment](#triangular_flag_on_post-deployment)
 - [Contributing](#wave-contributing)
@@ -97,6 +96,15 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
+
+<!-- Prerequisites -->
+### :bangbang: Prerequisites
+
+This project uses npm as package manager
+
+```bash
+ npm install
+```
 
 <!-- Run Locally -->
 ### :running: Run Locally
