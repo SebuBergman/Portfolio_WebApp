@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 
 const variants = {
   initial: {
-    x: -500,
+    x: -300,
     y: 100,
     opacity: 0,
   },
@@ -45,35 +45,35 @@ return (
       </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/react-logo.svg" alt="" />
           <h2>React</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/javascript-logo.png" alt="" />
           <h2>JavaScript</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/typescript-logo.png" alt="" />
           <h2>TypeScript</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/CSS-HTML5-logo.png" alt="" />
           <h2>HTML & CSS</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/java-logo.png" alt="" />
           <h2>Java</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/wordpress-logo.svg" alt="" />
           <h2>WordPress</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/git-logo.png" alt="" />
           <h2>Git</h2>
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}}>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/UX_logo.png" alt="" />
           <h2>UX/UI design</h2>
         </motion.div>
