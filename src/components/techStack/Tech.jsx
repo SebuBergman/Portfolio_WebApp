@@ -41,7 +41,7 @@ return (
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
         <h1>My tech stack</h1>
-        <h3>Here's what I can handle in some capacity</h3>
+        <h3>Here's what I can handle:</h3>
       </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>

@@ -15,6 +15,7 @@
         gap: 20px;
 
         @include mobile {
+            flex: 1;
             align-self: center;
             text-align: center;
             flex-direction: column;
@@ -27,7 +28,7 @@
             text-align: right;
 
             @include mobile {
-                font-size: 15px;
+                font-size: 14px;
                 padding-top: 10px;
             }
         }
@@ -50,7 +51,7 @@
         align-items: center;
 
         @include mobile {
-            flex: 2;
+            flex: 1;
             width: 100%;
             padding-bottom: 0px;
         }
@@ -73,7 +74,15 @@
                 font-weight: 10;
 
                 @include mobile {
-                    font-size: 36px;
+                    font-size: 30px;
+                }
+            }
+
+            h3 {
+                font-size:24px;
+            
+                @include mobile {
+                    font-size: 16px;
                 }
             }
         }
@@ -86,7 +95,7 @@
         margin: auto;
 
         @include mobile {
-            flex: 1;
+            flex: 2 2 300px;
             flex-direction: column;
             width: 100%;
             align-items: center;
@@ -113,10 +122,18 @@
 
             img {
                 height: 60px;
+
+                @include mobile {
+                    height: 45px;
+                }
             }
 
             h2 {
                 font-size: 20px;
+
+                @include mobile {
+                    font-size: 18px;
+                }
             }
         }
     }

@@ -27,8 +27,8 @@ const Intermediate = ({type}) => {
             <motion.h1 style={{ y: yText }}>
                 {type === "services" ? "Who Am I?" : "My projects"}
             </motion.h1>
-            <motion.div className="mountains"></motion.div>
-            <motion.div style={{ x: yBg }} className="stars"></motion.div>
+            <motion.div className="background"></motion.div>
+            {/*<motion.div style={{ x: yBg }} className="accent"></motion.div>*/}
         </div>
     );
 }

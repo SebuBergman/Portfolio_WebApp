@@ -18,7 +18,7 @@ const items = [
     linktosite:"https://www.avone.fi"
   },
   {
-    id: 2,
+    id: 3,
     title:"EcoHub",
     img:"/ecohub.png",
     desc:"EcoHub was a figma prototype i created as part of my thesis about user-based design and it's affects on programming outcomes. This might become a full programming project for me",
