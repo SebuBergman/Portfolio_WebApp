@@ -85,20 +85,10 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | ![#222831](https://via.placeholder.com/10/222831?text=+) #222831 |
-| Secondary Color | ![#393E46](https://via.placeholder.com/10/393E46?text=+) #393E46 |
-| Accent Color | ![#00ADB5](https://via.placeholder.com/10/00ADB5?text=+) #00ADB5 |
-| Text Color | ![#EEEEEE](https://via.placeholder.com/10/EEEEEE?text=+) #EEEEEE |
+| Primary Color | ![#121212](https://via.placeholder.com/10/222831?text=+) #121212 |
+| Accent Color | ![#FFA500](https://via.placeholder.com/10/00ADB5?text=+) #FFA500 |
+| Text Color | ![#ffffff](https://via.placeholder.com/10/EEEEEE?text=+) #ffffff |
 
-
-<!-- Env Variables -->
-### :key: Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-`API_KEY`
-
-`ANOTHER_API_KEY`
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
@@ -109,7 +99,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/SebuBergman/Simple-React-todo-app
+  git clone https://github.com/SebuBergman/Portfolio_WebApp
 ```
 
 Go to the project directory
@@ -127,7 +117,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm start
+  npm run dev
 ```
 
 <!-- Usage -->
@@ -144,12 +134,6 @@ function App() {
 }
 ```
 
-<!-- Roadmap -->
-## :compass: Roadmap
-
-* [x] Todo 1
-* [ ] Todo 2
-
 
 <!-- License -->
 ## :warning: License
@@ -160,9 +144,9 @@ Distributed under the no License. See LICENSE.txt for more information.
 <!-- Contact -->
 ## :handshake: Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Your Name - Sebastian - sebu.bergman97@gmail.com
 
-Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
+Project Link: [https://github.com/SebuBergman/Portfolio_WebApp/]
 
 
 <!-- Acknowledgments -->
