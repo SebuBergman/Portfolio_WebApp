@@ -52,8 +52,16 @@ return (
           <h2>TypeScript</h2>
         </motion.div>
         <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/CSS-HTML5-logo.png" alt="" />
-          <h2>HTML & CSS</h2>
+          <img src="/HTML_logo.png" alt="" />
+          <h2>HTML</h2>
+        </motion.div>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
+          <img src="/CSS_logo.png" alt="" />
+          <h2>CSS</h2>
+        </motion.div>
+        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
+          <img src="/Sass_logo.png" alt="" />
+          <h2>Sass</h2>
         </motion.div>
         <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/java-logo.png" alt="" />
@@ -66,10 +74,6 @@ return (
         <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
           <img src="/git-logo.png" alt="" />
           <h2>Git</h2>
-        </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/UX_logo.png" alt="" />
-          <h2>UX/UI design</h2>
         </motion.div>
       </motion.div>
   </motion.div>
