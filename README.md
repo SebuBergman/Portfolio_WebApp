@@ -8,9 +8,11 @@ Maybe you can mention me or this repo in the acknowledgements too
 -->
 <div align="center">
   <h1>Portfolio Website</h1>
+  <h3><a href="https://sebastianbergman.fi">https://sebastianbergman.fi</a></h3>
   
   <p>
-    I will start to code a portfolio website using html, css (sass), javascript (React) and framer motion (also vite for the development environment). The website will have an overview of my skills, My path, known languages and projects plus contact info
+    Here's a portfolio website created with React, framer motion for animations, sass for styles and vite for the development environment.
+    Still need to do some mobile optimization. 2 of the pages do not show up on mobile at all
   </p>
    
 </div>
