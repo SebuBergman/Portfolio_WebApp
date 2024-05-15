@@ -32,12 +32,6 @@ return (
     ref={ref}
     animate={"animate"}
   >
-    <motion.div className="textContainer" variants={variants}>
-      <p>
-        I am novice programmer<br />with a diverse set of skills
-      </p>
-      <hr />
-    </motion.div>
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
         <h1>My tech stack</h1>

@@ -18,6 +18,9 @@
             align-self: center;
             text-align: center;
             flex-direction: column;
+            padding-top: 25px;
+            padding-left: 75px;
+            width: 90%;
         }
 
         p {
@@ -86,5 +89,15 @@
         @include mobile {
             padding: 15px
         }
+
+        p {
+            font-size: 16px;
+
+            @include mobile {
+                font-size: 14px;
+            }
+        }
+
+        
     }
 }
