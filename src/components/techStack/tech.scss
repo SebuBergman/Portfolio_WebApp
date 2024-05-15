@@ -110,6 +110,7 @@
             text-align: center;
 
             @include mobile {
+                border: none;
                 flex-direction: row;
                 align-items: center;
                 text-align: center;
@@ -124,7 +125,7 @@
                 height: 60px;
 
                 @include mobile {
-                    height: 45px;
+                    height: 40px;
                 }
             }
 

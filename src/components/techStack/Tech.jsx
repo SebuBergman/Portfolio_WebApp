@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 
 const variants = {
   initial: {
-    x: -300,
+    x: -500,
     y: 100,
     opacity: 0,
   },
@@ -30,7 +30,7 @@ return (
     variants={variants}
     initial="initial"
     ref={ref}
-    animate={isInView && "animate"}
+    animate={"animate"}
   >
     <motion.div className="textContainer" variants={variants}>
       <p>
@@ -41,7 +41,7 @@ return (
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
         <h1>My tech stack</h1>
-        <h3>Here's what I can handle:</h3>
+        <h3>Here's what I can handle</h3>
       </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>
@@ -77,7 +77,6 @@ return (
           <img src="/UX_logo.png" alt="" />
           <h2>UX/UI design</h2>
         </motion.div>
-        
       </motion.div>
   </motion.div>
   );
