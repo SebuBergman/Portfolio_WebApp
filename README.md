@@ -52,7 +52,7 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
+  <img src="https://github.com/SebuBergman/Portfolio_WebApp/blob/main/public/Portfolio%20video.gif" alt="screenshot" />
 </div>
 
 
