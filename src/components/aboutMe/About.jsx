@@ -43,11 +43,11 @@ return (
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
         <h1>Sebastian Bergman</h1>
-        <h3>Novice programmer</h3>
+        <h3>Front-end programmer</h3>
       </div>
     </motion.div>
     <motion.div className="aboutContainer" variants={variants}>
-      <p>I am a novice programmer with a Bachelor's in Business Information Technology from Haaga-Helia University of Applied Sciences.</p>
+      <p>I am a programmer with a Bachelor's in Business Information Technology from Haaga-Helia University of Applied Sciences.</p>
       <p>Over three years, I've developed expertise in programming languages like <b>React, Javascript, TypeScript, Java, Python</b>, and more. </p>
       <p>My skills also include project management with <b>Scrum and Kanban, responsive website design, and user-centered design</b>. </p>
       <p>I'm passionate about IT, with a knack for <b>problem-solving and quick learning</b>.  </p>
