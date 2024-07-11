@@ -1,6 +1,7 @@
 import "./tech.scss";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Tooltip from '@mui/material/Tooltip';
 
 const variants = {
   initial: {
@@ -35,46 +36,70 @@ return (
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
         <h1>My tech stack</h1>
-        <h3>Here's what I can handle</h3>
+        <h3>Here's what tech i can handle</h3>
       </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/react-logo.svg" alt="" />
-          <h2>React</h2>
+        <Tooltip title={<h1 style={{ color: "white" }}>React</h1>}>
+          <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+            <img src="/react-logo.svg" alt="React.js Logo" />
+          </motion.div>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Javascript</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/javascript_logo.svg" alt="Javascript logo" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/javascript-logo.png" alt="" />
-          <h2>JavaScript</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Typescript</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/typescript_logo.svg" alt="Typescript logo" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/typescript-logo.png" alt="" />
-          <h2>TypeScript</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Node.js</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/node-js_logo.svg" alt="Node.js logo" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/HTML_logo.png" alt="" />
-          <h2>HTML</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>HTML5</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/html_logo.svg" alt="" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/CSS_logo.png" alt="" />
-          <h2>CSS</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>CSS3</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/css_logo.svg" alt="" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/Sass_logo.png" alt="" />
-          <h2>Sass</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Sass</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/sass_logo.svg" alt="" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/java-logo.png" alt="" />
-          <h2>Java</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>WordPress</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/wordpress_logo.svg" alt="Wordpress logo" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/wordpress-logo.svg" alt="" />
-          <h2>WordPress</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Figma</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/figma_logo.svg" alt="Figma logo" />
         </motion.div>
-        <motion.div className="box" whileHover={{background:"lightgray", color:"black"}} variants={variants}>
-          <img src="/git-logo.png" alt="" />
-          <h2>Git</h2>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Java</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/java_logo.svg" alt="Java logo" />
         </motion.div>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>SQL</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/sql_logo.svg" alt="Java logo" />
+        </motion.div>
+        </Tooltip>
+        <Tooltip title={<h1 style={{ color: "white" }}>Git</h1>}>
+        <motion.div className="box" whileHover={{background:"lightgray"}} variants={variants}>
+          <img src="/git-logo.png" alt="Git logo" />
+        </motion.div>
+        </Tooltip>
       </motion.div>
   </motion.div>
   );
