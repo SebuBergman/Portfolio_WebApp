@@ -35,8 +35,36 @@ return (
   >
     <motion.div className="titleContainer" variants={variants}>
       <div className="title">
-        <h1>My tech stack</h1>
-        <h3>Here's what tech i can handle</h3>
+        <h1>My Expertise</h1>
+      </div>
+      <div className="expertiseContainer">
+        <div className="expertiseWrapper">
+          <div className="headingWrapper">
+            <img src="desktop.svg" />
+            <h5>Software <br></br>Development</h5> 
+          </div>
+          <div className="textContainer">
+            <div className="textWrapper"><p>Experienced in both functional and OOP: Java, Javascript, Typescript. Also some experience with Python.</p></div>
+          </div>
+        </div>
+        <div className="expertiseWrapper">
+          <div className="headingWrapper">
+            <img src="react.svg" />
+            <h5>Frontend Dev <br></br>React, Vite</h5> 
+          </div>
+          <div className="textContainer">
+            <div className="textWrapper"><p>Passionate about UX/UI. I have a few years of experience in HTML, CSS, JS, TS, React and Vite frameworks.</p></div>
+          </div>
+        </div>
+        <div className="expertiseWrapper">
+          <div className="headingWrapper">
+            <img src="responsive.svg" />
+            <h5>UI/UX  <br></br>Design</h5> 
+          </div>
+          <div className="textContainer">
+            <div className="textWrapper"><p>Skilled in designing applications with Figma. Experienced in User-based design principles and responsive web design</p></div>
+          </div>
+        </div>
       </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>
