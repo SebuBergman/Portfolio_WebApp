@@ -66,6 +66,9 @@ return (
           </div>
         </div>
       </div>
+      <div className="background-code_container">
+        <img src="carbon.png" className="background-code"/>
+      </div>
     </motion.div>
     <motion.div className="listContainer" variants={variants}>
         <Tooltip title={<h1 style={{ color: "white" }}>React</h1>}>

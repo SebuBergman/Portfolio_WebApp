@@ -27,7 +27,7 @@
         }
 
         h1 {
-            font-size: 100px;
+            font-size: 80px;
             line-height: 88px;
 
             @include mobile {
@@ -36,8 +36,16 @@
         }
 
         h2 {
-            font-size: 40px;
+            font-size: 46px;
             
+            @include mobile {
+                font-size: 30px;
+            }
+        }
+
+        h3 {
+            font-size: 40px;
+
             @include mobile {
                 font-size: 24px;
             }
