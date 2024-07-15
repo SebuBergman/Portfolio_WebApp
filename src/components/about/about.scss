@@ -33,31 +33,31 @@
             }
 
         .heading {
-            font-size: 96px;
-            font-weight: 10;
+            font-size: 4.5rem;
+            font-weight: 600;
             margin-bottom: 20px;
 
             @include mobile {
-                font-size: 36px;
+                font-size: 2.25rem;
             }
 
             @include tablet {
-                font-size: 56px;
+                font-size: 3.5rem;
             }
         }
 
         p {
             font-weight: 200;
-            font-size: 20px;
+            font-size: 1.25rem;
             color: gray;
             margin-bottom: 10px;
 
             @include mobile {
-                font-size: 14px;
+                font-size: 0.875rem;
             }
         
             @include tablet {
-                font-size: 24px;
+                font-size: 1.5rem;
             }
         }
         }

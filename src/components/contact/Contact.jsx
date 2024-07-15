@@ -2,6 +2,7 @@ import "./contact.scss";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import toast, { Toaster } from 'react-hot-toast';
 
 const variants = {
   initial: {
@@ -36,8 +37,10 @@ const Contact = () => {
       )
       .then((result) => {
           setSuccess(true)
+          toast.success("Message sent successfully!");
         }, (error) => {
           setError(true)
+          toast.notifyError();
         }
       );
   };
@@ -65,8 +68,9 @@ const Contact = () => {
           <input type="email" required placeholder="Email" name="email"/>
           <textarea rows={8} placeholder="Message" name="message" />
           <button>Submit</button>
-          {error && "Error"}
-          {success && "Success"}
+          {error}
+          {success}
+          <Toaster position="bottom-center" />
         </motion.form>
       </motion.div>
   </motion.div>

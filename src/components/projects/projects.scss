@@ -1,10 +1,28 @@
 @import "../../app.scss";
 
 .projects {
-    section {
-        margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include mobile {
+        justify-content: center;
     }
-    .container {
+
+    h1 {
+        font-size: 4.5rem;
+        padding-bottom: 40px;
+
+        @include mobile {
+            font-size: 1.875rem;
+        }
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    .projectsContainer {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -13,79 +31,92 @@
         overflow: hidden;
         background-color: rgb(255 255 255 / 0.1);
 
-        .wrapper {
+        .projectsWrapper {
             max-width: 1366px;
             height: 100%;
             margin: auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
 
             @include mobile {
+                max-width: 748px;
                 flex-direction: column;
             }
 
             .textContainer {
                 flex: 1;
-                display: flex;
                 flex-direction: column;
-                gap: 30px;
-                padding: 40px 8px 28px 40px;
 
                 @include mobile {
+                    flex-direction: row;
                     transform: none !important;
                     padding: 10px;
                 }
 
-                h3 {
-                    font-size: 1.75rem;
-
-                    @include mobile {
-                        font-size: 30px;
-                    }
-                }
-
-                p {
-                    color: rgb(255 255 255 / 0.7);
-                    font-size: 1rem;
-
-                    @include mobile {
-                        font-size: 16px;
-                    }
-                }
-
-                ul {
+                .textWrapper {
                     display: flex;
-                    gap: 8px;
+                    flex-direction: column;
+                    gap: 25px;
+                    padding: 0px 40px 0px 40px;
 
-                    li {
-                        list-style: none;
-                        color: rgb(255 255 255 / 0.7);
-                        background-color: black;
-                        border: none;
-                        border-radius: 30px;
-                        padding: 4px 12px 4px 12px;
-                        letter-spacing: 0.05em;
-                        font-size: 0.75rem;
+                    @include mobile {
+                        padding: 20px 30px 20px 30px;
                     }
-                }
 
-                a.button {
-                    color: black;
-                    background-color: orange;
-                    border: none;
-                    border-radius: 10px;
-                    padding: 10px;
-                    width: 120px;
-                    cursor: pointer;
-                    text-align: center;
+                    h3 {
+                        font-size: 1.75rem;
+                
+                        @include mobile {
+                            font-size: 1.75rem;
+                        }
+                    }
+                
+                    p {
+                        color: rgb(255 255 255 / 0.7);
+                        font-size: 1rem;
+                
+                        @include mobile {
+                            font-size: 0.875rem;
+                        }
+                    }
+                
+                    ul {
+                        display: flex;
+                        gap: 8px;
+
+                        @include mobile {
+                            flex-direction: column;
+                            width: 100%;
+                        }
+                
+                        li {
+                            list-style: none;
+                            color: rgb(255 255 255 / 0.7);
+                            background-color: black;
+                            border: none;
+                            border-radius: 30px;
+                            padding: 4px 12px 4px 12px;
+                            letter-spacing: 0.05em;
+                            font-size: 0.75rem;
+                        }
+                    }
+                
+                    a.button {
+                        color: black;
+                        background-color: orange;
+                        border: none;
+                        border-radius: 10px;
+                        padding: 10px;
+                        width: 120px;
+                        cursor: pointer;
+                        text-align: center;
+                    }
                 }
             }
 
             .imageContainer {
-                flex: 2;
-                height: 50%;
+                flex: 1;
 
                 @include mobile {
                     width: 100%;
