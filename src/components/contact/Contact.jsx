@@ -6,15 +6,17 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const variants = {
   initial: {
-    y: 500,
+    x: -500,
+    y: 100,
     opacity: 0,
   },
   animate: {
-    y: 0,
+    x: 0,
     opacity: 1,
+    y: 0,
     transition: {
-      duration: 0.5,
-      staggerChildren: 0.1,
+      duration: 1,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -46,7 +48,14 @@ const Contact = () => {
   };
 
   return (
-  <motion.div className="contact">
+  <motion.div
+    id="Contact"
+    className="contact"
+    initial="initial"
+    whileInView="animate"
+    viewport={{ once: true }}
+    ref={ref}  
+  >
     <motion.div className="textContainer" variants={variants}>
         <motion.h1 variants={variants}>Want to get in touch?</motion.h1>
         <motion.h2 variants={variants}>I am open to work!</motion.h2>

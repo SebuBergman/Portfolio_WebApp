@@ -1,6 +1,23 @@
 import "./projects.scss";
-import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useSpring, useTransform, useInView } from "framer-motion";
+
+const variants = {
+  initial: {
+    x: -500,
+    y: 100,
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.6,
+    },
+  },
+};
 
 const projectsData = [
   {
@@ -30,10 +47,11 @@ const projectsData = [
 ];
 
 const Single = ({ item }) => {
-  const ref = useRef();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <section >
+    <motion.section variants={variants}>
       <a href={item.linktosite} target="_blank" rel="noreferrer">
         <div className="projectsContainer">
           <div className="projectsWrapper">
@@ -56,20 +74,29 @@ const Single = ({ item }) => {
           </div>
         </div>
       </a>
-    </section>
+    </motion.section>
   );
 };
 
 const Projects = () => {
-  const ref = useRef();
+  const ref = useRef(null);
 
   return (
-    <div className="projects" ref={ref}>
-      <h1>My Projects</h1>
-      {projectsData.map((item) => (
-        <Single item={item} key={item.id} />
-      ))}
-    </div>
+    <motion.div
+      id="Projects"
+      variants={variants}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true }}
+      ref={ref}
+    >
+      <motion.div className="projects" variants={variants}>
+        <h1>My Projects</h1>
+        {projectsData.map((item) => (
+          <Single item={item} key={item.id} />
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 

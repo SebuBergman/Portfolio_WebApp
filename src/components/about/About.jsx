@@ -14,7 +14,7 @@ const variants = {
     y: 0,
     transition: {
       duration: 1,
-      staggerChildren: 0.1,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -22,17 +22,15 @@ const variants = {
 const About = () => {
   const ref = useRef()
 
-  const isInView = useInView(ref,{margin:"-100px"})
-
 return (
   <motion.div
+    id="About"
     className="about"
     variants={variants}
     initial="initial"
-    // animate="animate"
-    // whileInView="animate"
+    whileInView="animate"
+    viewport={{ once: true }}
     ref={ref}
-    animate={"animate"}
   >
     <motion.div className="titleContainer" variants={variants}>
       <div className="aboutText">
