@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Links from "./links/Links";
 import ToggleButton from "./toggleButton/ToggleButton";
@@ -25,11 +25,20 @@ const variants = {
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
+    
+    useEffect(() => {
+        console.log(setOpen);
+        console.log(open);
+    });
+
+    function clickHandlerFunction() {
+        setOpen={setOpen};
+    }
 
     return (
         <motion.div className="sidebar" animate={open ? "open" : "closed"}>
             <motion.div className="bg" variants={variants}>
-                <Links/>
+                <Links open={open} setOpen={setOpen}/>
             </motion.div>
             <ToggleButton setOpen={setOpen} />
         </motion.div>

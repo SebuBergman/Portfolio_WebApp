@@ -1,10 +1,59 @@
-const Links = () => {
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
+const openningVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+  closed: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+const closingVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+  },
+};
+
+const Links = (props) => {
+    const {open, setOpen } = props;
     const items = ["About", "Expertise", "Tech", "Projects", "Contact"];
+
+    function handleClose() {
+        setOpen={setOpen};
+    }
+
+    useEffect(() => {
+        console.log(setOpen);
+    });
+
     return (
-        <div className="links">{items.map(item=>(
-            <a href={`#${item}`} key={item}>{item}</a>
-        ))}</div>
+        <motion.div className="links" variants={openningVariants}>
+            {items.map(item=>(
+                <motion.a
+                    href={`#${item}`}
+                    key={item}
+                    variants={closingVariants}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+
+                    onClick={handleClose}
+                >
+                    {item}
+                </motion.a>
+            ))}
+        </motion.div>
     );
 }
 
-export default Links
+export default Links;
