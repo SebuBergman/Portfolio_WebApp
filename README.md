@@ -96,10 +96,10 @@ In the todo app you can login / register, add todos, edit and delete. You can al
 <!-- Prerequisites -->
 ### :bangbang: Prerequisites
 
-This project uses npm as package manager
+This project uses yarn as package manager
 
 ```bash
- npm install
+ yarn install
 ```
 
 <!-- Run Locally -->
@@ -120,13 +120,13 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  yarn install
 ```
 
 Start the server
 
 ```bash
-  npm run dev
+  yarn dev
 ```
 
 
