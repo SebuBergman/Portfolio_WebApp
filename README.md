@@ -41,10 +41,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 <!-- About the Project -->
 ## :star2: About the Project
 
-This is a simple react todo app that has a node.js express backend (Mongo db).
-In the todo app you can login / register, add todos, edit and delete. You can also change settings
-
-
+This is a portfolio website all about my programming and IT skills. Hopefully it shows off my skills in some capacity and makes me more advertisable
 
 <!-- Screenshots -->
 ### :camera: Screenshots
