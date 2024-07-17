@@ -48,8 +48,7 @@ const projectsData = [
 
 const Single = ({ item }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
+  
   return (
     <motion.section variants={variants}>
       <a href={item.linktosite} target="_blank" rel="noreferrer">

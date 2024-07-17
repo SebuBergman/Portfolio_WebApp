@@ -93,6 +93,34 @@
                     width: 42px;
                     height: 42px;
                 }
+
+                .heading-underline-blue, .heading-underline-orange, .heading-underline-rose {
+                    z-index: 0;
+                    position: relative;
+                    color: white;
+                }
+
+                .heading-underline-blue::after, .heading-underline-orange::after, .heading-underline-rose::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 13.5%;
+                    z-index: -1;
+                    height: 0.3em;
+                    width: 104%;
+                    left: -1%;
+                }
+
+                .heading-underline-blue::after {
+                    background: linear-gradient(65deg, #2C49D8 100%, rgba(255, 209, 0, 0) 100%);
+                }
+
+                .heading-underline-orange::after {
+                    background: linear-gradient(65deg, #FF6B2B 100%, rgba(255, 209, 0, 0) 100%);
+                }
+
+                .heading-underline-rose::after {
+                    background: linear-gradient(65deg, #F84AA7 100%, rgba(255, 209, 0, 0) 100%);
+                }
             }
 
             .textContainer {

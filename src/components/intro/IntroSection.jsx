@@ -14,6 +14,14 @@ const textVariants = {
             staggerChildren: 0.1,
         },
     },
+    scrollButtonAnimation: {
+        opacity: 0,
+        y: 10,
+        transition:{
+            duration: 2,
+            repeat: Infinity,
+        }
+    }
 };
 
 const sliderVariants = {
@@ -46,20 +54,21 @@ const CoverImage = () => {
                         <a href="#Projects" className="buttons_text"><motion.button variants={textVariants}>See my latest work</motion.button></a>
                         <a href="#Contact" className="buttons_text"><motion.button variants={textVariants}>Contact me</motion.button></a>
                     </motion.div>
+                    <motion.img variants={textVariants} animate="scrollButtonAnimation" src="scroll-icon.png" alt="" />
                 </motion.div>
                 <motion.div
                     className="slidingTextContainer"
                     variants={sliderVariants}
                     initial="initial"
                     animate="animate">
-                    Front-end development UX/UI design IT knowledge
+                    Front-end developer & UX/UI designer with extensive IT knowledge
                 </motion.div>
                 <div className="imageContainer">
                     <img src="/SebuKuva_IlmanTaustaa.png" alt="" />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default CoverImage;

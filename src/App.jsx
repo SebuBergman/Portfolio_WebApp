@@ -10,20 +10,20 @@ import Expertise from "./components/expertise/Expertise";
 
 const App = () => {
   return (
-      <div>
-        <section className="introSection">
-          <Navbar />
-          <CoverImage />
-        </section>
-        <section className="portfolioContainer">
-          <About />
-          <Expertise />
-          <Tech />
-          <Projects />
-          <Contact />
-        </section>
-      </div>
+    <div>
+      <section className="introSection">
+        <Navbar />
+        <CoverImage />
+      </section>
+      <section className="portfolioContainer">
+        <About />
+        <Expertise />
+        <Tech />
+        <Projects />
+        <Contact />
+      </section>
+    </div>
   );
-}
+};
 
 export default App;
