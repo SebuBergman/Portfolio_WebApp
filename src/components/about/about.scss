@@ -9,10 +9,11 @@
         flex: 1;
         display: flex;
         justify-content: center;
-        padding-top: 100px;
+        margin-top: 100px;
 
         @include mobile {
             width: 100%;
+            margin-top: 40px;
         }
 
         .aboutText {
@@ -29,7 +30,7 @@
             @include tablet {
                 flex-direction: column;
                 gap: 20px;
-                padding: 24px;
+                padding: 25px;
             }
 
         .heading {
@@ -57,7 +58,8 @@
             }
         
             @include tablet {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin-bottom: 25px;
             }
         }
         }

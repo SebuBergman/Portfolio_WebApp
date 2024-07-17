@@ -5,7 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 const variants = {
   initial: {
-    x: -500,
+    x: -300,
     y: 100,
     opacity: 0,
   },
@@ -26,7 +26,6 @@ const Tech = () => {
 return (
   <motion.div
     id="Tech"
-    className="tech"
     variants={variants}
     initial="initial"
     whileInView="animate"

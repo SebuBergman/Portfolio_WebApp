@@ -4,7 +4,7 @@ import { motion, useScroll, useSpring, useTransform, useInView } from "framer-mo
 
 const variants = {
   initial: {
-    x: -500,
+    x: -300,
     y: 100,
     opacity: 0,
   },
