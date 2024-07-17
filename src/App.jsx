@@ -1,4 +1,5 @@
 import "./app.scss";
+import "./main.scss";
 import Navbar from "./components/navbar/Navbar";
 import CoverImage from "./components/intro/IntroSection";
 import Projects from "./components/projects/Projects";
