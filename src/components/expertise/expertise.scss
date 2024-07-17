@@ -176,6 +176,12 @@
         .background-code {
             width: 660px;
             opacity: .2;
+
+            @include mobile {
+                width: 100%;
+                padding-left: 5px;
+                padding-left: 5px;
+            }
         }
 
 
