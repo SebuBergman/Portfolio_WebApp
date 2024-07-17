@@ -124,6 +124,7 @@
 
             @include tablet {
                 margin: 10px;
+                font-size: 1.5rem;
             }
         }
         input,
@@ -137,6 +138,10 @@
             @include mobile {
                 padding: 10px;
             }
+
+            @include tablet {
+                font-size: 1.25rem;
+            }
         }
 
         button {
@@ -147,6 +152,20 @@
 
             @include mobile {
                 padding: 10px;
+            }
+
+            @include tablet {
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+        }
+
+        .toastFlex {
+            @include mobile {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
             }
         }
     }

@@ -25,17 +25,8 @@ const closingVariants = {
   },
 };
 
-const Links = (props) => {
-    const {open, setOpen } = props;
+const Links = ({ setOpen }) => {
     const items = ["About", "Expertise", "Tech", "Projects", "Contact"];
-
-    function handleClose() {
-        setOpen={setOpen};
-    }
-
-    useEffect(() => {
-        console.log(setOpen);
-    });
 
     return (
         <motion.div className="links" variants={openningVariants}>
@@ -47,7 +38,7 @@ const Links = (props) => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
 
-                    onClick={handleClose}
+                    onClick={() => setOpen((prev) => !prev)}
                 >
                     {item}
                 </motion.a>

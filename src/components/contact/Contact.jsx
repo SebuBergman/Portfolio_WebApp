@@ -61,11 +61,11 @@ const Contact = () => {
         <motion.h2 variants={variants}>I am open to work!</motion.h2>
         <motion.div className="item" variants={variants}>
           <h3>Email</h3>
-          <span>- sebu.bergman97@gmail.com</span>
+          <span>sebu.bergman97@gmail.com</span>
         </motion.div>
         <motion.div className="item" variants={variants}>
           <h3>Location</h3>
-          <span>- Tampere, Finland</span>
+          <span>Tampere, Finland</span>
         </motion.div>
       </motion.div>
       <motion.div className="formContainer">
@@ -79,8 +79,8 @@ const Contact = () => {
           <button>Submit</button>
           {error}
           {success}
-          <Toaster position="bottom-center" />
         </motion.form>
+        <Toaster position="bottom-center" className="toastFlex"/>
       </motion.div>
   </motion.div>
   );
