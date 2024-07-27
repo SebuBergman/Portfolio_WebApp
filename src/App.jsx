@@ -16,7 +16,6 @@ const App = () => {
         <CoverImage />
       </section>
       <section className="portfolioContainer">
-        <About />
         <Expertise />
         <Tech />
         <Projects />
