@@ -23,9 +23,11 @@
 
         span {
             font-weight: bold;
+            font-size: 1rem;
 
             @include mobile {
-                padding-right: 20px; 
+                padding-right: 20px;
+                font-size: 0.8rem;
             }
 
             @include tablet {
@@ -36,6 +38,10 @@
         .social {
             display: flex;
             gap: 20px;
+
+            @include mobile {
+                gap: 10px;
+            }
 
             img {
                 width: 18px;

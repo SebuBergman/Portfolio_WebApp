@@ -11,6 +11,7 @@
     @include mobile {
         padding: 10px;
         gap: 0px;
+        margin-top: 40px;
     }
 
     @include tablet {
@@ -93,16 +94,31 @@
         h6 {
             font-size: 2.5rem;
             line-height: 1.7em;
-            text-align: justify;
-            -moz-text-align-last: justify;
-            text-align-last: justify;
             padding-bottom: 30px;
+
+            @include desktop {
+                text-align: justify;
+                -moz-text-align-last: justify;
+                text-align-last: justify;
+            }
+
+            @include mobile {
+                font-size: 1.875rem;
+                padding: 0px 15px 0px 15px;
+            }
         }
 
         p {
             font-size: 1.25rem;
             line-height: 2em;
             text-align: justify;
+
+            @include mobile {
+                font-size: 1.10rem;
+                padding-left: 15px;
+                padding-right: 15px;
+                text-align: start;
+            }
         }
     }
 
