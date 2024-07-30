@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const variants = {
   initial: {
-    x: -500,
+    x: -300,
     y: 100,
     opacity: 0,
   },
@@ -16,12 +16,13 @@ const variants = {
     y: 0,
     transition: {
       duration: 1,
-      staggerChildren: 0.2,
+      staggerChildren: 0.6,
     },
   },
 };
 
 const Contact = () => {
+  const [input, setInput] = useState({name: "", email: "", msg: ""});
   const ref = useRef();
   const formRef = useRef();
   const [error, setError] = useState(false);
@@ -39,13 +40,24 @@ const Contact = () => {
       )
       .then((result) => {
           setSuccess(true)
-          toast.success("Message sent successfully!");
+          setInput({
+            ...input,
+            name: "",
+            email: "",
+            msg: "",
+          })
+          toast.success("Message sent successfully!")
         }, (error) => {
           setError(true)
           toast.notifyError();
         }
       );
   };
+
+  const handleChange = (e) => setInput({
+    ...input,
+    [e.currentTarget.name]: e.currentTarget.value
+  });
 
   return (
   <motion.div
@@ -68,16 +80,22 @@ const Contact = () => {
       <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank"><img src="/linkedIn_circle_logo.png" alt="LinkedIn logo" /></a>
       <a href="https://github.com/SebuBergman" target="_blank"><img src="/github-mark-white.png" alt="github_logo.png" /></a>
     </motion.div>
-    <motion.div className="aboutContainer" variants={variants}>
-      <motion.h6>Sebastian Bergman - Web developer and UX/UI designer</motion.h6>
-      <motion.p>
+    <motion.div
+      className="aboutContainer"
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true }}
+      ref={ref}
+    >
+      <motion.h6 variants={variants}>Sebastian Bergman - Web developer and UX/UI designer</motion.h6>
+      <motion.p variants={variants}>
         I'm Sebastian Bergman, a programmer with a Bachelor's degree in Business Information Technology from Haaga-Helia University of Applied Sciences.
         Through both academic and hands-on experience, I have honed my expertise in various programming languages,
         including <b>React</b>, <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>, <b>Node.js</b>, and <b>Figma</b>.
         Additionally, I have gained valuable experience in project management methodologies such as <b>Scrum</b> and <b>Kanban</b>, 
         as well as <b>responsive website</b> and <b>user-centered design</b>.
       </motion.p>
-      <motion.p>
+      <motion.p variants={variants}>
         My passion for IT drives me to continuously improve my problem-solving skills and quickly adapt to new technologies.
         I am fluent in both English and Finnish, and I am eager to embrace new opportunities in the tech industry.
         Let’s connect and bring exciting projects to life together!
@@ -89,14 +107,24 @@ const Contact = () => {
         ref={formRef}
         onSubmit={sendEmail}
       >
-        <input type="text" required placeholder="Name" name="name"/>
-        <input type="email" required placeholder="Email" name="email"/>
-        <textarea rows={8} placeholder="Message" name="message" />
+        <input type="text" required placeholder="Name" name="name" value={input.name} onChange={ handleChange } />
+        <input type="email" required placeholder="Email" name="email" value={input.email} onChange={ handleChange } />
+        <textarea rows={8} placeholder="Message" name="msg" value={input.msg} onChange={ handleChange } />
         <button>Send</button>
         {error}
         {success}
       </motion.form>
-      <Toaster position="bottom-center" className="toastFlex"/>
+      <Toaster
+      position="bottom-center"
+      className="toastFlex"
+      toastOptions={{
+        duration: 5000, 
+        style:{
+          padding: "20px",
+          "font-size": "24px",
+        }
+      }}
+        />
     </motion.div>
   </motion.div>
   );

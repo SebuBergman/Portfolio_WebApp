@@ -50,7 +50,13 @@ const Single = ({ item }) => {
   const ref = useRef(null);
   
   return (
-    <motion.section variants={variants}>
+    <motion.section 
+      variants={variants}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true }}
+      ref={ref}
+    >
       <a href={item.linktosite} target="_blank" rel="noreferrer">
         <div className="projectsContainer">
           <div className="projectsWrapper">
