@@ -26,7 +26,7 @@ const closingVariants = {
 };
 
 const Links = ({ setOpen }) => {
-  const items = ["About", "Expertise", "Tech", "Projects", "Contact"];
+  const items = ["Expertise", "Tech", "Projects", "Contact"];
 
   return (
     <motion.div className="links" variants={openningVariants}>
