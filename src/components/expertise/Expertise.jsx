@@ -66,7 +66,7 @@ const Expertise = () => {
           </motion.div>
         </div>
         <div className="background-code_container">
-          <img src="carbon.png" className="background-code"/>
+          <img src="carbon2.png" className="background-code"/>
         </div>
       </motion.div>
     </motion.div>

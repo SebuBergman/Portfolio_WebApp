@@ -24,7 +24,8 @@ const projectsData = [
     id:1,
     title:"tukikeskustelut.com",
     img:"/tukikeskustelut.png",
-    desc:"Website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
+    desc:"Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
+    aboutProject:"The website is built on Wordpress using bootstrap for extra styling",
     tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
     linktosite:"https://www.tukikeskustelut.com"
   },
@@ -32,7 +33,8 @@ const projectsData = [
     id: 2,
     title:"avone.fi",
     img:"/avone.png",
-    desc:"Website for a Finnish entrepreneur who offers WordPress development & maintenance, website creation, newsletter & SEO optimization services.",
+    desc:"avone.fi is a website for a Finnish entrepreneur who offers WordPress development & maintenance, website creation, newsletter & SEO optimization services",
+    aboutProject:"This website was built on Wordpress. Just a simple one page website",
     tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
     linktosite:"https://www.avone.fi"
   },
@@ -41,6 +43,7 @@ const projectsData = [
     title:"EcoHub",
     img:"/ecohub.png",
     desc:"EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
+    aboutProject: "This has become a passion project for me. It will also showcase my ever evolving skills in programming and design",
     tags: ["React", "Javascript", "HTML", "Sass", "Figma", "Git"],
     linktosite:"https://github.com/SebuBergman/EcoHub"
   },
@@ -64,6 +67,7 @@ const Single = ({ item }) => {
               <div className="textWrapper">
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
+                <p>{item.aboutProject}</p>
                 <ul>
                   {item.tags.map((tag, index) => (
                     <li key={index}>

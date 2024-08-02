@@ -7,6 +7,7 @@ import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 import Tech from "./components/techStack/Tech";
 import Expertise from "./components/expertise/Expertise";
+import ScrollButton from "./components/ScrollButton";
 
 const App = () => {
   return (
@@ -14,12 +15,13 @@ const App = () => {
       <section className="introSection">
         <Navbar />
         <CoverImage />
+        <ScrollButton />
       </section>
       <section className="portfolioContainer">
         <Expertise />
         <Tech />
         <Projects />
-        <Contact />
+        <Contact /> 
       </section>
     </div>
   );

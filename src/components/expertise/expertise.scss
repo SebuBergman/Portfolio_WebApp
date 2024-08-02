@@ -172,7 +172,6 @@
                         font-size: 1rem;
                     }
                 }
-
             }
         }
 
@@ -197,12 +196,12 @@
     .background-code_container {
         display: block;
         text-align: center;
-        margin-top: -25px;
+        margin-top: -20px;
 
         @include mobile {}
 
         .background-code {
-            width: 660px;
+            width: 480px;
             opacity: .2;
 
             @include mobile {
@@ -211,7 +210,5 @@
                 padding-left: 5px;
             }
         }
-
-
     }
 }
