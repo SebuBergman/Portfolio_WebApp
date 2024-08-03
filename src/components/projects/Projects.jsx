@@ -22,12 +22,12 @@ const variants = {
 const projectsData = [
   {
     id:1,
-    title:"tukikeskustelut.com",
-    img:"/tukikeskustelut.png",
-    desc:"Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
-    aboutProject:"The website is built on Wordpress using bootstrap for extra styling",
-    tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
-    linktosite:"https://www.tukikeskustelut.com"
+    title:"EcoHub",
+    img:"/ecohub.png",
+    desc:"EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
+    aboutProject: "This has become a passion project for me. It will also showcase my ever evolving skills in programming and design",
+    tags: ["React", "Javascript", "HTML", "Sass", "Figma", "Git"],
+    linktosite:"https://github.com/SebuBergman/EcoHub"
   },
   {
     id: 2,
@@ -40,12 +40,12 @@ const projectsData = [
   },
   {
     id: 3,
-    title:"EcoHub",
-    img:"/ecohub.png",
-    desc:"EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
-    aboutProject: "This has become a passion project for me. It will also showcase my ever evolving skills in programming and design",
-    tags: ["React", "Javascript", "HTML", "Sass", "Figma", "Git"],
-    linktosite:"https://github.com/SebuBergman/EcoHub"
+    title:"tukikeskustelut.com",
+    img:"/tukikeskustelut.png",
+    desc:"Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
+    aboutProject:"The website is built on Wordpress using bootstrap for extra styling",
+    tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
+    linktosite:"https://www.tukikeskustelut.com"
   },
 ];
 
