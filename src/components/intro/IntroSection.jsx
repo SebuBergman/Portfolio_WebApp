@@ -49,7 +49,7 @@ const CoverImage = () => {
                     animate="animate"
                 >
                     <motion.h2 variants={textVariants}>Sebastian Bergman</motion.h2>
-                    <motion.h1 variants={textVariants}>Web developer and UI/UX Designer</motion.h1>
+                    <motion.h1 variants={textVariants}>Web developer focused on Front-End development</motion.h1>
                     <motion.div className="buttons">
                         <a href="#Projects" className="buttons_text"><motion.button variants={textVariants}>See my latest work</motion.button></a>
                         <a href="#Contact" className="buttons_text"><motion.button variants={textVariants}>Contact me</motion.button></a>

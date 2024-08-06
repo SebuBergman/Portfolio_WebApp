@@ -52,7 +52,7 @@ const Expertise = () => {
               <h5><span className="heading-underline-orange">Frontend Dev</span><br></br>React, Vite</h5> 
             </div>
             <div className="textContainer">
-              <div className="textWrapper"><p>Passionate about UX/UI. I have a few years of experience in HTML, CSS, JS, TS, React and Vite frameworks.</p></div>
+              <div className="textWrapper"><p>Passionate about UX/UI. I have a few years of experience in HTML, CSS, JS, TS, React frameworks.</p></div>
             </div>
           </motion.div>
           <motion.div className="expertiseWrapper" variants={variants}>

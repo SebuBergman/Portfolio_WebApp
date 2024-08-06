@@ -3,6 +3,9 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from 'react-hot-toast';
+import { ThreeDots } from 'react-loader-spinner';
+import { FaLocationArrow } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 
 const variants = {
   initial: {
@@ -27,11 +30,17 @@ const Contact = () => {
   const formRef = useRef();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loading, setloading] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setloading(true);
+    setSending(true);
 
-    emailjs
+    if (sending == true) {
+      setSending(false);
+      emailjs
       .sendForm(
         "service_069tnqb",
         "template_k9ajxqi",
@@ -39,19 +48,23 @@ const Contact = () => {
         "waQ5U0JaLJVMzdW5t"
       )
       .then((result) => {
-          setSuccess(true)
+          setSuccess(true);
           setInput({
             ...input,
             name: "",
             email: "",
             msg: "",
-          })
-          toast.success("Message sent successfully!")
+          });
+          toast.success("Message sent successfully!");
         }, (error) => {
-          setError(true)
+          setError(true);
           toast.notifyError();
         }
       );
+    }
+    setTimeout(() => {
+      setloading(false)
+    }, 3000);
   };
 
   const handleChange = (e) => setInput({
@@ -71,12 +84,15 @@ const Contact = () => {
     <motion.div className="contactContainer" variants={variants}>
       <motion.h1 variants={variants}>Contact</motion.h1>
       <motion.div className="item" variants={variants}>
-        <span>Email: <a href="mailto:sebu.bergman97@gmail.com">sebu.bergman97@gmail.com</a></span>
-        <span>Location: Tampere, Finland</span>
+        <div className="contact_icons">
+          <img className="contact_icon" src="/mail.png"/><span><a href="mailto:sebu.bergman97@gmail.com">sebu.bergman97@gmail.com</a></span>
+        </div>
+        <div className="contact_icons">
+          <img className="contact_icon" src="/pin.png"/><span> Tampere, Finland</span>
+        </div>
       </motion.div>
     </motion.div>
     <motion.div className="socialIcons" variants={variants}>
-      <a href="https://www.instagram.com/sebu.bersman/" target="_blank"><img src="/instagram_circle_logo.png" alt="Instagram" /></a>
       <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank"><img src="/linkedIn_circle_logo.png" alt="LinkedIn logo" /></a>
       <a href="https://github.com/SebuBergman" target="_blank"><img src="/github-mark-white.png" alt="github_logo.png" /></a>
     </motion.div>
@@ -87,7 +103,7 @@ const Contact = () => {
       viewport={{ once: true }}
       ref={ref}
     >
-      <motion.h6 variants={variants}>Sebastian Bergman - Web developer and UX/UI designer</motion.h6>
+      <motion.h6 variants={variants}>Sebastian Bergman - Web developer focused on Front-end development</motion.h6>
       <motion.p variants={variants}>
         I'm Sebastian Bergman, a programmer with a Bachelor's degree in Business Information Technology from Haaga-Helia University of Applied Sciences.
         Through both academic and hands-on experience, I have honed my expertise in various programming languages,
@@ -110,7 +126,14 @@ const Contact = () => {
         <input type="text" required placeholder="Name" name="name" value={input.name} onChange={ handleChange } />
         <input type="email" required placeholder="Email" name="email" value={input.email} onChange={ handleChange } />
         <textarea rows={8} placeholder="Message" name="msg" value={input.msg} onChange={ handleChange } />
-        <button>Send</button>
+        <button>
+          {
+            loading? 
+              <ThreeDots color="#ffffff" height={30} width={30} wrapperClass="center_button"/>
+            :
+              <p className="send_buttonText">Send</p>
+          }
+        </button>
         {error}
         {success}
       </motion.form>

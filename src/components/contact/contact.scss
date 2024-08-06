@@ -68,10 +68,21 @@
         }
 
         .item {
-            padding-bottom: 10px;
             display: flex;
             flex-direction: column;
             font-family: lulo-clean, sans-serif;
+            align-items: center;
+
+            .contact_icons {
+                display: flex;
+                align-items: center;
+                padding: 5px;
+            }
+
+            img {
+                width: 30px;
+                height: 30px;
+            }
         }
     }
 
@@ -93,14 +104,7 @@
 
         h6 {
             font-size: 2.5rem;
-            line-height: 1.7em;
             padding-bottom: 30px;
-
-            @include desktop {
-                text-align: justify;
-                -moz-text-align-last: justify;
-                text-align-last: justify;
-            }
 
             @include mobile {
                 font-size: 1.875rem;
@@ -162,7 +166,7 @@
             background-color: transparent;
             border: 1px solid white;
             color: white;
-            border-radius: 5px;
+            border-radius: 10px;
 
             @include mobile {
                 padding: 10px;
@@ -174,10 +178,13 @@
         }
 
         button {
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border: none;
             background-color: orange;
             cursor: pointer;
+            border-radius: 10px;
 
             @include mobile {
                 padding: 10px;
@@ -187,6 +194,14 @@
                 font-size: 1.25rem;
                 font-weight: 600;
             }
+        }
+
+        .center_button {
+            padding: 8px;
+        }
+
+        .send_buttonText {
+            padding: 15px;
         }
 
         .toastFlex {
