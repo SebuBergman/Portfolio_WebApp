@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from 'react-hot-toast';
 import { ThreeDots } from 'react-loader-spinner';
-import { FaLocationArrow } from "react-icons/fa";
-import { MdOutlineEmail } from "react-icons/md";
 
 const variants = {
   initial: {
@@ -84,10 +82,10 @@ const Contact = () => {
     <motion.div className="contactContainer" variants={variants}>
       <motion.h1 variants={variants}>Contact</motion.h1>
       <motion.div className="item" variants={variants}>
-        <div className="contact_icons">
+        <div className="contact_icons1">
           <img className="contact_icon" src="/mail.png"/><span><a href="mailto:sebu.bergman97@gmail.com">sebu.bergman97@gmail.com</a></span>
         </div>
-        <div className="contact_icons">
+        <div className="contact_icons2">
           <img className="contact_icon" src="/pin.png"/><span> Tampere, Finland</span>
         </div>
       </motion.div>

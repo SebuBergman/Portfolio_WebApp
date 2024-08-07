@@ -73,10 +73,18 @@
             font-family: lulo-clean, sans-serif;
             align-items: center;
 
-            .contact_icons {
+            .contact_icons1, .contact_icons2 {
                 display: flex;
                 align-items: center;
                 padding: 5px;
+            }
+
+            .contact_icons1 {
+                gap: 10px;
+            }
+
+            .contact_icons2 {
+                gap: 5px;
             }
 
             img {
