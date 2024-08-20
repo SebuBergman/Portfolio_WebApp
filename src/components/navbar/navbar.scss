@@ -2,6 +2,9 @@
 
 .navbar {
     height: 100px;
+    background-color: #1A191D!important;
+    display: flex;
+    justify-content: center;
 
     .wrapper {
         max-width: 1366px;
@@ -49,4 +52,16 @@
             }
         }
     }
+}
+
+.displayFlex1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.displayFlex2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
