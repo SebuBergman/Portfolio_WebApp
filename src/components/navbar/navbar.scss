@@ -3,8 +3,6 @@
 .navbar {
     height: 100px;
     background-color: #1A191D!important;
-    display: flex;
-    justify-content: center;
 
     .wrapper {
         max-width: 1366px;
@@ -54,14 +52,25 @@
     }
 }
 
-.displayFlex1 {
+.navbar_headings {
+    padding-left: 4.4vh;
+    height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    font-family: "DM Sans", sans-serif;
 }
 
-.displayFlex2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.navbar_links {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-family: "DM Sans", sans-serif!important;
+
+    .navbar_buttons {
+        font-family: "DM Sans", sans-serif!important;
+        font-weight: 400;
+    }
 }

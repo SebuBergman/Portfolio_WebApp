@@ -39,35 +39,35 @@ function Navbar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav" className="navbar" elevation={0}>
-        <Toolbar>
-          <div className="displayFlex1">
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            BergmanWebWorks
-          </Typography>
+        <div className="navbar_headings">
+          <div>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            >
+              BergmanWebWorks
+            </Typography>
           </div>
-          <div className="displayFlex2">
-          <Box className="centerBox">
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }} href={`#${item}`}>
-                {item}
-              </Button>
-            ))}
-          </Box>
+          <div className="navbar_links">
+            <Box className="centerBox">
+              {navItems.map((item) => (
+                <Button key={item} sx={{ color: '#fff' }} href={`#${item}`} className="navbar_buttons">
+                  {item}
+                </Button>
+              ))}
+            </Box>
           </div>
-        </Toolbar>
+        </div>
       </AppBar>
       <nav>
         <Drawer
