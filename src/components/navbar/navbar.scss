@@ -52,10 +52,22 @@
         position: absolute;
         left: 90%;
 
+        @include tablet {
+            left: 85%;
+        }
+
+        @include mobile {
+            left: 75%;
+        }
+
         img {
             width: 18px;
             height: 18px;
             padding: 10px;
+
+            @include mobile {
+                padding: 8px;
+            }
         }
     }
 }
