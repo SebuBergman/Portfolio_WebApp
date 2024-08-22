@@ -9,11 +9,11 @@ import Tech from "./components/techStack/Tech";
 import Expertise from "./components/expertise/Expertise";
 import ScrollButton from "./components/ScrollButton";
 
-const App = () => {
+const App = ({visible}) => {
   return (
     <div>
       <section className="introSection">
-        <Navbar />
+        <Navbar visible={visible}/>
         <CoverImage />
         <ScrollButton />
       </section>

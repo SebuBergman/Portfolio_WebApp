@@ -1,22 +1,14 @@
 import "./navbar.scss";
-import Sidebar from "../sidebar/Sidebar";
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
+import { useState } from 'react';
+import { motion } from "framer-motion";
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { motion } from "framer-motion";
+import ToggleButton from "./sidebar/toggleButton/ToggleButton";
+import Links from "./sidebar/links/Links";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
@@ -40,64 +32,29 @@ const variants = {
     },
 };
 
-const openningVariants = {
-  open: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-  closed: {
-    transition: {
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    },
-  },
-};
-const closingVariants = {
-  open: {
-    y: 0,
-    opacity: 1,
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-  },
-};
 function Navbar(props) {
-  const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [visibleNavbar, setVisibleNavbar] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const drawer = (
-    <motion.div className="sidebar" animate={open ? "open" : "closed"} onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+  const sidebar = (
+    <motion.div className="sidebar" animate={mobileOpen ? "open" : "closed"} onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <motion.div className="bg" variants={variants}>
-        <motion.div className="links" variants={openningVariants}>
-          {navItems.map(item=>(
-              <motion.a
-                href={`#${item}`}
-                key={item}
-                variants={closingVariants}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClose={handleDrawerToggle}
-              >
-                {item}
-              </motion.a>
-          ))}
-        </motion.div>
+        <Links />
       </motion.div>
-    </motion.div >
+      <ToggleButton />
+    </motion.div>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav" className="navbar" elevation={0}>
-        <div className="navbar_headings">
+    <div sx={{ display: 'flex' }}>
+      <div component="nav" className="navbar" elevation={0}>
+        <div
+          className={visibleNavbar ? "navbar_headings" : "navbar_headings"}
+        >
           <div>
             <IconButton
               color="inherit"
@@ -106,7 +63,7 @@ function Navbar(props) {
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { md: 'none' } }}
             >
-              <MenuIcon />
+              <MenuIcon className="navbar_menuIcon"/>
             </IconButton>
             <Typography
               variant="h6"
@@ -120,16 +77,16 @@ function Navbar(props) {
             <Box className="centerBox" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
               {navItems.map((item) => (
                 <Button key={item} sx={{ color: '#fff' }} href={`#${item}`} className="navbar_buttons">
-                  {item}
+                  // {item}
                 </Button>
               ))}
             </Box>
           </div>
         </div>
-      </AppBar>
+      </div>
       <nav>
         <Drawer
-          container={container}
+          animate={open ? "open" : "closed"}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -141,40 +98,11 @@ function Navbar(props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
-          {drawer}
+          {sidebar}
         </Drawer>
       </nav>
-    </Box>
+    </div>
   );
 }
-
-Navbar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 export default Navbar;
-/*import Sidebar from "../sidebar/Sidebar";
-import "./navbar.scss";
-
-function Navbar() {
-  return (
-      <div className="navbar">
-        <Sidebar />
-        <div className="wrapper">
-          <div>
-          <span>BergmanWebWorks</span>
-          </div>
-          <div className="social">
-            <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank"><img src="/LinkedIn.webp" alt="LinkedIn logo" /></a>
-            <a href="https://github.com/SebuBergman" target="_blank"><img src="/github-mark-white.png" alt="Github logo" /></a>
-          </div>
-        </div>
-      </div>
-  );
-}
-
-export default Navbar;*/
