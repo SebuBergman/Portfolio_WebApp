@@ -32,7 +32,7 @@ const variants = {
     },
 };
 
-function Navbar(props) {
+function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visibleNavbar, setVisibleNavbar] = useState(false);
 

@@ -60,12 +60,14 @@ const Single = ({ item }) => {
       viewport={{ once: true }}
       ref={ref}
     >
-      <a href={item.linktosite} target="_blank" rel="noreferrer">
+      
         <div className="projectsContainer">
           <div className="projectsWrapper">
             <div className="textContainer">
               <div className="textWrapper">
-                <h3>{item.title}</h3>
+                <a href={item.linktosite} target="_blank" rel="noreferrer">
+                  <h3>{item.title}</h3>
+                </a>
                 <p>{item.desc}</p>
                 <p>{item.aboutProject}</p>
                 <ul>
@@ -78,11 +80,12 @@ const Single = ({ item }) => {
               </div>
             </div>
             <div className="imageContainer" ref={ref}>
-                <img src={item.img} alt="project image" />
+              <a href={item.linktosite} target="_blank" rel="noreferrer">
+                <img src={item.img} alt="project image"/>
+                </a>
             </div>
           </div>
         </div>
-      </a>
     </motion.section>
   );
 };
