@@ -1,6 +1,6 @@
 import "./navbar.scss";
 import Sidebar from "../sidebar/Sidebar";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,10 +16,53 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { motion } from "framer-motion";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
 
+const variants = {
+    open: {
+        clipPath: "circle(1200px at 50px 50px)",
+        transition: {
+            type: "spring",
+            stiffness: 20,
+        },
+    },
+    closed: {
+        clipPath: "circle(30px at 50px 50px",
+        transition: {
+            delay: 0.4,
+            type: "spring",
+            stiffness: 400,
+            damping: 40,
+        },
+    },
+};
+
+const openningVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+  closed: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+const closingVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+  },
+  closed: {
+    y: 50,
+    opacity: 0,
+  },
+};
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,9 +72,24 @@ function Navbar(props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Sidebar />
-    </Box>
+    <motion.div className="sidebar" animate={open ? "open" : "closed"} onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <motion.div className="bg" variants={variants}>
+        <motion.div className="links" variants={openningVariants}>
+          {navItems.map(item=>(
+              <motion.a
+                href={`#${item}`}
+                key={item}
+                variants={closingVariants}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClose={handleDrawerToggle}
+              >
+                {item}
+              </motion.a>
+          ))}
+        </motion.div>
+      </motion.div>
+    </motion.div >
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -46,20 +104,20 @@ function Navbar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'none' } }}
+              sx={{ mr: 2, display: { md: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}
             >
               BergmanWebWorks
             </Typography>
           </div>
           <div className="navbar_links">
-            <Box className="centerBox">
+            <Box className="centerBox" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'block' } }}>
               {navItems.map((item) => (
                 <Button key={item} sx={{ color: '#fff' }} href={`#${item}`} className="navbar_buttons">
                   {item}
@@ -79,7 +137,7 @@ function Navbar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: 'block', sm: 'block', md: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
@@ -105,7 +163,7 @@ import "./navbar.scss";
 function Navbar() {
   return (
       <div className="navbar">
-        <Sidebar/>
+        <Sidebar />
         <div className="wrapper">
           <div>
           <span>BergmanWebWorks</span>
