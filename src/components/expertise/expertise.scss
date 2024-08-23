@@ -95,7 +95,7 @@
                 }
 
                 .heading-underline-blue, .heading-underline-orange, .heading-underline-rose {
-                    z-index: 0;
+                    z-index: 1;
                     position: relative;
                     color: white;
                 }
@@ -144,12 +144,12 @@
                 }
 
                 .textWrapper::before {
-                    content: "<h4>";
+                    content: "<p>";
                     margin-bottom: 5px;
                     opacity: 0.3;
                     color: white;
                     display: block;
-                    margin-left: -35px;
+                    margin-left: -32px;
                     font-weight: normal;
                     font-size: 0.875rem;
 
@@ -159,12 +159,12 @@
                 }
 
                 .textWrapper::after {
-                    content: "</h4>";
+                    content: "</p>";
                     margin-top: 5px;
                     opacity: 0.3;
                     color: white;
                     display: block;
-                    margin-left: -35px;
+                    margin-left: -32px;
                     font-weight: normal;
                     font-size: 0.875rem;
 

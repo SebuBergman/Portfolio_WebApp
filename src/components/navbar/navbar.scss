@@ -1,8 +1,11 @@
 @import "../../app.scss";
 
 .navbar {
-    height: 100px;
-    background-color: #1A191D!important;
+    z-index: 999;
+    background-color: #1A191D;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     .navbar_headings {
         padding-left: 4.4vh;
@@ -11,6 +14,17 @@
         justify-content: flex-start;
         align-items: center;
         font-family: "DM Sans", sans-serif;
+    }
+
+    .navbar_scrolling {
+        z-index: 999;
+        padding-left: 4.4vh;
+        height: 60px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: "DM Sans", sans-serif;
+        background: rgba(26, 26, 26, 0.8);
     }
 
     .navbar_menuIcon {

@@ -36,6 +36,17 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visibleNavbar, setVisibleNavbar] = useState(false);
 
+  const toggleNavbarVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 150) {
+      setVisibleNavbar(true);
+    } else if (scrolled <= 150) {
+      setVisibleNavbar(false);
+    }
+  };
+
+  window.addEventListener("scroll", toggleNavbarVisible);
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -55,9 +66,9 @@ function Navbar() {
   );
 
   return (
-    <div sx={{ display: "flex" }}>
-      <div component="nav" className="navbar" elevation={0}>
-        <div className={visibleNavbar ? "navbar_headings" : "navbar_headings"}>
+    <div>
+      <div component="nav" className="navbar">
+        <div className={visibleNavbar ? "navbar_scrolling" : "navbar_headings"}>
           <div>
             <IconButton
               color="inherit"
