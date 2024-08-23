@@ -20,7 +20,7 @@ const variants = {
 };
 
 const About = () => {
-  const ref = useRef()
+  const ref = useRef();
 
   return (
     <motion.div
@@ -36,16 +36,19 @@ const About = () => {
         <div className="aboutWrapper">
           <h1 className="aboutText-heading">About Me</h1>
           <p>
-            I'm Sebastian Bergman, a programmer with a Bachelor's degree in Business Information Technology from Haaga-Helia University of Applied Sciences.
-            Through both academic and hands-on experience, I have honed my expertise in various programming languages,
-            including <b>React</b>, <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>, <b>Node.js</b>, and <b>Figma</b>.
-            Additionally, I have gained valuable experience in project management methodologies such as <b>Scrum</b> and <b>Kanban</b>, 
-            as well as <b>responsive website</b> and <b>user-centered design</b>.
+            I'm Sebastian Bergman, a programmer with a Bachelor's degree in Business Information
+            Technology from Haaga-Helia University of Applied Sciences. Through both academic and
+            hands-on experience, I have honed my expertise in various programming languages,
+            including <b>React</b>, <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>,{" "}
+            <b>Node.js</b>, and <b>Figma</b>. Additionally, I have gained valuable experience in
+            project management methodologies such as <b>Scrum</b> and <b>Kanban</b>, as well as{" "}
+            <b>responsive website</b> and <b>user-centered design</b>.
           </p>
           <p>
-            My passion for IT drives me to continuously improve my problem-solving skills and quickly adapt to new technologies.
-            I am fluent in both English and Finnish, and I am eager to embrace new opportunities in the tech industry.
-            Let’s connect and bring exciting projects to life together!
+            My passion for IT drives me to continuously improve my problem-solving skills and
+            quickly adapt to new technologies. I am fluent in both English and Finnish, and I am
+            eager to embrace new opportunities in the tech industry. Let’s connect and bring
+            exciting projects to life together!
           </p>
         </div>
       </motion.div>

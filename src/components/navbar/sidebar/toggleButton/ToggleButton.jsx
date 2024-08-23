@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 
 const ToggleButton = () => {
-    return (
-        <button><svg width="23" height="23" viewBox="0 0 23 23">
+  return (
+    <button>
+      <svg width="23" height="23" viewBox="0 0 23 23">
         <motion.path
           strokeWidth="3"
           stroke="black"
@@ -31,8 +32,9 @@ const ToggleButton = () => {
             open: { d: "M 3 2.5 L 17 16.346" },
           }}
         />
-      </svg></button>
-    )
-}
+      </svg>
+    </button>
+  );
+};
 
-export default ToggleButton
+export default ToggleButton;

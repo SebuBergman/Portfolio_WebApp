@@ -29,17 +29,17 @@ const Links = () => {
 
   return (
     <motion.div className="links" variants={openningVariants}>
-        {items.map(item=>(
-            <motion.a
-              href={`#${item}`}
-              key={item}
-              variants={closingVariants}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {item}
-            </motion.a>
-        ))}
+      {items.map((item) => (
+        <motion.a
+          href={`#${item}`}
+          key={item}
+          variants={closingVariants}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {item}
+        </motion.a>
+      ))}
     </motion.div>
   );
 };

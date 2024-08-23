@@ -9,11 +9,11 @@ import Tech from "./components/techStack/Tech";
 import Expertise from "./components/expertise/Expertise";
 import ScrollButton from "./components/ScrollButton";
 
-const App = ({visible}) => {
+const App = ({ visible }) => {
   return (
     <div>
       <section className="introSection">
-        <Navbar visible={visible}/>
+        <Navbar visible={visible} />
         <CoverImage />
         <ScrollButton />
       </section>
@@ -21,7 +21,7 @@ const App = ({visible}) => {
         <Expertise />
         <Tech />
         <Projects />
-        <Contact /> 
+        <Contact />
       </section>
     </div>
   );

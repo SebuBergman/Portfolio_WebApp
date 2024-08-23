@@ -21,71 +21,69 @@ const variants = {
 
 const projectsData = [
   {
-    id:1,
-    title:"EcoHub",
-    img:"/ecohub.png",
-    desc:"EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
-    aboutProject: "This has become a passion project for me. It will also showcase my ever evolving skills in programming and design",
+    id: 1,
+    title: "EcoHub",
+    img: "/ecohub.png",
+    desc: "EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
+    aboutProject:
+      "This has become a passion project for me. It will also showcase my ever evolving skills in programming and design",
     tags: ["React", "Javascript", "HTML", "Sass", "Figma", "Git"],
-    linktosite:"https://github.com/SebuBergman/EcoHub"
+    linktosite: "https://github.com/SebuBergman/EcoHub",
   },
   {
     id: 2,
-    title:"avone.fi",
-    img:"/avone.png",
-    desc:"avone.fi is a website for a Finnish entrepreneur who offers WordPress development & maintenance, website creation, newsletter & SEO optimization services",
-    aboutProject:"This website was built on Wordpress. Just a simple one page website",
+    title: "avone.fi",
+    img: "/avone.png",
+    desc: "avone.fi is a website for a Finnish entrepreneur who offers WordPress development & maintenance, website creation, newsletter & SEO optimization services",
+    aboutProject: "This website was built on Wordpress. Just a simple one page website",
     tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
-    linktosite:"https://www.avone.fi"
+    linktosite: "https://www.avone.fi",
   },
   {
     id: 3,
-    title:"tukikeskustelut.com",
-    img:"/tukikeskustelut.png",
-    desc:"Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
-    aboutProject:"The website is built on Wordpress using bootstrap for extra styling",
+    title: "tukikeskustelut.com",
+    img: "/tukikeskustelut.png",
+    desc: "Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
+    aboutProject: "The website is built on Wordpress using bootstrap for extra styling",
     tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
-    linktosite:"https://www.tukikeskustelut.com"
+    linktosite: "https://www.tukikeskustelut.com",
   },
 ];
 
 const Single = ({ item }) => {
   const ref = useRef(null);
-  
+
   return (
-    <motion.section 
+    <motion.section
       variants={variants}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
       ref={ref}
     >
-      
-        <div className="projectsContainer">
-          <div className="projectsWrapper">
-            <div className="textContainer">
-              <div className="textWrapper">
-                <a href={item.linktosite} target="_blank" rel="noreferrer">
-                  <h3>{item.title}</h3>
-                </a>
-                <p>{item.desc}</p>
-                <p>{item.aboutProject}</p>
-                <ul>
-                  {item.tags.map((tag, index) => (
-                    <li key={index}>
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="imageContainer" ref={ref}>
+      <div className="projectsContainer">
+        <div className="projectsWrapper">
+          <div className="textContainer">
+            <div className="textWrapper">
               <a href={item.linktosite} target="_blank" rel="noreferrer">
-                <img src={item.img} alt="project image"/>
-                </a>
+                <h3>{item.title}</h3>
+              </a>
+              <p>{item.desc}</p>
+              <p>{item.aboutProject}</p>
+              <ul>
+                {item.tags.map((tag, index) => (
+                  <li key={index}>{tag}</li>
+                ))}
+              </ul>
             </div>
           </div>
+          <div className="imageContainer" ref={ref}>
+            <a href={item.linktosite} target="_blank" rel="noreferrer">
+              <img src={item.img} alt="project image" />
+            </a>
+          </div>
         </div>
+      </div>
     </motion.section>
   );
 };
