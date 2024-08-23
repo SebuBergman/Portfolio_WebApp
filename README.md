@@ -40,7 +40,7 @@ This is a portfolio website all about my programming and IT skills. Hopefully it
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://github.com/SebuBergman/Portfolio_WebApp/blob/main/public/Portfolio%20video.gif" alt="screenshot" />
+  <img src="https://github.com/SebuBergman/Portfolio_WebApp/blob/main/public/Portfolio_video.mp4" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
@@ -70,7 +70,7 @@ This is a portfolio website all about my programming and IT skills. Hopefully it
 - Navbar
 - Text telling all about me and my skills
 - Amazing framer motion transitions
-- Amazing css using sass
+- Amazing css using SASS
 
 <!-- Color Reference -->
 
@@ -148,3 +148,4 @@ Use this section to mention useful resources and libraries that you have used in
 - [Awesome README](https://github.com/matiassingers/awesome-readme)
 - [React docs](https://reactjs.org/docs/getting-started.html)
 - [React Cheat Sheet](https://www.freecodecamp.org/news/the-react-cheatsheet/)
+- [Framer motion docs](https://www.framer.com/motion/)
