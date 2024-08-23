@@ -1,11 +1,3 @@
-<!--
-Hey, thanks for using the awesome-readme-template template.
-If you have any enhancements, then fork this project and create a pull request
-or just open an issue with the label "enhancement".
-
-Don't forget to give this project a star for additional support ;)
-Maybe you can mention me or this repo in the acknowledgements too
--->
 <div align="center">
   <h1>Portfolio Website</h1>
   <h3><a href="https://sebastianbergman.fi">https://sebastianbergman.fi</a></h3>
@@ -144,6 +136,8 @@ Distributed under the no License.
 Your Name - Sebastian - sebu.bergman97@gmail.com
 
 Project Link: [https://github.com/SebuBergman/Portfolio_WebApp/]
+
+Website Link: [https://sebastianbergman.fi]
 
 <!-- Acknowledgments -->
 
