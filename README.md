@@ -40,7 +40,7 @@ This is a portfolio website all about my programming and IT skills. Hopefully it
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="https://github.com/SebuBergman/Portfolio_WebApp/blob/main/public/Portfolio_video.mp4" alt="screenshot" />
+  <img src="https://github.com/SebuBergman/Portfolio_WebApp/blob/main/public/Portfolio_video_GIF.gif" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
