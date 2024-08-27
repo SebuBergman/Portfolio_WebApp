@@ -41,6 +41,10 @@
         background: rgba(26, 26, 26, 0.8);
         transition: .5s cubic-bezier(.4, 0, .2, 1) .4s;
         transition-delay: .2s;
+
+        @include mobile {
+            height: 80px;
+        }
     }
 
     .navbar_menuIcon {
@@ -84,8 +88,11 @@
         left: 90%;
         //display: block;
         visibility: visible;
-        opacity: 1;
-        transition: visibility 0s linear 0s, opacity 300ms;
+        
+        @include desktop {
+            opacity: 1;
+            transition: visibility 0s linear 0s, opacity 300ms;
+        }
 
         @include tablet {
             left: 85%;
@@ -111,8 +118,11 @@
         left: 90%;
         cursor: none;
         visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s linear 300ms, opacity 300ms;
+
+        @include desktop {
+            opacity: 0;
+            transition: visibility 0s linear 300ms, opacity 300ms;
+        }
 
         a {
             cursor: default;
