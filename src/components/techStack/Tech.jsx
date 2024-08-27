@@ -1,6 +1,6 @@
 import "./tech.scss";
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import Tooltip from "@mui/material/Tooltip";
 
 const variants = {

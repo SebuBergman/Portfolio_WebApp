@@ -16,3 +16,15 @@
         @content;
     }
 }
+
+@mixin smaller-desktop {
+    @media (min-width: 1081px) and (max-width: 1450px) {
+        @content;
+    }
+}
+
+@mixin bigger-desktop {
+    @media (min-width: 1451px) {
+        @content;
+    }
+}

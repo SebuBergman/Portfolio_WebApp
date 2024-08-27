@@ -1,26 +1,8 @@
 import "./expertise.scss";
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import Tooltip from "@mui/material/Tooltip";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 
-const variants = {
-  initial: {
-    x: -300,
-    y: 100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.4,
-    },
-  },
-};
-
-const Expertise = () => {
+const Expertise = ({ variants }) => {
   const ref = useRef(null);
 
   return (

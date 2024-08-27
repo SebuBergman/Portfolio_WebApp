@@ -1,6 +1,6 @@
 import "./projects.scss";
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useSpring, useTransform, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const variants = {
   initial: {

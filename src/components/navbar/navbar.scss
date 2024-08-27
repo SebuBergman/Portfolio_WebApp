@@ -7,6 +7,18 @@
     top: 0;
     width: 100%;
 
+    .navbar_pageLogo {
+        cursor: default;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s linear 0s, opacity 300ms;
+    }
+    .navbar_pageLogo-Hidden {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 300ms, opacity 300ms;
+    }
+
     .navbar_headings {
         padding-left: 4.4vh;
         height: 100px;
@@ -14,6 +26,8 @@
         justify-content: flex-start;
         align-items: center;
         font-family: "DM Sans", sans-serif;
+        transition: .5s cubic-bezier(.4, 0, .2, 1) .4s;
+        transition-delay: .2s;
     }
 
     .navbar_scrolling {
@@ -25,6 +39,8 @@
         align-items: center;
         font-family: "DM Sans", sans-serif;
         background: rgba(26, 26, 26, 0.8);
+        transition: .5s cubic-bezier(.4, 0, .2, 1) .4s;
+        transition-delay: .2s;
     }
 
     .navbar_menuIcon {
@@ -50,19 +66,26 @@
         -ms-transform: translateX(-50%);
         transform: translateX(-50%);
         font-family: "DM Sans", sans-serif !important;
+        min-width: 578px;
 
         .navbar_buttons {
             font-family: "DM Sans", sans-serif !important;
             font-weight: 400;
             font-size: 1.1rem;
             text-transform: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.4px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
     }
 
-    .social {
+    .navbar_social {
         position: absolute;
         left: 90%;
+        //display: block;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s linear 0s, opacity 300ms;
 
         @include tablet {
             left: 85%;
@@ -70,6 +93,29 @@
 
         @include mobile {
             left: 75%;
+        }
+
+        img {
+            width: 18px;
+            height: 18px;
+            padding: 10px;
+
+            @include mobile {
+                padding: 8px;
+            }
+        }
+    }
+
+    .navbar_socialHidden {
+        position: absolute;
+        left: 90%;
+        cursor: none;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 300ms, opacity 300ms;
+
+        a {
+            cursor: default;
         }
 
         img {

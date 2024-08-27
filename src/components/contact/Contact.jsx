@@ -5,24 +5,7 @@ import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
 
-const variants = {
-  initial: {
-    x: -300,
-    y: 100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.6,
-    },
-  },
-};
-
-const Contact = () => {
+const Contact = ({ variants }) => {
   const [input, setInput] = useState({ name: "", email: "", msg: "" });
   const ref = useRef();
   const formRef = useRef();

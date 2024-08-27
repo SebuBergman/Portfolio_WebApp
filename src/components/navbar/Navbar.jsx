@@ -38,9 +38,9 @@ function Navbar() {
 
   const toggleNavbarVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 150) {
+    if (scrolled > 800) {
       setVisibleNavbar(true);
-    } else if (scrolled <= 150) {
+    } else if (scrolled <= 800) {
       setVisibleNavbar(false);
     }
   };
@@ -82,6 +82,7 @@ function Navbar() {
             <Typography
               variant="h6"
               component="div"
+              className={visibleNavbar ? "navbar_pageLogo-Hidden" : "navbar_pageLogo"}
               sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "block" } }}
             >
               BergmanWebWorks
@@ -104,7 +105,7 @@ function Navbar() {
               ))}
             </Box>
           </div>
-          <div className="social">
+          <div className={visibleNavbar ? "navbar_socialHidden" : "navbar_social"}>
             <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank">
               <img src="/LinkedIn.webp" alt="LinkedIn logo" />
             </a>

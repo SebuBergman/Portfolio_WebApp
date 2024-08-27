@@ -115,8 +115,12 @@
             padding-bottom: 30px;
 
             @include mobile {
-                font-size: 1.875rem;
+                font-size: 1.7rem;
                 padding: 0px 15px 0px 15px;
+            }
+
+            @include tablet {
+                font-size: 2rem;
             }
         }
 
