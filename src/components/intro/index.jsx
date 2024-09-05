@@ -1,5 +1,7 @@
-import "./intro.scss";
 import { motion } from "framer-motion";
+
+// Import styles
+import "./styles.scss";
 
 const textVariants = {
   initial: {
@@ -54,7 +56,9 @@ const CoverImage = () => {
           </motion.h1>
           <motion.div className="buttons">
             <a href="#Projects" className="buttons_text">
-              <motion.button variants={textVariants}>See my latest work</motion.button>
+              <motion.button variants={textVariants}>
+                See my latest work
+              </motion.button>
             </a>
             <a href="#Contact" className="buttons_text">
               <motion.button variants={textVariants}>Contact me</motion.button>

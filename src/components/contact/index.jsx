@@ -1,9 +1,11 @@
-import "./contact.scss";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
+
+// Import styles
+import "./styles.scss";
 
 const Contact = ({ variants }) => {
   const [input, setInput] = useState({ name: "", email: "", msg: "" });
@@ -22,7 +24,12 @@ const Contact = ({ variants }) => {
     if (sending == true) {
       setSending(false);
       emailjs
-        .sendForm("service_069tnqb", "template_k9ajxqi", formRef.current, "waQ5U0JaLJVMzdW5t")
+        .sendForm(
+          "service_069tnqb",
+          "template_k9ajxqi",
+          formRef.current,
+          "waQ5U0JaLJVMzdW5t"
+        )
         .then(
           (result) => {
             setSuccess(true);
@@ -66,7 +73,9 @@ const Contact = ({ variants }) => {
           <div className="contact_icons1">
             <img className="contact_icon" src="/mail.png" />
             <span>
-              <a href="mailto:sebu.bergman97@gmail.com">sebu.bergman97@gmail.com</a>
+              <a href="mailto:sebu.bergman97@gmail.com">
+                sebu.bergman97@gmail.com
+              </a>
             </span>
           </div>
           <div className="contact_icons2">
@@ -76,7 +85,10 @@ const Contact = ({ variants }) => {
         </motion.div>
       </motion.div>
       <motion.div className="socialIcons" variants={variants}>
-        <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank">
+        <a
+          href="https://www.linkedin.com/in/sebastian-bergman-01061679/"
+          target="_blank"
+        >
           <img src="/linkedIn_circle_logo.png" alt="LinkedIn logo" />
         </a>
         <a href="https://github.com/SebuBergman" target="_blank">
@@ -94,19 +106,22 @@ const Contact = ({ variants }) => {
           Sebastian Bergman - Web developer focused on Front-end development
         </motion.h6>
         <motion.p variants={variants}>
-          I'm Sebastian Bergman, a programmer with a Bachelor's degree in Business Information
-          Technology from Haaga-Helia University of Applied Sciences. Through both academic and
-          hands-on experience, I have honed my expertise in various programming languages, including{" "}
-          <b>React</b>, <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>, <b>Node.js</b>, and{" "}
-          <b>Figma</b>. Additionally, I have gained valuable experience in project management
-          methodologies such as <b>Scrum</b> and <b>Kanban</b>, as well as <b>responsive website</b>{" "}
-          and <b>user-centered design</b>.
+          I'm Sebastian Bergman, a programmer with a Bachelor's degree in
+          Business Information Technology from Haaga-Helia University of Applied
+          Sciences. Through both academic and hands-on experience, I have honed
+          my expertise in various programming languages, including <b>React</b>,{" "}
+          <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>, <b>Node.js</b>, and{" "}
+          <b>Figma</b>. Additionally, I have gained valuable experience in
+          project management methodologies such as <b>Scrum</b> and{" "}
+          <b>Kanban</b>, as well as <b>responsive website</b> and{" "}
+          <b>user-centered design</b>.
         </motion.p>
         <motion.p variants={variants}>
-          My passion for IT drives me to continuously improve my problem-solving skills and quickly
-          adapt to new technologies. I am fluent in both English and Finnish, and I am eager to
-          embrace new opportunities in the tech industry. Let’s connect and bring exciting projects
-          to life together!
+          My passion for IT drives me to continuously improve my problem-solving
+          skills and quickly adapt to new technologies. I am fluent in both
+          English and Finnish, and I am eager to embrace new opportunities in
+          the tech industry. Let’s connect and bring exciting projects to life
+          together!
         </motion.p>
       </motion.div>
       <motion.div className="formContainer" variants={variants}>
@@ -137,7 +152,12 @@ const Contact = ({ variants }) => {
           />
           <button>
             {loading ? (
-              <ThreeDots color="#ffffff" height={30} width={30} wrapperClass="center_button" />
+              <ThreeDots
+                color="#ffffff"
+                height={30}
+                width={30}
+                wrapperClass="center_button"
+              />
             ) : (
               <p className="send_buttonText">Send</p>
             )}

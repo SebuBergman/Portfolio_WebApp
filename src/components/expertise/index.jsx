@@ -1,6 +1,8 @@
-import "./expertise.scss";
 import { useRef } from "react";
 import { motion } from "framer-motion";
+
+// Import styles
+import "./styles.scss";
 
 const Expertise = ({ variants }) => {
   const ref = useRef(null);
@@ -31,8 +33,8 @@ const Expertise = ({ variants }) => {
             <div className="textContainer">
               <div className="textWrapper">
                 <p>
-                  Experienced in both functional and OOP: Java, Javascript, Typescript. Also some
-                  experience with Python.
+                  Experienced in both functional and OOP: Java, Javascript,
+                  Typescript. Also some experience with Python.
                 </p>
               </div>
             </div>
@@ -48,8 +50,8 @@ const Expertise = ({ variants }) => {
             <div className="textContainer">
               <div className="textWrapper">
                 <p>
-                  Passionate about UX/UI. I have a few years of experience in HTML, CSS, JS, TS,
-                  React framework.
+                  Passionate about UX/UI. I have a few years of experience in
+                  HTML, CSS, JS, TS, React framework.
                 </p>
               </div>
             </div>
@@ -65,8 +67,8 @@ const Expertise = ({ variants }) => {
             <div className="textContainer">
               <div className="textWrapper">
                 <p>
-                  Skilled in designing applications with Figma. Experienced in User-based design
-                  principles and responsive web design
+                  Skilled in designing applications with Figma. Experienced in
+                  User-based design principles and responsive web design
                 </p>
               </div>
             </div>

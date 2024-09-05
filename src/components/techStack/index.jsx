@@ -1,7 +1,9 @@
-import "./tech.scss";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Tooltip from "@mui/material/Tooltip";
+
+// Import styles
+import "./styles.scss";
 
 const variants = {
   initial: {
@@ -45,7 +47,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/react-logo.svg" alt="React.js Logo" className="techStack-image" />
+                <img
+                  src="/react-logo.svg"
+                  alt="React.js Logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Javascript</h1>}>
@@ -54,7 +60,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/javascript_logo.svg" alt="Javascript logo" className="techStack-image" />
+                <img
+                  src="/javascript_logo.svg"
+                  alt="Javascript logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Typescript</h1>}>
@@ -63,7 +73,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/typescript_logo.svg" alt="Typescript logo" className="techStack-image" />
+                <img
+                  src="/typescript_logo.svg"
+                  alt="Typescript logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Node.js</h1>}>
@@ -72,7 +86,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/node-js_logo.svg" alt="Node.js logo" className="techStack-image" />
+                <img
+                  src="/node-js_logo.svg"
+                  alt="Node.js logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>HTML5</h1>}>
@@ -81,7 +99,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/html_logo.svg" alt="HTML5_logo" className="techStack-image" />
+                <img
+                  src="/html_logo.svg"
+                  alt="HTML5_logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>CSS3</h1>}>
@@ -90,7 +112,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/css_logo.svg" alt="CSS_logo" className="techStack-image" />
+                <img
+                  src="/css_logo.svg"
+                  alt="CSS_logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Sass</h1>}>
@@ -99,7 +125,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/sass_logo.svg" alt="Sass_logo" className="techStack-image" />
+                <img
+                  src="/sass_logo.svg"
+                  alt="Sass_logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
           </div>
@@ -110,7 +140,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/java_logo.svg" alt="Java logo" className="techStack-image" />
+                <img
+                  src="/java_logo.svg"
+                  alt="Java logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>WordPress</h1>}>
@@ -119,7 +153,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/wordpress_logo.svg" alt="Wordpress logo" className="techStack-image" />
+                <img
+                  src="/wordpress_logo.svg"
+                  alt="Wordpress logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Figma</h1>}>
@@ -128,7 +166,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/figma_logo.svg" alt="Figma logo" className="techStack-image" />
+                <img
+                  src="/figma_logo.svg"
+                  alt="Figma logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Framer-motion</h1>}>
@@ -137,7 +179,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/framer_logo.svg" alt="Framer-motion logo" className="techStack-image" />
+                <img
+                  src="/framer_logo.svg"
+                  alt="Framer-motion logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Bootstrap</h1>}>
@@ -146,7 +192,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/bootstrap_logo.svg" alt="bootstrap logo" className="techStack-image" />
+                <img
+                  src="/bootstrap_logo.svg"
+                  alt="bootstrap logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>SQL</h1>}>
@@ -155,7 +205,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/sql_logo.svg" alt="Java logo" className="techStack-image" />
+                <img
+                  src="/sql_logo.svg"
+                  alt="Java logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
             <Tooltip title={<h1 style={{ color: "white" }}>Git</h1>}>
@@ -164,7 +218,11 @@ const Tech = () => {
                 whileHover={{ background: "lightgray" }}
                 variants={variants}
               >
-                <img src="/git-logo.png" alt="Git logo" className="techStack-image" />
+                <img
+                  src="/git-logo.png"
+                  alt="Git logo"
+                  className="techStack-image"
+                />
               </motion.div>
             </Tooltip>
           </div>

@@ -1,12 +1,14 @@
+import Navbar from "./components/navbar/";
+import IntroSection from "./components/intro/";
+import Projects from "./components/projects/";
+import Contact from "./components/contact/";
+import Tech from "./components/techStack/";
+import Expertise from "./components/expertise/";
+import ScrollButton from "./components/ScrollButton";
+
+// Import styles
 import "./app.scss";
 import "./main.scss";
-import Navbar from "./components/navbar/Navbar";
-import IntroSection from "./components/intro/IntroSection";
-import Projects from "./components/projects/Projects";
-import Contact from "./components/contact/Contact";
-import Tech from "./components/techStack/Tech";
-import Expertise from "./components/expertise/Expertise";
-import ScrollButton from "./components/ScrollButton";
 
 const variants = {
   initial: {
@@ -30,14 +32,14 @@ const App = ({ visible }) => {
     <div>
       <section className="introSection">
         <Navbar visible={visible} />
-        <IntroSection  />
+        <IntroSection />
         <ScrollButton />
       </section>
       <section className="portfolioContainer">
-        <Expertise variants={variants}/>
+        <Expertise variants={variants} />
         <Tech />
-        <Projects variants={variants}/>
-        <Contact variants={variants}/>
+        <Projects variants={variants} />
+        <Contact variants={variants} />
       </section>
     </div>
   );

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import "./style.scss";
+import { useState } from "react";
+
+// Import styles
+import "./styles.scss";
 
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false);
@@ -23,7 +25,10 @@ const ScrollButton = () => {
   window.addEventListener("scroll", toggleVisible);
 
   return (
-    <button className="scrollbutton" style={{ display: visible ? "inline" : "none" }}>
+    <button
+      className="scrollbutton"
+      style={{ display: visible ? "inline" : "none" }}
+    >
       <img
         className="scrollbuttonImg"
         src="up-arrow.png"

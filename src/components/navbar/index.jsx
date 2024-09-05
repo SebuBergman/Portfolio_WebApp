@@ -1,4 +1,3 @@
-import "./navbar.scss";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Box from "@mui/material/Box";
@@ -9,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ToggleButton from "./sidebar/toggleButton/ToggleButton";
 import Links from "./sidebar/links/Links";
+
+// Import styles
+import "./styles.scss";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
@@ -82,8 +84,13 @@ function Navbar() {
             <Typography
               variant="h6"
               component="div"
-              className={visibleNavbar ? "navbar_pageLogo-Hidden" : "navbar_pageLogo"}
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "block" } }}
+              className={
+                visibleNavbar ? "navbar_pageLogo-Hidden" : "navbar_pageLogo"
+              }
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "none", md: "block" },
+              }}
             >
               BergmanWebWorks
             </Typography>
@@ -91,7 +98,10 @@ function Navbar() {
           <div className="navbar_links">
             <Box
               className="centerBox"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "none", md: "block" } }}
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "none", md: "block" },
+              }}
             >
               {navItems.map((item) => (
                 <Button
@@ -105,8 +115,13 @@ function Navbar() {
               ))}
             </Box>
           </div>
-          <div className={visibleNavbar ? "navbar_socialHidden" : "navbar_social"}>
-            <a href="https://www.linkedin.com/in/sebastian-bergman-01061679/" target="_blank">
+          <div
+            className={visibleNavbar ? "navbar_socialHidden" : "navbar_social"}
+          >
+            <a
+              href="https://www.linkedin.com/in/sebastian-bergman-01061679/"
+              target="_blank"
+            >
               <img src="/LinkedIn.webp" alt="LinkedIn logo" />
             </a>
             <a href="https://github.com/SebuBergman" target="_blank">
@@ -126,7 +141,10 @@ function Navbar() {
           }}
           sx={{
             display: { xs: "block", sm: "block", md: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {sidebar}
