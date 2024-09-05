@@ -12,6 +12,7 @@
     padding: 10px;
     gap: 0px;
     margin-top: 40px;
+    margin-bottom: 30px;
   }
 
   @include tablet {
@@ -144,7 +145,7 @@
 
     @include mobile {
       flex: 2;
-      margin-top: 50px;
+      margin-top: 65px;
       width: 100%;
     }
 
@@ -167,6 +168,10 @@
       gap: 20px;
       padding: 40px;
 
+      @include mobile {
+        padding: 0px 20px 40px 20px;
+      }
+
       @include tablet {
         margin: 10px;
         font-size: 1.5rem;
@@ -181,7 +186,8 @@
       border-radius: 10px;
 
       @include mobile {
-        padding: 10px;
+        padding: 20px;
+        font-size: 0.8rem;
       }
 
       @include tablet {
