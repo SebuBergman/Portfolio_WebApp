@@ -42,8 +42,8 @@ const sliderVariants = {
 
 const CoverImage = () => {
   return (
-    <div className="coverImage" id="Home">
-      <div className="wrapper">
+    <div className="heroContainer" id="Home">
+      <div className="heroWrapper">
         <motion.div
           className="textContainer"
           variants={textVariants}

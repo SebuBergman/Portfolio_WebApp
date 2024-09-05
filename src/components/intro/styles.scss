@@ -1,12 +1,22 @@
 @import "../../app.scss";
 
-.coverImage {
+.heroContainer {
   margin-top: 100px;
   height: calc(100vh - 100px);
   overflow: hidden;
   position: relative;
 
-  .wrapper {
+  @include mobile {
+    margin-top: 150px;
+    height: calc(100vh - 150px);
+  }
+
+  @include tablet {
+    margin-top: 200px;
+    height: calc(100vh - 200px);
+  }
+
+  .heroWrapper {
     max-width: 1366px;
     height: 100%;
     margin: auto;
@@ -112,12 +122,6 @@
   .imageContainer {
     position: absolute;
 
-    @include bigger-desktop {
-      height: 100%;
-      top: 0;
-      right: 0;
-    }
-
     @include mobile {
       height: 50%;
       width: 60%;
@@ -130,9 +134,21 @@
       bottom: 0;
     }
 
+    @include tablet-big {
+      height: 70%;
+      bottom: 0;
+      right: 0;
+    }
+
     @include smaller-desktop {
       height: 80%;
       bottom: 0;
+      right: 0;
+    }
+
+    @include bigger-desktop {
+      height: 100%;
+      top: 0;
       right: 0;
     }
 

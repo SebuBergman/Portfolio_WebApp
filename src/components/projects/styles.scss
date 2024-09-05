@@ -93,16 +93,15 @@
           .tagWrapper {
             max-width: 550px;
             display: flex;
-            flex-flow: row wrap;
+
+            @include mobile {
+              max-height: 250px;
+            }
 
             ul {
               display: flex;
               flex-flow: row wrap;
               gap: 8px;
-
-              @include mobile {
-                flex-direction: column;
-              }
 
               li {
                 list-style: none;
@@ -116,6 +115,7 @@
 
                 @include mobile {
                   text-align: center;
+                  max-width: 200px;
                 }
               }
             }

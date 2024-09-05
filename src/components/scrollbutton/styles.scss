@@ -1,4 +1,4 @@
-@import "../app.scss";
+@import "../../app.scss";
 
 .scrollbutton {
   position: fixed;
@@ -20,7 +20,7 @@
 }
 
 .scrollbuttonImg {
-  height: 20px;
+  box-sizing: content-box !important;
   width: 20px;
   padding: 16px;
   color: #b7f;
