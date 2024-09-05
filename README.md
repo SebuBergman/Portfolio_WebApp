@@ -123,6 +123,12 @@ Start the server
   yarn dev
 ```
 
+Make a build of the app
+
+```bash
+  yarn build
+```
+
 <!-- License -->
 
 ## :warning: License
