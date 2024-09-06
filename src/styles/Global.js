@@ -14,7 +14,7 @@ export const GlobalStyles = styled.createGlobalStyle`
 
   body {
     min-height: 100vh;
-    font-family: ${({ theme }) => theme.fonts.DMSans}, sans-serif;
+    font-family: ${({ theme }) => theme.fonts.dmsans}, sans-serif;
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.backgroundGrey};
   }
@@ -22,6 +22,16 @@ export const GlobalStyles = styled.createGlobalStyle`
   html {
     width: 100%;
     scroll-behavior: smooth;
+  }
+
+  h1 {
+    font-family: ${({ theme }) => theme.fonts.poppins},
+      sans-serif ${"!important"};
+  }
+
+  button {
+    font-family: ${({ theme }) => theme.fonts.roboto},
+      sans-serif ${"!important"};
   }
 
   a {

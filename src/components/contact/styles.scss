@@ -1,18 +1,16 @@
-@import "../../app.scss";
+@import "@hooks/breakpoints.scss";
 
 .contact {
   height: 100%;
-  max-width: 630px;
+  max-width: 650px;
   margin: auto;
   gap: 50px;
   padding-top: 100px;
   padding-bottom: 100px;
 
   @include mobile {
-    padding: 10px;
+    padding: 100px 0px 0px 0px;
     gap: 0px;
-    margin-top: 40px;
-    margin-bottom: 30px;
   }
 
   @include tablet {
@@ -28,7 +26,6 @@
       gap: 20px;
       text-align: center;
       align-items: center;
-      margin-top: 70px;
     }
 
     @include tablet {
@@ -39,18 +36,15 @@
     }
 
     h1 {
-      font-size: 4.5rem;
       line-height: 88px;
       padding-bottom: 15px;
 
       @include tablet {
-        font-size: 3.5rem;
         line-height: 40px;
         margin: 0px 75px 0px 75px;
       }
 
       @include mobile {
-        font-size: 1.875rem;
         line-height: 40px;
       }
     }
@@ -74,35 +68,36 @@
       font-family: lulo-clean, sans-serif;
       align-items: center;
 
-      .contact_icons1,
-      .contact_icons2 {
+      .contact_icons {
         display: flex;
         align-items: center;
         padding: 5px;
-      }
-
-      .contact_icons1 {
         gap: 10px;
-      }
-
-      .contact_icons2 {
-        gap: 5px;
       }
 
       img {
         width: 30px;
         height: 30px;
+
+        @include mobile {
+          width: 25px;
+          height: 25px;
+        }
       }
     }
   }
 
   .socialIcons {
     text-align: center;
-    padding: 30px 0px 30px 0px;
+    padding: 10px 0px 30px 0px;
 
     img {
-      height: 50px;
-      padding: 0px 20px 0px 20px;
+      height: 40px;
+      padding: 0px 10px 0px 10px;
+
+      @include mobile {
+        padding: 0px 15px 0px 15px;
+      }
     }
   }
 
@@ -145,7 +140,7 @@
 
     @include mobile {
       flex: 2;
-      margin-top: 65px;
+      margin-top: 50px;
       width: 100%;
     }
 
@@ -160,6 +155,10 @@
       text-align: center;
       padding-top: 40px;
       padding-bottom: 40px;
+
+      @include mobile {
+        font-size: 2.25rem;
+      }
     }
 
     form {
@@ -184,14 +183,15 @@
       border: 1px solid white;
       color: white;
       border-radius: 10px;
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 1rem;
+      }
 
       @include mobile {
         padding: 20px;
         font-size: 0.8rem;
-      }
-
-      @include tablet {
-        font-size: 1.25rem;
       }
     }
 
@@ -200,18 +200,10 @@
       justify-content: center;
       align-items: center;
       border: none;
-      background-color: orange;
+      background-color: #4681f4;
       cursor: pointer;
       border-radius: 10px;
-
-      @include mobile {
-        padding: 10px;
-      }
-
-      @include tablet {
-        font-size: 1.25rem;
-        font-weight: 600;
-      }
+      color: white;
     }
 
     .center_button {
@@ -219,7 +211,13 @@
     }
 
     .send_buttonText {
-      padding: 15px;
+      padding: 20px;
+      font-size: 1.25rem;
+
+      @include mobile {
+        padding: 15px;
+        font-size: 1rem;
+      }
     }
 
     .toastFlex {

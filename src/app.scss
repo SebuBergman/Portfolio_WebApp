@@ -1,36 +1,39 @@
-//max sizes for mobile devices
-@mixin mobile {
-  @media (max-width: 748px) {
-    @content;
+@import "./components/hooks/breakpoints.scss";
+
+// Intro section page size and height
+.introSection {
+  height: 100vh;
+  width: 100vw;
+}
+
+// Container for all the other components
+.portfolioContainer {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1200px;
+}
+
+h1 {
+  font-size: 4.5rem;
+  padding-bottom: 50px;
+  font-weight: 600;
+
+  @include tablet {
+    font-size: 3.125rem;
+    padding-bottom: 40px;
+  }
+
+  @include mobile {
+    font-size: 2.5rem;
+    padding-bottom: 30px;
   }
 }
 
-@mixin tablet {
-  @media screen and (min-width: 749px) and (max-width: 1080px) {
-    @content;
-  }
-}
+p {
+  font-size: 1rem;
 
-@mixin tablet-big {
-  @media screen and (min-width: 1081px) and (max-width: 1320px) {
-    @content;
-  }
-}
-
-@mixin smaller-desktop {
-  @media (min-width: 1321px) and (max-width: 1640px) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: 1081px) {
-    @content;
-  }
-}
-
-@mixin bigger-desktop {
-  @media (min-width: 1641px) {
-    @content;
+  @include mobile {
+    font-size: 0.875rem;
   }
 }

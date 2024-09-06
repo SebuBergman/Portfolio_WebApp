@@ -70,7 +70,7 @@ const Contact = ({ variants }) => {
       <motion.div className="contactContainer" variants={variants}>
         <motion.h1 variants={variants}>Contact</motion.h1>
         <motion.div className="item" variants={variants}>
-          <div className="contact_icons1">
+          <div className="contact_icons">
             <img className="contact_icon" src="/mail.png" />
             <span>
               <a href="mailto:sebu.bergman97@gmail.com">
@@ -78,7 +78,7 @@ const Contact = ({ variants }) => {
               </a>
             </span>
           </div>
-          <div className="contact_icons2">
+          <div className="contact_icons">
             <img className="contact_icon" src="/pin.png" />
             <span> Tampere, Finland</span>
           </div>

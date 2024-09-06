@@ -16,12 +16,12 @@ const Expertise = ({ variants }) => {
       viewport={{ once: true }}
       ref={ref}
     >
-      <motion.div className="titleContainer" variants={variants} ref={ref}>
+      <motion.div className="expertiseContainer" variants={variants} ref={ref}>
         <motion.div className="title">
           <h1>My Expertise</h1>
         </motion.div>
-        <div className="expertiseContainer">
-          <motion.div className="expertiseWrapper" variants={variants}>
+        <div className="boxContainer">
+          <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
               <img src="desktop.svg" />
               <h5>
@@ -39,7 +39,7 @@ const Expertise = ({ variants }) => {
               </div>
             </div>
           </motion.div>
-          <motion.div className="expertiseWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
               <img src="react.svg" />
               <h5>
@@ -56,7 +56,7 @@ const Expertise = ({ variants }) => {
               </div>
             </div>
           </motion.div>
-          <motion.div className="expertiseWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
               <img src="responsive.svg" />
               <h5>
@@ -74,9 +74,9 @@ const Expertise = ({ variants }) => {
             </div>
           </motion.div>
         </div>
-        <div className="background-code_container">
-          <img src="carbon2.png" className="background-code" />
-        </div>
+        <motion.div className="background-code_container">
+          <motion.img src="carbon2.png" className="background-code" />
+        </motion.div>
       </motion.div>
     </motion.div>
   );

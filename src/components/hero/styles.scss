@@ -1,0 +1,166 @@
+@import "@hooks/breakpoints.scss";
+
+.heroContainer {
+  margin-top: 100px;
+  height: calc(100vh - 100px);
+  overflow: hidden;
+  position: relative;
+
+  @include tablet {
+    margin-top: 120px;
+    height: calc(100vh - 120px);
+  }
+
+  @include mobile {
+    margin-top: 120px;
+    height: calc(100vh - 120px);
+  }
+
+  .heroWrapper {
+    max-width: 1366px;
+    height: 100%;
+    margin: auto;
+
+    @include mobile {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    @include tablet {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .textContainer {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      @include desktop {
+        justify-content: center;
+      }
+
+      @include smaller-desktop {
+        width: 60%;
+        gap: 20px;
+      }
+
+      @include mobile {
+        height: 50%;
+        width: 100%;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+      }
+
+      @include tablet {
+        height: 50%;
+        width: 100%;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 1.875rem;
+        color: #248823;
+        letter-spacing: 5px;
+        padding-left: 15px;
+
+        @include tablet {
+          font-size: 2.5rem;
+          letter-spacing: 6.5px;
+        }
+      }
+
+      h1 {
+        padding-left: 15px;
+        line-height: 1.25;
+
+        @include mobile {
+          padding: 0px 5px 0px 5px;
+        }
+      }
+
+      .buttons {
+        z-index: 1;
+        padding-left: 15px;
+
+        button {
+          padding: 20px;
+          border: 1px solid white;
+          border-radius: 10px;
+          background-color: transparent;
+          color: white;
+          margin-right: 20px;
+          cursor: pointer;
+          font-weight: 300;
+
+          @include mobile {
+            padding: 15px;
+            margin-right: 15px;
+          }
+        }
+      }
+
+      img {
+        padding-left: 15px;
+        width: 50px;
+
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .imageContainer {
+    position: absolute;
+    height: 700px;
+    bottom: 0;
+
+    @include desktop {
+      right: 0;
+    }
+
+    @include smaller-desktop {
+      height: 600px;
+      right: 0;
+    }
+
+    @include tablet {
+      height: 300px;
+      width: 300px;
+    }
+
+    @include mobile {
+      height: 400px;
+      width: 400px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .slidingTextContainer {
+    position: absolute;
+    font-size: 50vh;
+    bottom: -140px;
+    white-space: nowrap;
+    color: #ffffff09;
+    width: 50%;
+    font-weight: bold;
+
+    @include mobile {
+      font-size: 40vh;
+      bottom: -90px;
+    }
+  }
+}

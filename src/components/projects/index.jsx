@@ -25,7 +25,7 @@ const projectsData = [
   {
     id: 1,
     title: "EcoHub",
-    img: "/ecohub.png",
+    img: "/ecohub.webp",
     desc: "EcoHub was a Figma prototype I created as part of my thesis about user-based design and its effects on programming outcomes. I am now working on making this a fully-working website.",
     aboutProject:
       "This has become a passion project for me. EcoHub front-end is built with React, back-end will be made with Node.js/Express and the database will be made with mongoDB/SQL and Firebase. This project also uses firebase for authentication",
@@ -47,7 +47,7 @@ const projectsData = [
   {
     id: 2,
     title: "avone.fi",
-    img: "/avone.png",
+    img: "/avone.webp",
     desc: "avone.fi is a website for a Finnish entrepreneur who offers WordPress development & maintenance, website creation, newsletter & SEO optimization services",
     aboutProject:
       "This website was built on Wordpress. Just a simple one page website",
@@ -57,7 +57,7 @@ const projectsData = [
   {
     id: 3,
     title: "tukikeskustelut.com",
-    img: "/tukikeskustelut.png",
+    img: "/tukikeskustelut.webp",
     desc: "Tukikeskustelut is a website for a Finnish entrepreneur who offers brief therapy, work counselling and crisis work & NUOTTI coaching as a services",
     aboutProject:
       "The website is built on Wordpress using bootstrap for extra styling",
@@ -119,7 +119,7 @@ const Projects = () => {
       ref={ref}
     >
       <motion.div className="projects" variants={variants}>
-        <h1>My Projects</h1>
+        <motion.h1>My Projects</motion.h1>
         {projectsData.map((item) => (
           <Single item={item} key={item.id} />
         ))}

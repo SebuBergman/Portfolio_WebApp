@@ -1,0 +1,24 @@
+//max sizes for mobile devices
+@mixin desktop {
+  @media (min-width: 1081px) {
+    @content;
+  }
+}
+
+@mixin smaller-desktop {
+  @media (min-width: 1081px) and (max-width: 1300px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 749px) and (max-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 748px) {
+    @content;
+  }
+}

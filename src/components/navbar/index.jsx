@@ -70,7 +70,7 @@ function Navbar() {
   return (
     <div>
       <div component="nav" className="navbar">
-        <div className={visibleNavbar ? "navbar_scrolling" : "navbar_headings"}>
+        <div className={visibleNavbar ? "navbar_scrolling" : "navbar_heading"}>
           <div>
             <IconButton
               color="inherit"
