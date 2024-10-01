@@ -3,13 +3,17 @@ import { theme } from "./styles/Theme";
 import { theme as muiTheme } from "./styles/MuiTheme";
 import { ThemeProvider } from "styled-components";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
+
+// Components
 import Navbar from "@components/navbar/";
-import Hero from "@components/hero/";
-import Projects from "@components/projects/";
-import Contact from "@components/contact/";
-import Tech from "@components/techStack/";
-import Expertise from "@components/expertise/";
 import ScrollButton from "@components/scrollbutton/";
+
+// Page components
+import Hero from "@pagecomponents/hero/";
+import Expertise from "@pagecomponents/expertise/";
+import Tech from "@pagecomponents/techStack/";
+import Projects from "@pagecomponents/projects/";
+import Contact from "@pagecomponents/contact/";
 
 // Import styles
 import "./app.scss";
@@ -36,7 +40,7 @@ const App = () => {
     <MuiThemeProvider theme={muiTheme}>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <section className="introSection">
+        <section className="headerContainer">
           <Navbar />
           <Hero />
           <ScrollButton />

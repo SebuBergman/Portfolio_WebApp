@@ -110,7 +110,7 @@ function Navbar() {
                   href={`#${item}`}
                   className="navbar_buttons"
                 >
-                  // {item}
+                  {item}
                 </Button>
               ))}
             </Box>
