@@ -53,6 +53,7 @@ This is a portfolio website all about my programming and IT skills. Hopefully it
     <li><a href="https://reactjs.org/">React.js</a></li>
     <li><a href="https://www.framer.com/motion/">Framer motion</a></li>
     <li><a href="https://sass-lang.com">Sass</a></li>
+    <li><a href="https://mui.com">Mui</a></li>
   </ul>
 </details>
 
