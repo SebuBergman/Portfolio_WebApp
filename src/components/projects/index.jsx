@@ -64,6 +64,15 @@ const projectsData = [
     tags: ["WordPress", "Bootstrap", "HTML", "CSS"],
     linktosite: "https://www.tukikeskustelut.com",
   },
+  {
+    id: 4,
+    title: "leffakirjasto",
+    img: "/leffakirjasto.jpg",
+    desc: "This is a personal project for a android app which you can add movies and tv shows to a firebase firestore and search for movies using the MovieDB API.",
+    aboutProject: "This app was built with React Native for android",
+    tags: ["React Native", "Typescript", "Redux", "Firebase", "Expo"],
+    linktosite: "https://github.com/SebuBergman/leffakirjasto",
+  },
 ];
 
 const Single = ({ item }) => {

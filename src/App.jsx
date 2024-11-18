@@ -9,11 +9,11 @@ import Navbar from "@components/navbar/";
 import ScrollButton from "@components/scrollbutton/";
 
 // Page components
-import Hero from "@pagecomponents/hero/";
-import Expertise from "@pagecomponents/expertise/";
-import Tech from "@pagecomponents/techStack/";
-import Projects from "@pagecomponents/projects/";
-import Contact from "@pagecomponents/contact/";
+import Hero from "@components/hero/";
+import Expertise from "@components/expertise/";
+import Tech from "@components/tech/";
+import Projects from "@components/projects/";
+import Contact from "@components/contact/";
 
 // Import styles
 import "./app.scss";

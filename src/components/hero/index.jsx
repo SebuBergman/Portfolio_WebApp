@@ -52,16 +52,14 @@ const Hero = () => {
         >
           <motion.h2 variants={textVariants}>Sebastian Bergman</motion.h2>
           <motion.h1 variants={textVariants}>
-            Web developer focused on Front-End development
+            Software developer focused on Front-End development
           </motion.h1>
           <motion.div className="buttons">
             <a href="#Projects">
-              <motion.button variants={textVariants}>
-                See my latest work
-              </motion.button>
+              <motion.button variants={textVariants}>Projects</motion.button>
             </a>
             <a href="#Contact">
-              <motion.button variants={textVariants}>Contact me</motion.button>
+              <motion.button variants={textVariants}>Contact</motion.button>
             </a>
           </motion.div>
           <motion.img
@@ -80,7 +78,9 @@ const Hero = () => {
           Front-end developer & UX/UI designer with extensive IT knowledge
         </motion.div>
         <div className="imageContainer">
-          <img src="/PictureSebu.webp" alt="" />
+          <div className="imageWrapper">
+            <motion.img src="/PictureSebu.jpg" alt="" />
+          </div>
         </div>
       </div>
     </div>

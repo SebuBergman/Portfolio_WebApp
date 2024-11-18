@@ -51,7 +51,8 @@ const Expertise = ({ variants }) => {
               <div className="textWrapper">
                 <p>
                   Passionate about UX/UI. I have a few years of experience in
-                  HTML, CSS, JS, TS, React framework.
+                  HTML, CSS, JS, TS, React framework. I also have skills in a
+                  few other frameworks
                 </p>
               </div>
             </div>

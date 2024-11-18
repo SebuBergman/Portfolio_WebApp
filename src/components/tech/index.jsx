@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import TechIcons from "./techIcons/";
+import TechIcons from "./icons";
 
 // Import styles
 import "./styles.scss";
