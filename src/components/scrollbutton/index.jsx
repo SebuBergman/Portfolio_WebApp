@@ -32,6 +32,7 @@ const ScrollButton = () => {
       <img
         className="scrollbuttonImg"
         src="up-arrow.png"
+        alt="scroll button image"
         onClick={scrollToTop}
         style={{ display: visible ? "inline" : "none" }}
       />

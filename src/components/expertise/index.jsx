@@ -23,7 +23,7 @@ const Expertise = ({ variants }) => {
         <div className="boxContainer">
           <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
-              <img src="desktop.svg" />
+              <img src="desktop.svg" alt="desktop icon" />
               <h5>
                 <span className="heading-underline-blue">Software</span>
                 <br />
@@ -41,7 +41,7 @@ const Expertise = ({ variants }) => {
           </motion.div>
           <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
-              <img src="react.svg" />
+              <img src="react.svg" alt="react icon" />
               <h5>
                 <span className="heading-underline-orange">Frontend Dev</span>
                 <br></br>React, Vite
@@ -59,7 +59,7 @@ const Expertise = ({ variants }) => {
           </motion.div>
           <motion.div className="boxWrapper" variants={variants}>
             <div className="headingWrapper">
-              <img src="responsive.svg" />
+              <img src="responsive.svg" alt="computer and mobile screen icon" />
               <h5>
                 <span className="heading-underline-rose">UI/UX</span>
                 <br></br>Design
@@ -76,7 +76,11 @@ const Expertise = ({ variants }) => {
           </motion.div>
         </div>
         <motion.div className="background-code_container">
-          <motion.img src="carbon2.png" className="background-code" />
+          <motion.img
+            src="carbon2.png"
+            className="background-code"
+            alt="code background image"
+          />
         </motion.div>
       </motion.div>
     </motion.div>
