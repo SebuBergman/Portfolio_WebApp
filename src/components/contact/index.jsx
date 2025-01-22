@@ -78,14 +78,6 @@ const Contact = ({ variants }) => {
               </a>
             </span>
           </div>
-          <div className="contact_icons">
-            <img
-              className="contact_icon"
-              src="/pin.png"
-              alt="location pin icon"
-            />
-            <span> Tampere, Finland</span>
-          </div>
         </motion.div>
       </motion.div>
       <motion.div className="socialIcons" variants={variants}>
