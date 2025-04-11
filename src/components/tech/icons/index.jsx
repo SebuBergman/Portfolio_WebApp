@@ -102,6 +102,32 @@ const TechIcons = (variants) => {
             />
           </motion.div>
         </Tooltip>
+        <Tooltip title={<h2 style={{ color: "white" }}>Bootstrap</h2>}>
+          <motion.div
+            className="box"
+            whileHover={{ background: "lightgray" }}
+            variants={variants}
+          >
+            <img
+              src="/bootstrap_logo.svg"
+              alt="bootstrap logo"
+              className="techStack-image"
+            />
+          </motion.div>
+        </Tooltip>
+        <Tooltip title={<h2 style={{ color: "white" }}>Material UI</h2>}>
+          <motion.div
+            className="box"
+            whileHover={{ background: "lightgray" }}
+            variants={variants}
+          >
+            <img
+              src="/material-ui_logo.svg"
+              alt="Material UI logo"
+              className="techStack-image"
+            />
+          </motion.div>
+        </Tooltip>
       </div>
       <div className="listWrapper">
         <Tooltip title={<h2 style={{ color: "white" }}>Java</h2>}>
@@ -156,19 +182,6 @@ const TechIcons = (variants) => {
             />
           </motion.div>
         </Tooltip>
-        <Tooltip title={<h2 style={{ color: "white" }}>Bootstrap</h2>}>
-          <motion.div
-            className="box"
-            whileHover={{ background: "lightgray" }}
-            variants={variants}
-          >
-            <img
-              src="/bootstrap_logo.svg"
-              alt="bootstrap logo"
-              className="techStack-image"
-            />
-          </motion.div>
-        </Tooltip>
         <Tooltip title={<h2 style={{ color: "white" }}>SQL</h2>}>
           <motion.div
             className="box"
@@ -178,6 +191,45 @@ const TechIcons = (variants) => {
             <img
               src="/sql_logo.svg"
               alt="Java logo"
+              className="techStack-image"
+            />
+          </motion.div>
+        </Tooltip>
+        <Tooltip title={<h2 style={{ color: "white" }}>Python</h2>}>
+          <motion.div
+            className="box"
+            whileHover={{ background: "lightgray" }}
+            variants={variants}
+          >
+            <img
+              src="/python_logo.png"
+              alt="Python logo"
+              className="techStack-image"
+            />
+          </motion.div>
+        </Tooltip>
+        <Tooltip title={<h2 style={{ color: "white" }}>FastAPI</h2>}>
+          <motion.div
+            className="box"
+            whileHover={{ background: "lightgray" }}
+            variants={variants}
+          >
+            <img
+              src="/FastAPI_logo.svg"
+              alt="FastAPI logo"
+              className="techStack-image"
+            />
+          </motion.div>
+        </Tooltip>
+        <Tooltip title={<h2 style={{ color: "white" }}>Amazon S3</h2>}>
+          <motion.div
+            className="box"
+            whileHover={{ background: "lightgray" }}
+            variants={variants}
+          >
+            <img
+              src="/amazon_s3_logo.svg"
+              alt="Amazon S3 logo"
               className="techStack-image"
             />
           </motion.div>

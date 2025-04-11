@@ -52,6 +52,33 @@ const projectsData = [
   },
   {
     id: 2,
+    title: "RAG Agent",
+    img: "/rag_agent_2.webp",
+    alt: "screenshot of The RAG Agent application",
+    desc: "Built a RAG (Retrieval-Augmented Generation) agent using Python, FastAPI, Hugging Face, and OpenAI. Processes PDFs, performs semantic search with MongoDB embeddings, and delivers real-time, context-aware answers through a front-end interface..",
+    aboutProject:
+      "This project was built with Python, FastAPI, MongoDB and React",
+    tags: [
+      "React",
+      "Python",
+      "FastAPI",
+      "MongoDB",
+      "Amazon S3",
+      "Retrieval-Augmented Generation",
+      "Hugging Face Transformers",
+      "OpenAI API",
+      "Semantic Search / Embeddings",
+      "Document Upload",
+      "PDF Processing",
+    ],
+    linktosite: "https://github.com/SebuBergman/RAG-Project-frontend",
+    youtubeID: "",
+    aboutModal:
+      "Developed a Retrieval-Augmented Generation (RAG) agent using Python, FastAPI, Hugging Face, and OpenAI. The system processes uploaded PDFs—stored in Amazon S3—by splitting them into sentences and generating embeddings via Hugging Face’s sentence transformer API. It performs semantic search over these embeddings using MongoDB, retrieving relevant context to generate accurate, real-time answers with OpenAI. A front-end interface allows seamless user interaction through a RESTful API.",
+    modalLink: "Visit Github",
+  },
+  {
+    id: 3,
     title: "avone.fi",
     img: "/avone.webp",
     alt: "screenshot of avone.fi application",
@@ -66,7 +93,7 @@ const projectsData = [
     modalLink: "Visit site",
   },
   {
-    id: 3,
+    id: 4,
     title: "tukikeskustelut.com",
     img: "/tukikeskustelut.webp",
     alt: "screenshot of tukikeskustelut.fi application",
@@ -81,7 +108,7 @@ const projectsData = [
     modalLink: "Visit site",
   },
   {
-    id: 4,
+    id: 5,
     title: "Mint",
     img: "/Mint.webp",
     alt: "screenshot of mint web application",
@@ -103,7 +130,7 @@ const projectsData = [
     modalLink: "Visit github",
   },
   {
-    id: 5,
+    id: 6,
     title: "leffakirjasto",
     img: "/leffakirjasto.webp",
     alt: "screenshot of leffakirjasto application",

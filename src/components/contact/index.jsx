@@ -102,22 +102,26 @@ const Contact = ({ variants }) => {
           Sebastian Bergman - Web developer focused on Front-end development
         </motion.h6>
         <motion.p variants={variants}>
-          I'm Sebastian Bergman, a programmer with a Bachelor's degree in
+          Hi! I’m Sebastian Bergman, a developer with a Bachelor's degree in
           Business Information Technology from Haaga-Helia University of Applied
-          Sciences. Through both academic and hands-on experience, I have honed
-          my expertise in various programming languages, including <b>React</b>,{" "}
-          <b>JavaScript</b>, <b>TypeScript</b>, <b>Java</b>, <b>Node.js</b>, and{" "}
-          <b>Figma</b>. Additionally, I have gained valuable experience in
-          project management methodologies such as <b>Scrum</b> and{" "}
-          <b>Kanban</b>, as well as <b>responsive website</b> and{" "}
-          <b>user-centered design</b>.
+          Sciences. I specialize in front-end development with <b>React</b>,{" "}
+          <b>JavaScript</b> and <b>TypeScript</b>, but I'm also growing my
+          full-stack capabilities with technologies like
+          <b>MongoDB</b>, <b>FastAPI</b>, and <b>OpenAI APIs</b>.
         </motion.p>
         <motion.p variants={variants}>
-          My passion for IT drives me to continuously improve my problem-solving
-          skills and quickly adapt to new technologies. I am fluent in both
-          English and Finnish, and I am eager to embrace new opportunities in
-          the tech industry. Let’s connect and bring exciting projects to life
-          together!
+          I’ve worked on diverse projects ranging from sustainability platforms
+          and mobile apps to AI agents and small business websites. My toolbox{" "}
+          includes <b>React</b>, <b>JavaScript/TypeScript</b>, <b>Java</b>,{" "}
+          <b>Python</b>, and <b>Node.js</b>, and I’m comfortable using{" "}
+          <b>Figma</b> for <b>UI/UX design</b>. I also have hands-on experience
+          with <b>Scrum</b>, <b>Kanban</b>, and deploying assets with{" "}
+          <b>Amazon S3</b>.
+        </motion.p>
+        <motion.p variants={variants}>
+          Fluent in both English and Finnish, I’m always eager to learn new
+          tools and tackle new challenges. Let’s connect and bring your next
+          idea to life!
         </motion.p>
       </motion.div>
       <motion.div className="formContainer" variants={variants}>

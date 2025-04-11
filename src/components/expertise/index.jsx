@@ -74,6 +74,23 @@ const Expertise = ({ variants }) => {
               </div>
             </div>
           </motion.div>
+          <motion.div className="boxWrapper" variants={variants}>
+            <div className="headingWrapper">
+              <img src="responsive.svg" alt="computer and mobile screen icon" />
+              <h5>
+                <span className="heading-underline-rose">Backend & APIs</span>
+              </h5>
+            </div>
+            <div className="textContainer">
+              <div className="textWrapper">
+                <p>
+                  Experience building APIs using FastAPI and working with
+                  Node.js. Comfortable integrating OpenAI APIs and managing data
+                  with MongoDB.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
         <motion.div className="background-code_container">
           <motion.img
