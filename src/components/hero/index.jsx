@@ -52,7 +52,7 @@ const Hero = () => {
         >
           <motion.h2 variants={textVariants}>Sebastian Bergman</motion.h2>
           <motion.h1 variants={textVariants}>
-            Software developer focused on Front-End development
+            Software developer focused on Full-stack development
           </motion.h1>
           <motion.div className="buttons">
             <a href="#Projects">

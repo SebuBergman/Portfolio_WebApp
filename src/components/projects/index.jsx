@@ -70,6 +70,7 @@ const projectsData = [
       "Semantic Search / Embeddings",
       "Document Upload",
       "PDF Processing",
+      "Langchain",
     ],
     linktosite: "https://github.com/SebuBergman/RAG-Project-frontend",
     youtubeID: "",

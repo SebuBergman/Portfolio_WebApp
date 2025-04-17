@@ -99,15 +99,15 @@ const Contact = ({ variants }) => {
         ref={ref}
       >
         <motion.h6 variants={variants}>
-          Sebastian Bergman - Web developer focused on Front-end development
+          Sebastian Bergman - Web developer focused on Full-stack development
         </motion.h6>
         <motion.p variants={variants}>
           Hi! I’m Sebastian Bergman, a developer with a Bachelor's degree in
           Business Information Technology from Haaga-Helia University of Applied
           Sciences. I specialize in front-end development with <b>React</b>,{" "}
           <b>JavaScript</b> and <b>TypeScript</b>, but I'm also growing my
-          full-stack capabilities with technologies like
-          <b>MongoDB</b>, <b>FastAPI</b>, and <b>OpenAI APIs</b>.
+          full-stack capabilities with technologies like <b>MongoDB</b>,{" "}
+          <b>FastAPI</b>, and <b>OpenAI APIs</b>.
         </motion.p>
         <motion.p variants={variants}>
           I’ve worked on diverse projects ranging from sustainability platforms
