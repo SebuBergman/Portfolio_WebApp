@@ -3,42 +3,8 @@ import { motion } from "framer-motion";
 // Import styles
 import "./styles.scss";
 
-const textVariants = {
-  initial: {
-    x: -400,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.15,
-    },
-  },
-  scrollButtonAnimation: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
-
-const sliderVariants = {
-  initial: {
-    x: 0,
-  },
-  animate: {
-    x: "-220%",
-    transition: {
-      repeat: Infinity,
-      reoeatType: "mirror",
-      duration: 15,
-    },
-  },
-};
+// Import variants data
+import { textVariant, sliderVariant } from "@hooks/variants";
 
 const Hero = () => {
   return (
@@ -46,24 +12,24 @@ const Hero = () => {
       <div className="heroWrapper">
         <motion.div
           className="textContainer"
-          variants={textVariants}
+          variants={textVariant}
           initial="initial"
           animate="animate"
         >
-          <motion.h2 variants={textVariants}>Sebastian Bergman</motion.h2>
-          <motion.h1 variants={textVariants}>
+          <motion.h2 variants={textVariant}>Sebastian Bergman</motion.h2>
+          <motion.h1 variants={textVariant}>
             Software developer focused on Full-stack development
           </motion.h1>
           <motion.div className="buttons">
             <a href="#Projects">
-              <motion.button variants={textVariants}>Projects</motion.button>
+              <motion.button variants={textVariant}>Projects</motion.button>
             </a>
             <a href="#Contact">
-              <motion.button variants={textVariants}>Contact</motion.button>
+              <motion.button variants={textVariant}>Contact</motion.button>
             </a>
           </motion.div>
           <motion.img
-            variants={textVariants}
+            variants={textVariant}
             animate="scrollButtonAnimation"
             src="scroll-icon.png"
             alt="scroll icon"
@@ -71,7 +37,7 @@ const Hero = () => {
         </motion.div>
         <motion.div
           className="slidingTextContainer"
-          variants={sliderVariants}
+          variants={sliderVariant}
           initial="initial"
           animate="animate"
         >

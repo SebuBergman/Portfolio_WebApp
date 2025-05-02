@@ -15,24 +15,8 @@ import "./styles.scss";
 const drawerWidth = 240;
 const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
 
-const variants = {
-  open: {
-    clipPath: "circle(1200px at 50px 50px)",
-    transition: {
-      type: "spring",
-      stiffness: 20,
-    },
-  },
-  closed: {
-    clipPath: "circle(30px at 50px 50px",
-    transition: {
-      delay: 0.4,
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-};
+// Import variants data
+import { sidebarVariant } from "@hooks/variants";
 
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -60,7 +44,7 @@ function Navbar() {
       onClick={handleDrawerToggle}
       sx={{ textAlign: "center" }}
     >
-      <motion.div className="bg" variants={variants}>
+      <motion.div className="bg" variants={sidebarVariant}>
         <Links />
       </motion.div>
       <ToggleButton />

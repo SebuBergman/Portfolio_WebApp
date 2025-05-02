@@ -5,22 +5,8 @@ import TechIcons from "./icons";
 // Import styles
 import "./styles.scss";
 
-const variants = {
-  initial: {
-    x: -300,
-    y: 100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.12,
-    },
-  },
-};
+// Import variants data
+import { fastVariant } from "@hooks/variants";
 
 const Tech = () => {
   const ref = useRef(null);
@@ -28,7 +14,7 @@ const Tech = () => {
   return (
     <motion.div
       id="Tech"
-      variants={variants}
+      variants={fastVariant}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
@@ -42,7 +28,7 @@ const Tech = () => {
           </motion.p>
         </motion.div>
         <div className="listContainer">
-          <TechIcons variants={variants} />
+          <TechIcons variants={fastVariant} />
         </div>
       </motion.div>
     </motion.div>

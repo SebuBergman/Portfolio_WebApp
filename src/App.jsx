@@ -18,22 +18,8 @@ import Contact from "@components/contact/";
 // Import styles
 import "./app.scss";
 
-const variants = {
-  initial: {
-    x: -300,
-    y: 100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.45,
-    },
-  },
-};
+// Import variants data
+import { mediumVariant } from "@hooks/variants";
 
 const App = () => {
   return (
@@ -46,10 +32,10 @@ const App = () => {
           <ScrollButton />
         </section>
         <section className="portfolioContainer">
-          <Expertise variants={variants} />
+          <Expertise variants={mediumVariant} />
           <Tech />
-          <Projects variants={variants} />
-          <Contact variants={variants} />
+          <Projects variants={mediumVariant} />
+          <Contact variants={mediumVariant} />
         </section>
       </ThemeProvider>
     </MuiThemeProvider>
