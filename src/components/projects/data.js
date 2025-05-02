@@ -64,14 +64,14 @@ const projectsData = [
     title: "Email Assistant",
     img: "/email_assistant.webp",
     alt: "screenshot of The email assistant application",
-    desc: "Built a RAG (Retrieval-Augmented Generation) agent using Python, FastAPI, Hugging Face, and OpenAI. Processes PDFs, performs semantic search with MongoDB embeddings, and delivers real-time, context-aware answers through a front-end interface..",
+    desc: "A GenAI-powered app for rewriting and summarizing emails in tones like professional, friendly, or persuasive. Built with FastAPI, React, TypeScript, and OpenAI integration. Features advanced prompt engineering for tone control and email intent recognition.",
     aboutProject:
       "This project was built with Python, FastAPI, React, TypeScript, and OpenAI API integration.",
     tags: ["React", "TypeScript", "Python", "FastAPI", "OpenAI API", "Axios"],
     linktosite: "",
     youtubeID: "",
     aboutModal:
-      "This project is a GenAI-powered email rewriter built with FastAPI, React, TypeScript, and OpenAI integration. It allows users to rewrite and summarize emails in tones such as professional, friendly, or persuasive. By implementing advanced prompt engineering, it ensures precise tone control and intent recognition, offering an efficient communication tool.",
+      "This GenAI-powered app rewrites and summarizes emails in user-selected tones such as professional, friendly, and persuasive. Built with FastAPI, React, TypeScript, and OpenAI integration, it features advanced prompt engineering to ensure precise tone control and intent recognition. A seamless, productivity-enhancing tool for email communication.",
     modalLink: "Visit Github",
     imageSize: "80%",
   },
