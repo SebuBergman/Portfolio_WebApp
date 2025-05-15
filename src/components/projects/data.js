@@ -61,19 +61,19 @@ const projectsData = [
   },
   {
     id: 3,
-    title: "Email Assistant",
-    img: "/email_assistant.webp",
+    title: "AI Assistant",
+    img: "/AI_assistant.webp",
     alt: "screenshot of The email assistant application",
-    desc: "A GenAI-powered app for rewriting and summarizing emails in tones like professional, friendly, or persuasive. Built with FastAPI, React, TypeScript, and OpenAI integration. Features advanced prompt engineering for tone control and email intent recognition.",
+    desc: "A GenAI-powered app for rewriting and summarizing emails in tones like professional, friendly, or persuasive. It also includes a versatile AI assistant where you can submit custom prompts for a wide range of tasks. The app features advanced prompt engineering for tone control, email intent recognition, and dynamic AI model selection. Python, FastAPI, React, TypeScript, OpenAI API",
     aboutProject:
       "This project was built with Python, FastAPI, React, TypeScript, and OpenAI API integration.",
     tags: ["React", "TypeScript", "Python", "FastAPI", "OpenAI API", "Axios"],
-    linktosite: "",
+    linktosite: "https://github.com/SebuBergman/AI_assistant_frontend",
     youtubeID: "",
     aboutModal:
-      "This GenAI-powered app rewrites and summarizes emails in user-selected tones such as professional, friendly, and persuasive. Built with FastAPI, React, TypeScript, and OpenAI integration, it features advanced prompt engineering to ensure precise tone control and intent recognition. A seamless, productivity-enhancing tool for email communication.",
+      "This GenAI-powered app rewrites and summarizes emails in user-selected tones (professional, friendly, persuasive) and includes an AI assistant for custom prompts—leveraging multiple AI models for broader tasks. Built with FastAPI, React, TypeScript, and OpenAI, it uses advanced prompt engineering for tone control, email intent recognition, and dynamic model adaptation. A seamless all-in-one tool to supercharge productivity.",
     modalLink: "Visit Github",
-    imageSize: "80%",
+    imageSize: "85%",
   },
   {
     id: 4,

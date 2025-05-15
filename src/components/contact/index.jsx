@@ -99,7 +99,8 @@ const Contact = ({ variants }) => {
         ref={ref}
       >
         <motion.h6 variants={variants}>
-          Sebastian Bergman - Web developer focused on Full-stack development
+          Sebastian Bergman - Software developer focused on Full-stack
+          development
         </motion.h6>
         <motion.p variants={variants}>
           Hi! I’m Sebastian Bergman, a developer with a Bachelor's degree in
