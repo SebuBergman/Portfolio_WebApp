@@ -19,6 +19,7 @@
   .heroWrapper {
     display: flex;
     margin: auto;
+    position: relative;
 
     @include desktop {
       height: 100%;
@@ -123,6 +124,10 @@
       img {
         padding-left: 15px;
         width: 50px;
+
+        @include mobile {
+          display: none; // Hide scroll button in text container on mobile
+        }
       }
     }
 
@@ -132,6 +137,7 @@
       justify-content: center;
       align-items: center;
       margin: auto;
+      position: relative;
 
       .imageWrapper {
         display: flex;
@@ -158,21 +164,59 @@
           z-index: 1;
         }
       }
+
+      .scrollButtonMobile {
+        display: none; // Hidden by default on desktop
+
+        @include mobile {
+          display: block;
+          position: absolute;
+          bottom: -60px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+          animation: float 2s ease-in-out infinite;
+        }
+      }
     }
 
     .slidingTextContainer {
       position: absolute;
-      font-size: 50vh;
-      bottom: -140px;
+      font-size: 30vh;
+      bottom: -70px;
       white-space: nowrap;
       color: #ffffff09;
       width: 50%;
       font-weight: bold;
+      will-change: transform;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      animation: slide 20s linear infinite;
 
       @include mobile {
-        font-size: 40vh;
-        bottom: -90px;
+        display: none;
+      }
+
+      @keyframes slide {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-220%);
+        }
       }
     }
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
