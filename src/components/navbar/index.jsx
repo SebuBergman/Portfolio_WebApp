@@ -18,7 +18,7 @@ const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
 // Import variants data
 import { sidebarVariant } from "@hooks/variants";
 
-function Navbar() {
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visibleNavbar, setVisibleNavbar] = useState(false);
 
@@ -137,5 +137,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;
