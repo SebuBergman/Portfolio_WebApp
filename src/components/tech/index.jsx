@@ -1,38 +1,36 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import TechIcons from "./icons";
-
-// Import styles
 import "./styles.scss";
-
-// Import variants data
 import { fastVariant } from "@hooks/variants";
 
-const Tech = () => {
+export default function Tech() {
   const ref = useRef(null);
 
   return (
     <motion.div
       id="Tech"
+      className="tech-section"
       variants={fastVariant}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
       ref={ref}
     >
-      <motion.div className="techStack">
-        <motion.div>
-          <motion.h1>Tech Stack</motion.h1>
-          <motion.p>
-            Here's programming languages and technologies I can handle.
-          </motion.p>
-        </motion.div>
-        <div className="listContainer">
-          <TechIcons variants={fastVariant} />
-        </div>
-      </motion.div>
+      <div className="tech-header">
+        <motion.h1 className="tech-title">My Tech Toolkit</motion.h1>
+        <motion.p className="tech-subtitle">
+          Technologies I've mastered to build powerful, efficient applications
+        </motion.p>
+      </div>
+
+      <div className="tech-grid-container">
+        <TechIcons variants={fastVariant} />
+      </div>
+
+      <motion.p className="tech-footer">
+        Continuously expanding my expertise to tackle new challenges
+      </motion.p>
     </motion.div>
   );
-};
-
-export default Tech;
+}

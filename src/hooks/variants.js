@@ -76,8 +76,9 @@ export const sliderVariant = {
     x: "-220%",
     transition: {
       repeat: Infinity,
-      reoeatType: "mirror",
-      duration: 15,
+      repeatType: "loop",
+      duration: 20,
+      ease: "linear",
     },
   },
 };

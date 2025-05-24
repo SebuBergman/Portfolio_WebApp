@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 // Import styles
 import "./styles.scss";
 
-const Contact = ({ variants }) => {
+export default function Contact({ variants }) {
   const [input, setInput] = useState({ name: "", email: "", msg: "" });
   const ref = useRef();
   const formRef = useRef();
@@ -180,6 +180,4 @@ const Contact = ({ variants }) => {
       </motion.div>
     </motion.div>
   );
-};
-
-export default Contact;
+}
