@@ -40,6 +40,11 @@
     overflow: hidden;
     background-color: rgba(136, 136, 136, 0.05);
     border-radius: 30px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     @include tablet {
       border-radius: 30px;
@@ -88,6 +93,11 @@
 
           h3 {
             font-size: 1.75rem;
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: #248823;
+            }
 
             @include mobile {
               font-size: 1.75rem;
@@ -114,6 +124,12 @@
                 padding: 5px 15px 5px 15px;
                 letter-spacing: 0.04em;
                 font-size: 0.8rem;
+                transition: all 0.2s ease;
+
+                &:hover {
+                  transform: translateY(-2px);
+                  background-color: #3a44b3;
+                }
               }
             }
           }
@@ -122,11 +138,42 @@
 
       .imageContainer {
         max-width: 650px;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: 1;
+        }
+
+        &:hover:before {
+          opacity: 1;
+        }
+
+        &.loaded img {
+          opacity: 1;
+        }
 
         img {
           width: 100%;
           display: block;
           object-fit: cover;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          opacity: 0;
+
+          &:hover {
+            transform: scale(1.02);
+          }
 
           @include mobile {
             border-radius: 0px;
@@ -149,4 +196,47 @@
 iframe {
   aspect-ratio: 16 / 9;
   width: 100% !important;
+  border: none;
+}
+
+.modalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #1a191d;
+  padding: 2rem;
+  border-radius: 8px;
+  outline: none;
+  color: white;
+
+  @include mobile {
+    width: 95vw;
+    padding: 1rem;
+  }
+
+  h6 {
+    color: #248823;
+    padding-top: 1rem;
+  }
+
+  p {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  button {
+    margin-top: 1rem;
+    color: white;
+    border-color: #248823;
+
+    &:hover {
+      background-color: rgba(36, 136, 35, 0.1);
+      border-color: #248823;
+    }
+  }
 }
