@@ -1,56 +1,137 @@
 @import "@hooks/breakpoints.scss";
 
-.techStack {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 20px;
-  padding: 10px 10px 10px 10px;
+.tech-section {
+  padding: 4rem 2rem;
+  background: #1a191d;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   @include mobile {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+    padding: 2rem 1rem;
   }
+}
 
-  @include tablet {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px 10px 10px;
+.tech-header {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+
+  @include mobile {
+    margin-bottom: 2rem;
   }
+}
 
-  @include smaller-desktop {
-    padding: 0px 20px 0px 20px;
+.tech-title {
+  font-size: 2.5rem;
+  color: #248823;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+
+  @include mobile {
+    font-size: 2rem;
   }
+}
 
-  h1 {
-    padding-bottom: 20px;
+.tech-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-family: "DM Sans", sans-serif;
 
-    @include mobile {
-      text-align: center;
-    }
+  @include mobile {
+    font-size: 1rem;
+  }
+}
 
-    @include tablet {
-      text-align: center;
-    }
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+  }
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  @include mobile {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.tech-icon {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+
+  @include mobile {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.tech-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+  font-family: "Roboto", sans-serif;
+
+  @include mobile {
+    font-size: 0.7rem;
+  }
+}
+
+.tech-footer {
+  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
+  font-family: "DM Sans", sans-serif;
+  font-style: italic;
+
+  @include mobile {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+}
+
+.tooltip-content {
+  padding: 0.8rem 1rem;
+  text-align: center;
+  background: #248823 !important;
+  border-radius: 4px !important;
+
+  h3 {
+    color: white;
+    margin: 0 0 4px 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 1.25rem;
-
-    @include mobile {
-      font-size: 1rem;
-      text-align: center;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-
-    @include tablet {
-      text-align: center;
-      padding-left: 25px;
-      padding-right: 25px;
-    }
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
   }
+}
+
+.MuiTooltip-arrow {
+  color: #248823 !important;
 }
