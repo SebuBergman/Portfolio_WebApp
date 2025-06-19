@@ -145,7 +145,7 @@ export default function MovieList() {
                   >
                     {movie.title}
                   </span>
-                  <span>{formatDate(movie.releaseDate, "MMMM D, YYYY")}</span>
+                  <span>{formatDate(movie.releaseDate, "D.M.YYYY")}</span>
                 </Box>
               )}
               <Box

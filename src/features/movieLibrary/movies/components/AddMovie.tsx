@@ -131,7 +131,7 @@ export default function AddMovie() {
               >
                 <span style={{ flex: 1, color: "#fff" }}>{movie.title} </span>
                 <span style={{ color: "#fff", fontSize: "0.9rem" }}>
-                  Release date: {formatDate(movie.release_date, "MM D, YYYY")}
+                  Release date: {formatDate(movie.release_date, "D.M.YYYY")}
                 </span>
               </Box>
               <AppButton
