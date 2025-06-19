@@ -1,13 +1,13 @@
 // Components
-import Navbar from "@features/portfolio/components/navbar/";
-import ScrollButton from "@features/portfolio/components/scrollbutton/";
+import Navbar from "@features/portfolio/navbar/";
+import ScrollButton from "@features/portfolio/scrollbutton/";
 
 // Page components
-import Hero from "@features/portfolio/components/hero/";
-import Expertise from "@features/portfolio/components/expertise/";
-import Tech from "@features/portfolio/components/tech/";
-import Projects from "@features/portfolio/components/projects/";
-import Contact from "@features/portfolio/components/contact/";
+import Hero from "@features/portfolio/hero/";
+import Expertise from "@features/portfolio/expertise/";
+import Tech from "@features/portfolio/tech/";
+import Projects from "@features/portfolio/projects/";
+import Contact from "@features/portfolio/contact/";
 
 // Import styles
 import "@app/app.scss";

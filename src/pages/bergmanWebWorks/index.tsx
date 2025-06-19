@@ -1,13 +1,13 @@
 // Components
-import Navbar from "@features/bergmanWebWorks/components/navbar/";
-import ScrollButton from "@features/bergmanWebWorks/components/scrollbutton/";
+import Navbar from "@features/bergmanWebWorks/navbar/";
+import ScrollButton from "@features/bergmanWebWorks/scrollbutton/";
 
 // Page components
-import Hero from "@features/bergmanWebWorks/components/hero/";
-import Expertise from "@features/bergmanWebWorks/components/expertise/";
-import References from "@features/bergmanWebWorks/components/references";
-import Contact from "@features/bergmanWebWorks/components/contact/";
-import Packages from "@features/bergmanWebWorks/components/packages";
+import Hero from "@features/bergmanWebWorks/hero/";
+import Expertise from "@features/bergmanWebWorks/expertise/";
+import References from "@features/bergmanWebWorks/references";
+import Contact from "@features/bergmanWebWorks/contact/";
+import Packages from "@features/bergmanWebWorks/packages";
 
 // Import styles
 import "@app/app.scss";
