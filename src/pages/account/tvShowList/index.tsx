@@ -68,13 +68,13 @@ export default function TVShowList() {
           marginBottom: 2,
           width: { xs: "100%", md: "85%" },
           display: "flex",
-          gap: 2,
+          gap: { xs: 1, md: 1 },
         }}
       >
         <Box sx={{ display: "flex", flex: 1 }}>
           <AddTVShow />
         </Box>
-        <Box sx={{ display: "flex", flex: 2.8 }}>
+        <Box sx={{ display: "flex", flex: { xs: 2.8, md: 4 } }}>
           {/* Search input */}
           <TextField
             label="Search TV Shows…"

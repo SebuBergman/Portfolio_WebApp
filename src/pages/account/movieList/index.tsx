@@ -78,7 +78,7 @@ export default function MovieList() {
           marginBottom: 2,
           width: { xs: "100%", md: "85%" },
           display: "flex",
-          gap: 2,
+          gap: { xs: 1, md: 2 },
         }}
       >
         <Box sx={{ display: "flex", flex: 1 }}>

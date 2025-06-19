@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
 import {
   Book,
@@ -17,6 +17,7 @@ import {
   Typography,
   IconButton,
   Button,
+  TextField, // <-- Import TextField
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { Edit, Delete, Add } from "@mui/icons-material";
@@ -26,6 +27,7 @@ export default function BookList() {
   const dispatch = useAppDispatch();
   const books = useAppSelector(selectBooks);
   const [tab, setTab] = useState(0);
+  const [search, setSearch] = useState(""); // <-- Add search state
   const [openDialog, setOpenDialog] = useState(false);
   const [editBookObj, setEditBookObj] = useState<Book | null>(null);
 
@@ -33,15 +35,26 @@ export default function BookList() {
     dispatch(fetchBooks());
   }, [dispatch]);
 
-  const filteredBooks =
+  // Filtering logic: filter by tab and then by search
+  const booksByTab =
     tab === 0
       ? books
       : books.filter((book: Book) =>
           book.author.toLowerCase().includes("agatha christie")
         );
 
+  const filteredBooks = booksByTab.filter(
+    (book: Book) =>
+      book.title.toLowerCase().includes(search.toLowerCase()) ||
+      book.author.toLowerCase().includes(search.toLowerCase())
+  );
+
   const handleDelete = (id?: string) => {
     if (id) dispatch(deleteBook(id));
+  };
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
   return (
@@ -51,29 +64,57 @@ export default function BookList() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        maxWidth: 900,
+        maxWidth: 1175,
         margin: "auto",
         color: "black",
       }}
     >
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom mb={3}>
         Books
       </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 1,
+          mb: 3,
+          width: "100%",
+        }}
+      >
+        <Button
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            "& .MuiButton-startIcon": {
+              marginRight: 0,
+              marginLeft: 0,
+            },
+            height: 56,
+          }}
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => {
+            setEditBookObj(null);
+            setOpenDialog(true);
+          }}
+        ></Button>
+        {/* Add search box here */}
+        <TextField
+          value={search}
+          onChange={handleSearchChange}
+          placeholder="Search by title or author…"
+          variant="outlined"
+          sx={{ width: { xs: "100%", md: 400 } }}
+        />
+      </Box>
       <Tabs value={tab} onChange={(_, val) => setTab(val)} sx={{ mb: 3 }}>
         <Tab label="All Books" />
         <Tab label="Agatha Christie" />
       </Tabs>
-      <Button
-        variant="contained"
-        startIcon={<Add />}
-        onClick={() => {
-          setEditBookObj(null);
-          setOpenDialog(true);
-        }}
-        sx={{ mb: 4 }}
-      >
-        Add Book
-      </Button>
+
       <Grid container spacing={2}>
         {filteredBooks.map((book: Book) => (
           <Grid container key={book.id}>
