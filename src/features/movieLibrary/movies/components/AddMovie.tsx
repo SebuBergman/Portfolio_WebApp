@@ -114,7 +114,7 @@ export default function AddMovie() {
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
                 style={{
-                  width: 50,
+                  width: 120,
                   marginRight: 16,
                   borderRadius: 8,
                   background: "#222",
