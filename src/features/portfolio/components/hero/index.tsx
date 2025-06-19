@@ -6,7 +6,7 @@ import "./styles.scss";
 // Import variants data
 import { textVariant, sliderVariant } from "@hooks/variants";
 
-const Hero = () => {
+export default function Hero() {
   return (
     <div className="heroContainer" id="Home">
       <div className="heroWrapper">
@@ -54,6 +54,4 @@ const Hero = () => {
       </div>
     </div>
   );
-};
-
-export default Hero;
+}

@@ -1,19 +1,31 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Modal, Box, Typography, Button } from "@mui/material";
-
-// Import styles
-import "./styles.scss";
-
-// Import projects data
-import projectsData from "./data";
-
-// Import variants data
 import { slowVariant } from "@hooks/variants";
 
-const Single = ({ item }) => {
-  const ref = useRef(null);
-  const [open, setOpen] = useState(false);
+import "./styles.scss";
+
+// Define your prop types
+interface SingleProps {
+  item: {
+    id: string | number;
+    title: string;
+    desc: string;
+    aboutProject: string;
+    tags: string[];
+    linktosite: string;
+    img: string;
+    alt: string;
+    youtubeID?: string;
+    imageSize?: string | number;
+    aboutModal?: string;
+    modalLink?: string;
+  };
+}
+
+export default function Single({ item }: SingleProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -47,7 +59,7 @@ const Single = ({ item }) => {
             className="imageContainer"
             ref={ref}
             onClick={handleOpen}
-            sx={{ cursor: "pointer" }}
+            style={{ cursor: "pointer" }}
           >
             <img src={item.img} alt={item.alt} style={{ cursor: "pointer" }} />
           </div>
@@ -104,28 +116,4 @@ const Single = ({ item }) => {
       </div>
     </motion.section>
   );
-};
-
-const Projects = () => {
-  const ref = useRef(null);
-
-  return (
-    <motion.div
-      id="Projects"
-      variants={slowVariant}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true }}
-      ref={ref}
-    >
-      <motion.div className="projects" variants={slowVariant}>
-        <motion.h1>My Projects</motion.h1>
-        {projectsData.map((item) => (
-          <Single item={item} key={item.id} />
-        ))}
-      </motion.div>
-    </motion.div>
-  );
-};
-
-export default Projects;
+}

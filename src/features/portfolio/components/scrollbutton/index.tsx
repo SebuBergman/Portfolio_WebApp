@@ -3,7 +3,7 @@ import { useState } from "react";
 // Import styles
 import "./styles.scss";
 
-const ScrollButton = () => {
+export default function ScrollButton() {
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -38,6 +38,4 @@ const ScrollButton = () => {
       />
     </button>
   );
-};
-
-export default ScrollButton;
+}

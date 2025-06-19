@@ -220,7 +220,7 @@
       }
     }
 
-    .toastFlex {
+    .react-hot-toast .toast {
       padding: 16px;
       @include mobile {
         display: flex;

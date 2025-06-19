@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, ChangeEvent, FormEvent } from "react";
+import { motion, Variants } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
@@ -7,52 +7,64 @@ import { ThreeDots } from "react-loader-spinner";
 // Import styles
 import "./styles.scss";
 
-const Contact = ({ variants }) => {
-  const [input, setInput] = useState({ name: "", email: "", msg: "" });
-  const ref = useRef();
-  const formRef = useRef();
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [loading, setloading] = useState(false);
-  const [sending, setSending] = useState(false);
+// Props interface for variants
+interface ContactProps {
+  variants: Variants;
+}
 
-  const sendEmail = (e) => {
+interface InputState {
+  name: string;
+  email: string;
+  msg: string;
+}
+
+export default function Contact({ variants }: ContactProps) {
+  const [input, setInput] = useState<InputState>({
+    name: "",
+    email: "",
+    msg: "",
+  });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [error, setError] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
+
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setloading(true);
+    setLoading(true);
     setSending(true);
 
-    if (sending == true) {
+    if (sending === true) {
       setSending(false);
       emailjs
         .sendForm(
           "service_069tnqb",
           "template_k9ajxqi",
-          formRef.current,
+          formRef.current as HTMLFormElement,
           "waQ5U0JaLJVMzdW5t"
         )
         .then(
-          (result) => {
+          () => {
             setSuccess(true);
-            setInput({
-              ...input,
-              name: "",
-              email: "",
-              msg: "",
-            });
+            setInput({ name: "", email: "", msg: "" });
             toast.success("Message sent successfully!");
           },
-          (error) => {
+          () => {
             setError(true);
-            toast.notifyError();
+            toast.error("Failed to send message.");
           }
         );
     }
     setTimeout(() => {
-      setloading(false);
+      setLoading(false);
     }, 3000);
   };
 
-  const handleChange = (e) =>
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) =>
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value,
@@ -84,10 +96,15 @@ const Contact = ({ variants }) => {
         <a
           href="https://www.linkedin.com/in/sebastian-bergman-01061679/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           <img src="/linkedIn_circle_logo.png" alt="LinkedIn logo" />
         </a>
-        <a href="https://github.com/SebuBergman" target="_blank">
+        <a
+          href="https://github.com/SebuBergman"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src="/github-mark-white.png" alt="github_logo.png" />
         </a>
       </motion.div>
@@ -151,7 +168,7 @@ const Contact = ({ variants }) => {
             value={input.msg}
             onChange={handleChange}
           />
-          <button>
+          <button type="submit">
             {loading ? (
               <ThreeDots
                 color="#ffffff"
@@ -163,23 +180,22 @@ const Contact = ({ variants }) => {
               <p className="send_buttonText">Send</p>
             )}
           </button>
-          {error}
-          {success}
+          {error && <p className="error_message">Failed to send message.</p>}
+          {success && (
+            <p className="success_message">Message sent successfully!</p>
+          )}
         </motion.form>
         <Toaster
           position="bottom-center"
-          className="toastFlex"
           toastOptions={{
             duration: 5000,
             style: {
               padding: "20px",
-              "font-size": "24px",
+              fontSize: "24px",
             },
           }}
         />
       </motion.div>
     </motion.div>
   );
-};
-
-export default Contact;
+}

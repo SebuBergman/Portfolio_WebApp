@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 // Import styles
 import "./styles.scss";
 
-const TechIcons = (variants) => {
+// Define the prop type for variants
+interface TechIconsProps {
+  variants: any;
+}
+
+export default function TechIcons({ variants }: TechIconsProps) {
   return (
     <>
       <div className="listWrapper">
@@ -250,6 +255,4 @@ const TechIcons = (variants) => {
       </div>
     </>
   );
-};
-
-export default TechIcons;
+}

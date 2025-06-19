@@ -18,7 +18,7 @@ const navItems = ["Home", "Expertise", "Tech", "Projects", "Contact"];
 // Import variants data
 import { sidebarVariant } from "@hooks/variants";
 
-function Navbar() {
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visibleNavbar, setVisibleNavbar] = useState(false);
 
@@ -42,7 +42,7 @@ function Navbar() {
       className="sidebar"
       animate={mobileOpen ? "open" : "closed"}
       onClick={handleDrawerToggle}
-      sx={{ textAlign: "center" }}
+      style={{ textAlign: "center" }}
     >
       <motion.div className="bg" variants={sidebarVariant}>
         <Links />
@@ -53,7 +53,7 @@ function Navbar() {
 
   return (
     <div>
-      <div component="nav" className="navbar">
+      <div className="navbar">
         <div className={visibleNavbar ? "navbar_scrolling" : "navbar_heading"}>
           <div>
             <IconButton
@@ -91,7 +91,12 @@ function Navbar() {
                 <Button
                   key={item}
                   sx={{ color: "#fff" }}
-                  href={`#${item}`}
+                  onClick={() => {
+                    const el = document.getElementById(item);
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                   className="navbar_buttons"
                 >
                   {item}
@@ -116,6 +121,7 @@ function Navbar() {
       </div>
       <nav>
         <Drawer
+          // @ts-ignore: animate is not a valid prop for Drawer, but leaving for framer-motion
           animate={open ? "open" : "closed"}
           variant="temporary"
           open={mobileOpen}
@@ -137,5 +143,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;

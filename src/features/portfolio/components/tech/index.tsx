@@ -8,7 +8,7 @@ import "./styles.scss";
 // Import variants data
 import { fastVariant } from "@hooks/variants";
 
-const Tech = () => {
+export default function Tech() {
   const ref = useRef(null);
 
   return (
@@ -33,6 +33,4 @@ const Tech = () => {
       </motion.div>
     </motion.div>
   );
-};
-
-export default Tech;
+}

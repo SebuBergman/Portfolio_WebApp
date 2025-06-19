@@ -1,11 +1,16 @@
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 // Import styles
 import "./styles.scss";
 
-const Expertise = ({ variants }) => {
-  const ref = useRef(null);
+// Optional: If you want strict typing, specify the type for the variants prop
+interface ExpertiseProps {
+  variants: Variants; // from framer-motion, or use 'any' if you want to be more flexible
+}
+
+export default function Expertise({ variants }: ExpertiseProps) {
+  const ref = useRef<HTMLDivElement | null>(null);
 
   return (
     <motion.div
@@ -44,7 +49,8 @@ const Expertise = ({ variants }) => {
               <img src="react.svg" alt="react icon" />
               <h5>
                 <span className="heading-underline-orange">Frontend Dev</span>
-                <br></br>React, Vite
+                <br />
+                React, Vite
               </h5>
             </div>
             <div className="textContainer">
@@ -62,7 +68,8 @@ const Expertise = ({ variants }) => {
               <img src="responsive.svg" alt="computer and mobile screen icon" />
               <h5>
                 <span className="heading-underline-rose">UI/UX</span>
-                <br></br>Design
+                <br />
+                Design
               </h5>
             </div>
             <div className="textContainer">
@@ -102,6 +109,4 @@ const Expertise = ({ variants }) => {
       </motion.div>
     </motion.div>
   );
-};
-
-export default Expertise;
+}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 // Import variants data
 import { openingVariant, closingVariant } from "@hooks/variants";
 
-const Links = () => {
+export default function Links() {
   const items = ["Home", "Expertise", "Tech", "Projects", "Contact"];
 
   return (
@@ -21,6 +21,4 @@ const Links = () => {
       ))}
     </motion.div>
   );
-};
-
-export default Links;
+}
