@@ -62,18 +62,15 @@ export const deleteMovie = createAsyncThunk<void, string>(
   }
 );
 
-export const updateMovie = createAsyncThunk<void, Movie>(
-  "movies/updateMovie",
-  async (movie, { dispatch }) => {
-    await updateDoc(doc(firestore, "movies", movie.id), {
-      title: movie.title,
-      imageSrc: movie.imageSrc,
-      releaseDate: movie.releaseDate,
-      isExpanded: movie.isExpanded,
-    });
-    dispatch(fetchMovies());
-  }
-);
+// Allow partial updates for updateMovie
+export const updateMovie = createAsyncThunk<
+  void,
+  { id: string; title: string }
+>("movies/updateMovie", async ({ id, title }, { dispatch }) => {
+  console.log("Movie edited?:", id, title);
+  await updateDoc(doc(firestore, "movies", id), { title });
+  dispatch(fetchMovies());
+});
 
 const moviesSlice = createSlice({
   name: "movies",

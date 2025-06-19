@@ -46,11 +46,11 @@ export default function MovieList() {
   };
 
   const saveEdit = () => {
-    if (editId && editData.title && editData.releaseDate && editData.imageSrc) {
+    if (editId && editData.title) {
       dispatch(
         updateMovie({
-          ...(editData as Movie),
           id: editId,
+          title: editData.title,
         })
       );
       setEditId(null);
