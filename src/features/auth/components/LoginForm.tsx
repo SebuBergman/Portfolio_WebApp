@@ -33,7 +33,7 @@ export default function LoginForm() {
       component="form"
       noValidate
       onSubmit={handleSubmit(onSubmit)}
-      sx={{ width: "100%" }}
+      sx={{ width: "100%", color: Colors.black }}
     >
       <Controller
         name="email"

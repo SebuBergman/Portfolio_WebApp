@@ -1,12 +1,14 @@
 import { Outlet, useLocation } from "react-router-dom";
+import { Link } from "@nextui-org/react";
 import { Box, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 import LoginBackground from "@features/auth/assets/login-background.webp";
 import SignUpBackground from "@features/auth/assets/sign-up-background.webp";
 
-import Logo from "../Logo.png";
-import { MOVIE_LIBRARY } from "@app/config/constants";
+import { APP_NAME } from "@app/config/constants";
+import { Colors } from "@app/config/styles";
+import { AppRoutes } from "@app/config/routes";
 
 export default function AuthLayout() {
   const location = useLocation();
@@ -29,6 +31,7 @@ export default function AuthLayout() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         px: { xs: 1 },
+        color: Colors.black,
       }}
     >
       <Grid>
@@ -47,10 +50,11 @@ export default function AuthLayout() {
           }}
         >
           <Stack mb={4} direction={"row"}>
-            <img src={Logo} />
-            <Typography variant="h4" sx={{ ml: 1 }}>
-              {MOVIE_LIBRARY}
-            </Typography>
+            <Link href={AppRoutes.home}>
+              <Typography variant="h4" sx={{ ml: 1 }}>
+                {APP_NAME}
+              </Typography>
+            </Link>
           </Stack>
           <Outlet />
         </Grid>
