@@ -1,0 +1,201 @@
+@import "@hooks/breakpoints.scss";
+
+.contact {
+  height: 100%;
+  max-width: 650px;
+  margin: auto;
+  gap: 50px;
+  padding-top: 100px;
+  padding-bottom: 5px;
+
+  @include mobile {
+    padding: 100px 0px 0px 0px;
+    gap: 0px;
+  }
+
+  @include tablet {
+    gap: 25px;
+  }
+
+  .contactContainer {
+    gap: 40px;
+    padding: 0px 0px 30px 0px;
+    text-align: center;
+
+    @include mobile {
+      gap: 20px;
+      text-align: center;
+      align-items: center;
+    }
+
+    @include tablet {
+      gap: 20px;
+      text-align: center;
+      align-items: center;
+      margin-top: 70px;
+    }
+
+    h1 {
+      line-height: 88px;
+      padding-bottom: 15px;
+
+      @include tablet {
+        line-height: 40px;
+        margin: 0px 75px 0px 75px;
+      }
+
+      @include mobile {
+        line-height: 40px;
+      }
+    }
+  }
+
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0px 30px 0px;
+
+    h2 {
+      font-size: 2rem;
+      padding-bottom: 30px;
+
+      @include mobile {
+        font-size: 1.7rem;
+        padding: 0px 20px 0px 20px;
+      }
+
+      @include tablet {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.25rem;
+      line-height: 2em;
+      text-align: justify;
+
+      @include mobile {
+        font-size: 1.1rem;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: start;
+      }
+    }
+
+    a {
+      color: #4681f4;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        color: #3b6cd4;
+      }
+
+      @include mobile {
+        font-size: 1rem;
+      }
+    }
+
+    .about_Email {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .formContainer {
+    flex: 1;
+    position: relative;
+
+    @include mobile {
+      flex: 2;
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    @include tablet {
+      flex: 2;
+      margin-top: 50px;
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+      text-align: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+
+      @include mobile {
+        font-size: 2.25rem;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+
+      @include mobile {
+        padding: 0px 20px 40px 20px;
+      }
+
+      @include tablet {
+        margin: 10px;
+        font-size: 1.5rem;
+      }
+    }
+    input,
+    textarea {
+      padding: 20px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      border-radius: 10px;
+      font-size: 1rem;
+
+      @include tablet {
+        font-size: 1rem;
+      }
+
+      @include mobile {
+        padding: 20px;
+        font-size: 0.8rem;
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: #4681f4;
+      cursor: pointer;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .center_button {
+      padding: 8px;
+    }
+
+    .send_buttonText {
+      padding: 20px;
+      font-size: 1.25rem;
+
+      @include mobile {
+        padding: 15px;
+        font-size: 1rem;
+      }
+    }
+
+    .react-hot-toast .toast {
+      padding: 16px;
+      @include mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,216 @@
+@import "@hooks/breakpoints.scss";
+
+.expertiseContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+
+  @include mobile {
+    margin-top: 200px;
+  }
+
+  .boxContainer {
+    display: flex;
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    @include tablet {
+      flex-direction: column;
+    }
+
+    .boxWrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 30px 40px 30px 40px;
+      border: 1px solid;
+
+      @include tablet {
+        padding: 50px 60px 50px 60px;
+        margin: 0px 15px 0px 15px;
+      }
+
+      @include mobile {
+        margin: 0px 15px 0px 15px;
+      }
+
+      .headingWrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+
+        h5 {
+          font-size: 1.625rem;
+          font-weight: 600;
+          line-height: 1.2em;
+          padding-left: 16px;
+
+          @include mobile {
+            font-size: 1.1rem;
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+        }
+
+        img {
+          width: 42px;
+          height: 42px;
+        }
+
+        span {
+          font-size: 1.625rem;
+
+          @include mobile {
+            font-size: 1.1rem;
+          }
+        }
+
+        .heading-underline-blue,
+        .heading-underline-orange,
+        .heading-underline-rose {
+          z-index: 1;
+          position: relative;
+          color: white;
+        }
+
+        .heading-underline-blue::after,
+        .heading-underline-orange::after,
+        .heading-underline-rose::after {
+          content: "";
+          position: absolute;
+          bottom: 13.5%;
+          z-index: -1;
+          height: 0.3em;
+          width: 104%;
+          left: -1%;
+        }
+
+        .heading-underline-blue::after {
+          background: linear-gradient(
+            65deg,
+            #2c49d8 100%,
+            rgba(255, 209, 0, 0) 100%
+          );
+        }
+
+        .heading-underline-orange::after {
+          background: linear-gradient(
+            65deg,
+            #ff6b2b 100%,
+            rgba(255, 209, 0, 0) 100%
+          );
+        }
+
+        .heading-underline-rose::after {
+          background: linear-gradient(
+            65deg,
+            #f84aa7 100%,
+            rgba(255, 209, 0, 0) 100%
+          );
+        }
+      }
+
+      .priceContainer {
+        position: relative;
+
+        .priceWrapper {
+          color: #fff;
+          line-height: 1.4em;
+          padding-left: 35px;
+
+          p {
+            line-height: 1.4em;
+          }
+        }
+      }
+    }
+
+    .boxWrapper:first-child {
+      border-width: 1px 0 1px 1px;
+      border-style: solid;
+      border-radius: 15px 0 0 15px;
+
+      @include tablet {
+        border-width: 1px 1px 0px 1px;
+        border-style: solid;
+        border-radius: 15px 15px 0 0px;
+      }
+
+      @include mobile {
+        border-width: 1px 1px 0px 1px;
+        border-style: solid;
+        border-radius: 15px 15px 0 0px;
+      }
+    }
+
+    .boxWrapper:last-child {
+      border-width: 1px 1px 1px 0px;
+      border-style: solid;
+      border-radius: 0px 15px 15px 0px;
+
+      @include tablet {
+        border-width: 0px 1px 1px 1px;
+        border-style: solid;
+        border-radius: 0px 0px 15px 15px;
+      }
+
+      @include mobile {
+        border-width: 0px 1px 1px 1px;
+        border-style: solid;
+        border-radius: 0px 0px 15px 15px;
+      }
+    }
+
+    .textContainer::after {
+      opacity: 0.3;
+      content: "";
+      width: 0;
+      height: 65%;
+      position: absolute;
+      background-color: white;
+      border: 0.1px solid white;
+      bottom: 17%;
+      left: 17px;
+
+      @include tablet {
+        bottom: 20%;
+        height: 55%;
+      }
+
+      @include mobile {
+        bottom: 23%;
+        height: 50%;
+        left: 15px;
+      }
+    }
+  }
+
+  .background-code_container {
+    display: block;
+    text-align: center;
+    margin-top: -20px;
+
+    @include mobile {
+      margin-top: -14px;
+    }
+
+    .background-code {
+      width: 480px;
+      opacity: 0.2;
+
+      @include mobile {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+.expertiseList {
+  color: #fff;
+}
