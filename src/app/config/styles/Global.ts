@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import { FontFamilies } from "./FontFamilies";
+import { Colors } from "./Colors";
 
 const styled = { createGlobalStyle };
 
@@ -14,9 +16,9 @@ export const GlobalStyles = styled.createGlobalStyle`
 
   body {
     min-height: 100vh;
-    font-family: ${({ theme }) => theme.fonts.dmsans}, sans-serif;
-    color: ${({ theme }) => theme.colors.white};
-    background-color: ${({ theme }) => theme.colors.backgroundGrey};
+    font-family: ${() => FontFamilies.dmsans}, sans-serif;
+    color: ${() => Colors.white};
+    background-color: ${() => Colors.backgroundGrey};
   }
 
   html {
@@ -25,13 +27,11 @@ export const GlobalStyles = styled.createGlobalStyle`
   }
 
   h1 {
-    font-family: ${({ theme }) => theme.fonts.poppins},
-      sans-serif ${"!important"};
+    font-family: ${() => FontFamilies.poppins}, sans-serif ${"!important"};
   }
 
   button {
-    font-family: ${({ theme }) => theme.fonts.roboto},
-      sans-serif ${"!important"};
+    font-family: ${() => FontFamilies.roboto}, sans-serif ${"!important"};
   }
 
   a {
@@ -45,6 +45,11 @@ export const GlobalStyles = styled.createGlobalStyle`
   textarea,
   select {
     font: inherit;
+  }
+
+  .dashboard-section {
+    color: #111;
+    background-color: #f9f9f9;
   }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
