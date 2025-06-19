@@ -197,4 +197,15 @@ theme.typography.caption = {
   },
 };
 
+theme.typography.button = {
+  fontFamily: FontFamilies.dmsans,
+  fontWeight: FontWeights.semibold,
+  fontSize: "1.125rem",
+  lineHeight: "1.5rem",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1rem",
+    lineHeight: "1.2rem",
+  },
+};
+
 export default theme;
