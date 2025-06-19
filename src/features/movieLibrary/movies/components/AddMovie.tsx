@@ -1,13 +1,15 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
-import { useAppDispatch } from "@store/index";
+import { useAppDispatch, useAppSelector } from "@store/index";
 import ReusableModal from "@features/ui/reusableModal";
 import AppButton from "@features/ui/AppButton";
 import { TextField } from "@mui/material";
+import toast, { Toaster } from "react-hot-toast";
 
 // Import styles
 import "./styles.scss";
 import { addMovie, Movie } from "../store/movieSlice";
+import { selectUser } from "@features/auth/store/authSlice";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -20,6 +22,9 @@ interface MovieDBMovie {
 
 export default function AddMovie() {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+  const uid = user?.uid;
+
   const [modalOpen, setModalOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<MovieDBMovie[]>([]);
@@ -61,9 +66,10 @@ export default function AddMovie() {
       imageSrc: movie.poster_path,
       releaseDate: movie.release_date,
       isExpanded: false,
+      ownerId: uid,
     };
     dispatch(addMovie(newMovie));
-    // Allow multiple additions; do not close modal
+    toast.success(`Added "${movie.title}"!`);
   };
 
   // Content for the modal
@@ -141,6 +147,16 @@ export default function AddMovie() {
         subtitle="Search for a movie from MovieDB and add it to your list."
         content={modalContent}
         // No Save button; all actions are in modalContent
+      />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          duration: 5000,
+          style: {
+            padding: "20px",
+            fontSize: "24px",
+          },
+        }}
       />
     </>
   );

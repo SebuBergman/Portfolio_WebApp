@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useAppDispatch } from "@store/index";
+import { useAppDispatch, useAppSelector } from "@store/index";
 import AppButton from "@features/ui/AppButton";
 import {
   TextField,
@@ -12,9 +12,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from "uuid";
 import { addTVShow } from "../store/tvShowSlice";
 import ReusableModal from "@features/ui/reusableModal";
+import { selectUser } from "@features/auth/store/authSlice";
 
 export default function AddTVShow() {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+  const uid = user?.uid;
+
   const [modalOpen, setModalOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [seasonCount, setSeasonCount] = useState(1);
@@ -56,6 +60,7 @@ export default function AddTVShow() {
         seasonNumber: i + 1,
         owned: !!ownedSeasons[i + 1],
       })),
+      ownerId: uid,
     };
     dispatch(addTVShow(newShow));
     setTitle("");

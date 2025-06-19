@@ -17,6 +17,7 @@ export type Book = {
   title: string;
   author: string;
   coverUrl?: string;
+  ownerId?: string;
 };
 
 // Async thunks for CRUD

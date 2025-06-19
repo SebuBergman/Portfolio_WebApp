@@ -16,6 +16,7 @@ export interface Movie {
   imageSrc: string;
   releaseDate: string;
   isExpanded: boolean;
+  ownerId?: string;
 }
 
 interface MoviesState {

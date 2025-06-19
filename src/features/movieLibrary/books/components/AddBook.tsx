@@ -43,6 +43,7 @@ export default function AddBook({ open, onClose, editBookObj }: Props) {
     if (cover) {
       if (!uid) {
         toast.error("Error uploading the book cover.");
+        setLoading(false); // Also reset loading here!
         return;
       }
       const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover);
@@ -51,7 +52,7 @@ export default function AddBook({ open, onClose, editBookObj }: Props) {
     if (editBookObj && editBookObj.id) {
       await dispatch(editBook({ id: editBookObj.id, title, author, coverUrl }));
     } else {
-      await dispatch(addBook({ title, author, coverUrl }));
+      await dispatch(addBook({ title, author, coverUrl, ownerId: uid }));
     }
     setLoading(false);
     onClose();
