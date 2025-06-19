@@ -9,7 +9,8 @@ import {
 } from "@features/movieLibrary/movies/store/movieSlice";
 import AddMovie from "@movies/components/AddMovie";
 import AppButton from "@features/ui/AppButton";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 // Import styles
 import "./styles.scss";
@@ -75,7 +76,7 @@ export default function MovieList() {
       <Box
         sx={{
           marginBottom: 2,
-          width: "85%",
+          width: { xs: "100%", md: "85%" },
           display: "flex",
           gap: 2,
         }}
@@ -119,8 +120,14 @@ export default function MovieList() {
                     onChange={handleEditChange}
                     placeholder="Title"
                   />
-                  <AppButton onClick={saveEdit}>Save</AppButton>
-                  <AppButton onClick={() => setEditId(null)}>Cancel</AppButton>
+                  <Box gap={2} display="flex" mt={1}>
+                    <AppButton isSmall onClick={saveEdit}>
+                      Save
+                    </AppButton>
+                    <AppButton isSmall onClick={() => setEditId(null)}>
+                      Cancel
+                    </AppButton>
+                  </Box>
                 </span>
               ) : (
                 <span
@@ -131,12 +138,13 @@ export default function MovieList() {
                   {movie.title}
                 </span>
               )}
-              <AppButton
+              <IconButton
+                color="error"
                 onClick={() => dispatch(deleteMovie(movie.id))}
                 sx={{ height: "40px" }}
               >
-                Delete
-              </AppButton>
+                <Delete />
+              </IconButton>
             </li>
           ))}
         </ul>
