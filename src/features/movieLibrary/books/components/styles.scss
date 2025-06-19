@@ -1,0 +1,27 @@
+@import "@hooks/breakpoints.scss";
+
+.add-movie-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 350px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.add-movie-li {
+  display: flex;
+  align-items: center;
+  background: #232527;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.13s;
+}
+
+.add-movie-li:hover {
+  box-shadow: 0 4px 18px rgba(114, 158, 101, 0.13);
+  background: #262c27;
+}
