@@ -20,6 +20,7 @@ export default defineConfig({
         __dirname,
         "./src/features/movieLibrary/tvShows"
       ),
+      "@books": path.resolve(__dirname, "./src/features/movieLibrary/books"),
     },
   },
   plugins: [react()],

@@ -32,7 +32,8 @@
       "@services/*": ["src/app/services/*"],
       "@hooks/*": ["src/app/hooks/*"],
       "@movies/*": ["src/features/movieLibrary/movies/*"],
-      "@tvShows/*": ["src/features/movieLibrary/tvShows/*"]
+      "@tvShows/*": ["src/features/movieLibrary/tvShows/*"],
+      "@books/*": ["src/features/movieLibrary/books/*"]
     }
   },
   "include": ["src"],
