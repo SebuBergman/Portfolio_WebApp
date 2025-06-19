@@ -1,0 +1,53 @@
+@import "@hooks/breakpoints.scss";
+
+.movieList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.movieList li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #212325;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.15s;
+}
+
+.movieList li:hover {
+  box-shadow: 0 4px 18px rgba(114, 158, 101, 0.16);
+}
+
+.movieList img {
+  border-radius: 0.5rem;
+  background: #181818;
+}
+
+.movieList span {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.movieList input[type="text"] {
+  border: 2px solid #729e65;
+  border-radius: 0.5rem;
+  background: #181818;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  width: 160px;
+}
+
+.movieList input[type="text"]:focus {
+  outline: none;
+  border-color: #4e7c4a;
+}
