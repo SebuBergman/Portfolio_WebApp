@@ -28,11 +28,12 @@ export default function ReusableModal({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 800,
+          width: { xs: "95%", md: 800 },
           bgcolor: "background.paper",
           border: "2px solid #000",
           boxShadow: 24,
-          p: 4,
+          p: { xs: 2, md: 4 },
+          pt: { xs: 4, md: 6 },
         }}
       >
         <IconButton

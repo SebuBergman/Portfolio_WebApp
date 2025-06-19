@@ -57,7 +57,7 @@ export default function AppButton({
       sx={{
         borderRadius: 2,
         height: {
-          xs: variant === "text" || isSmall ? 42 : 48,
+          xs: variant === "text" || isSmall ? 42 : 56,
           md: variant === "text" || isSmall ? 48 : 56,
         },
         textTransform: "none",
@@ -65,7 +65,7 @@ export default function AppButton({
         ...sx,
       }}
     >
-      <Typography component="span" variant="body2">
+      <Typography component="span" variant="button">
         {children}
       </Typography>
     </LoadingButton>
