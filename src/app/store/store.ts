@@ -13,6 +13,7 @@ import {
 import authReducer from "@features/auth/store/authSlice";
 import moviesReducer from "@movies/store/movieSlice";
 import tvShowsReducer from "@tvShows/store/tvShowSlice";
+import booksReducer from "@books/store/bookSlice";
 
 import storage from "redux-persist/lib/storage";
 
@@ -20,12 +21,13 @@ const rootReducer = combineReducers({
   auth: authReducer,
   movies: moviesReducer,
   tvShows: tvShowsReducer,
+  books: booksReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["movies", "tvShows"], // Only persist movies and tvShows slices
+  whitelist: ["movies", "tvShows", "books"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -37,7 +39,11 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(),
+    }),
 });
 
 export const persistor = persistStore(store);
+
+// Optionally, for TypeScript support:
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
