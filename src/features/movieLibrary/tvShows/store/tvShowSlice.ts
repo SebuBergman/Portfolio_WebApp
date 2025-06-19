@@ -4,10 +4,10 @@ import { firestore } from "@services/firebase";
 import {
   collection,
   getDocs,
-  addDoc,
   updateDoc,
   doc,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { RootState } from "@app/store";
 
@@ -71,6 +71,16 @@ export const updateTVShowSeasons = createAsyncThunk(
   }
 );
 
+// --- DELETE TV SHOW THUNK ---
+export const deleteTVShow = createAsyncThunk(
+  "tvShows/deleteTVShow",
+  async (id: string) => {
+    const showDoc = doc(firestore, "tvshows", id);
+    await deleteDoc(showDoc);
+    return id;
+  }
+);
+
 const tvShowsSlice = createSlice({
   name: "tvShows",
   initialState,
@@ -105,6 +115,15 @@ const tvShowsSlice = createSlice({
             (tv) => tv.id === action.payload.id
           );
           if (idx !== -1) state.tvShows[idx].seasons = action.payload.seasons;
+        }
+      )
+      // --- DELETE TV SHOW ---
+      .addCase(
+        deleteTVShow.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.tvShows = state.tvShows.filter(
+            (tv) => tv.id !== action.payload
+          );
         }
       );
   },

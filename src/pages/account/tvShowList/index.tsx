@@ -1,14 +1,22 @@
 import { useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@store/index";
-import { TextField, Checkbox, Box, Typography } from "@mui/material";
+import {
+  TextField,
+  Checkbox,
+  Box,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import { useEffect } from "react";
 import {
+  deleteTVShow,
   fetchTVShows,
   selectTVShows,
   TVShow,
   updateTVShowSeasons,
 } from "@tvShows/store/tvShowSlice";
 import AddTVShow from "@tvShows/components/addTVShow";
+import { Delete } from "@mui/icons-material";
 
 export default function TVShowList() {
   const dispatch = useAppDispatch();
@@ -36,6 +44,10 @@ export default function TVShowList() {
     dispatch(updateTVShowSeasons({ id: show.id, seasons: updatedSeasons }));
   };
 
+  const handleDelete = (id?: string) => {
+    if (id) dispatch(deleteTVShow(id));
+  };
+
   return (
     <Box
       sx={{
@@ -51,11 +63,18 @@ export default function TVShowList() {
       <Typography variant="h4" mb={3}>
         TV Shows
       </Typography>
-      <Box sx={{ marginBottom: 2, width: "85%", display: "flex", gap: 2 }}>
+      <Box
+        sx={{
+          marginBottom: 2,
+          width: { xs: "100%", md: "85%" },
+          display: "flex",
+          gap: 2,
+        }}
+      >
         <Box sx={{ display: "flex", flex: 1 }}>
           <AddTVShow />
         </Box>
-        <Box sx={{ display: "flex", flex: 4 }}>
+        <Box sx={{ display: "flex", flex: 2.8 }}>
           {/* Search input */}
           <TextField
             label="Search TV Shows…"
@@ -96,8 +115,27 @@ export default function TVShowList() {
                 borderRadius: "0.7rem",
                 padding: "1rem 1.5rem",
                 boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
+                position: "relative",
               }}
             >
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  zIndex: 1,
+                }}
+              >
+                <IconButton
+                  color="error"
+                  onClick={() => handleDelete(show.id)}
+                  aria-label="Delete TV Show"
+                  size="small"
+                >
+                  <Delete />
+                </IconButton>
+              </Box>
+              {/* TV Show content */}
               <Typography variant="h6" sx={{ color: "#fff", mb: 1 }}>
                 {show.title}
               </Typography>
