@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Modal, Box, Typography, Button } from "@mui/material";
 import { slowVariant } from "@hooks/variants";
@@ -29,12 +29,23 @@ export default function Single({ item }: SingleProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const tags = useMemo(
+    () => (
+      <ul>
+        {item.tags.map((tag, index) => (
+          <li key={index}>{tag}</li>
+        ))}
+      </ul>
+    ),
+    [item.tags]
+  );
+
   return (
     <motion.section
       variants={slowVariant}
       initial="initial"
       whileInView="animate"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
       ref={ref}
     >
       <div className="projectsContainer">
@@ -46,43 +57,28 @@ export default function Single({ item }: SingleProps) {
               </a>
               <p>{item.desc}</p>
               <p>{item.aboutProject}</p>
-              <div className="tagWrapper">
-                <ul>
-                  {item.tags.map((tag, index) => (
-                    <li key={index}>{tag}</li>
-                  ))}
-                </ul>
-              </div>
+              <div className="tagWrapper">{tags}</div>
             </div>
           </div>
           <div
-            className="imageContainer"
-            ref={ref}
+            className={`imageContainer ${imageLoaded ? "loaded" : ""}`}
             onClick={handleOpen}
             style={{ cursor: "pointer" }}
           >
-            <img src={item.img} alt={item.alt} style={{ cursor: "pointer" }} />
+            <img
+              src={item.img}
+              alt={item.alt}
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+            />
           </div>
           <Modal open={open} onClose={handleClose}>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: { xs: "100%", md: "1000px" },
-                maxHeight: "90vh",
-                overflowY: "auto",
-                bgcolor: "background.paper",
-                p: 2,
-              }}
-            >
+            <Box className="modalContent">
               <div className="youtubeContainer">
                 {item.youtubeID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${item.youtubeID}`}
                     title={item.title}
-                    style={{ border: "none" }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
@@ -94,19 +90,10 @@ export default function Single({ item }: SingleProps) {
                   />
                 )}
               </div>
-              <Typography variant="h6" sx={{ color: "black", pt: 2 }}>
-                {item.title}
-              </Typography>
-              <Typography sx={{ mt: 2, color: "black" }}>
-                {item.aboutModal}
-              </Typography>
+              <Typography variant="h6">{item.title}</Typography>
+              <Typography>{item.aboutModal}</Typography>
               {item.linktosite && (
-                <Button
-                  href={item.linktosite}
-                  target="_blank"
-                  rel="noreferrer"
-                  sx={{ mt: 2 }}
-                >
+                <Button href={item.linktosite} target="_blank" rel="noreferrer">
                   {item.modalLink}
                 </Button>
               )}

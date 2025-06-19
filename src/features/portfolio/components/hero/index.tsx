@@ -35,14 +35,6 @@ export default function Hero() {
             alt="scroll icon"
           />
         </motion.div>
-        <motion.div
-          className="slidingTextContainer"
-          variants={sliderVariant}
-          initial="initial"
-          animate="animate"
-        >
-          Front-end developer & UX/UI designer with extensive IT knowledge
-        </motion.div>
         <div className="imageContainer">
           <div className="imageWrapper">
             <motion.img
@@ -51,6 +43,10 @@ export default function Hero() {
             />
           </div>
         </div>
+        <motion.div className="slidingTextContainer">
+          Full-Stack developer with a passion for creating dynamic and
+          responsive web applications.
+        </motion.div>
       </div>
     </div>
   );
