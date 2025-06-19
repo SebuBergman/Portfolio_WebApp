@@ -3,13 +3,14 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@store/index";
 import ReusableModal from "@features/ui/reusableModal";
 import AppButton from "@features/ui/AppButton";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 // Import styles
 import "./styles.scss";
 import { addMovie, Movie } from "../store/movieSlice";
 import { selectUser } from "@features/auth/store/authSlice";
+import { formatDate } from "@app/services/date";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -85,7 +86,7 @@ export default function AddMovie() {
           value={query}
           onChange={handleQueryChange}
           sx={{
-            width: "70%",
+            width: { xs: "65%", md: "70%" },
             background: "#181818",
             "& input": { color: "#fff" },
             "& fieldset": { borderColor: "#729E65" },
@@ -120,7 +121,19 @@ export default function AddMovie() {
                   background: "#222",
                 }}
               />
-              <span style={{ flex: 1, color: "#fff" }}>{movie.title} </span>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 1,
+                  flex: 1,
+                }}
+              >
+                <span style={{ flex: 1, color: "#fff" }}>{movie.title} </span>
+                <span style={{ color: "#fff", fontSize: "0.9rem" }}>
+                  Release date: {formatDate(movie.release_date, "MM D, YYYY")}
+                </span>
+              </Box>
               <AppButton
                 type="button"
                 onClick={() => handleAdd(movie)}

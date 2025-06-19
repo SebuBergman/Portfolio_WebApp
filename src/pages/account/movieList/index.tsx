@@ -11,9 +11,9 @@ import AddMovie from "@movies/components/AddMovie";
 import AppButton from "@features/ui/AppButton";
 import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { Delete } from "@mui/icons-material";
-
 // Import styles
 import "./styles.scss";
+import { formatDate } from "@app/services/date";
 
 export default function MovieList() {
   const dispatch = useAppDispatch();
@@ -106,7 +106,7 @@ export default function MovieList() {
       >
         <ul className="movieList">
           {filteredMovies.map((movie) => (
-            <li key={movie.id}>
+            <li key={movie.id} style={{ position: "relative" }}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.imageSrc}`}
                 alt={movie.title}
@@ -130,21 +130,40 @@ export default function MovieList() {
                   </Box>
                 </span>
               ) : (
-                <span
-                  style={{ cursor: "pointer" }}
-                  onClick={() => startEdit(movie)}
-                  title="Click to edit"
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", mb: "row" },
+                    alignItems: { mb: "row" },
+                    gap: 1,
+                  }}
                 >
-                  {movie.title}
-                </span>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() => startEdit(movie)}
+                    title="Click to edit"
+                  >
+                    {movie.title}
+                  </span>
+                  <span>{formatDate(movie.releaseDate, "MMMM D, YYYY")}</span>
+                </Box>
               )}
-              <IconButton
-                color="error"
-                onClick={() => dispatch(deleteMovie(movie.id))}
-                sx={{ height: "40px" }}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 8,
+                  right: 8,
+                  zIndex: 1,
+                }}
               >
-                <Delete />
-              </IconButton>
+                <IconButton
+                  color="error"
+                  onClick={() => dispatch(deleteMovie(movie.id))}
+                  sx={{ height: "40px" }}
+                >
+                  <Delete />
+                </IconButton>
+              </Box>
             </li>
           ))}
         </ul>
