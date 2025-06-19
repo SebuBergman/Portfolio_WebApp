@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import Single from "./single";
-import { slowVariant } from "@hooks/variants";
 
 import projectsData from "./data";
 

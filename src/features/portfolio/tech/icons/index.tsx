@@ -1,8 +1,12 @@
 import Tooltip from "@mui/material/Tooltip";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import "../styles.scss";
 
-export default function TechIcons({ variants }) {
+interface TechIconProps {
+  variants: Variants;
+}
+
+export default function TechIcons({ variants }: TechIconProps) {
   const techData = [
     {
       name: "React",
@@ -90,12 +94,6 @@ export default function TechIcons({ variants }) {
     { name: "Git", logo: "/git-logo.png", colored: true, level: "Expert" },
   ];
 
-// Define the prop type for variants
-interface TechIconsProps {
-  variants: any;
-}
-
-export default function TechIcons({ variants }: TechIconsProps) {
   return (
     <div className="tech-grid">
       {techData.map((tech) => (

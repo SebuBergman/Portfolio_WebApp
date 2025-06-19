@@ -70,7 +70,7 @@ export default function Single({ item }: SingleProps) {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: { xs: "100%", md: "1000px" },
+                width: { xs: "100%", md: "800px" },
                 maxHeight: "90vh",
                 overflowY: "auto",
                 bgcolor: "background.paper",
