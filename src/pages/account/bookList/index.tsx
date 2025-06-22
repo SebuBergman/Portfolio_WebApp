@@ -1,10 +1,11 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, KeyboardEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
 import {
   Book,
   deleteBook,
   fetchBooks,
   selectBooks,
+  editBook,
 } from "@books/store/bookSlice";
 import AddBook from "@books/components/AddBook";
 import {
@@ -16,26 +17,27 @@ import {
   CardContent,
   Typography,
   IconButton,
-  Button,
-  TextField, // <-- Import TextField
+  TextField,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { Edit, Delete, Add } from "@mui/icons-material";
+import ClearIcon from "@mui/icons-material/Clear";
 import { Colors } from "@app/config/styles";
+
+type EditingState = { id: string; field: "title" | "author" } | null;
 
 export default function BookList() {
   const dispatch = useAppDispatch();
   const books = useAppSelector(selectBooks);
   const [tab, setTab] = useState(0);
-  const [search, setSearch] = useState(""); // <-- Add search state
-  const [openDialog, setOpenDialog] = useState(false);
-  const [editBookObj, setEditBookObj] = useState<Book | null>(null);
+  const [search, setSearch] = useState("");
+  const [editing, setEditing] = useState<EditingState>(null);
+  const [editValue, setEditValue] = useState("");
 
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
 
-  // Filtering logic: filter by tab and then by search
+  // Filtering logic
   const booksByTab =
     tab === 0
       ? books
@@ -55,6 +57,54 @@ export default function BookList() {
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+  };
+
+  // Start editing on click
+  const handleEditStart = (
+    id: string,
+    field: "title" | "author",
+    initialValue: string
+  ) => {
+    if (!id) return;
+    setEditing({ id, field });
+    setEditValue(initialValue);
+  };
+
+  // Save edit (on blur or Enter)
+  const handleEditSave = async (book: Book) => {
+    if (!editing) {
+      return;
+    }
+    if (!editValue.trim()) {
+      setEditing(null);
+      return;
+    }
+    if (
+      (editing.field === "title" && editValue.trim() !== book.title) ||
+      (editing.field === "author" && editValue.trim() !== book.author)
+    ) {
+      await dispatch(
+        editBook({
+          id: book.id,
+          title: editing.field === "title" ? editValue.trim() : book.title,
+          author: editing.field === "author" ? editValue.trim() : book.author,
+          coverUrl: book.coverUrl,
+        })
+      );
+    }
+    setEditing(null);
+  };
+
+  // Cancel edit on Escape
+  const handleEditKeyDown = (
+    e: KeyboardEvent<HTMLInputElement>,
+    book: Book
+  ) => {
+    if (e.key === "Enter") {
+      handleEditSave(book);
+    } else if (e.key === "Escape") {
+      setEditing(null);
+    }
   };
 
   return (
@@ -78,36 +128,18 @@ export default function BookList() {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: 1,
+          gap: { xs: 1, md: 2 },
           mb: 3,
-          width: "100%",
+          width: { xs: "100%", md: "80%" },
         }}
       >
-        <Button
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            "& .MuiButton-startIcon": {
-              marginRight: 0,
-              marginLeft: 0,
-            },
-            height: 56,
-          }}
-          variant="contained"
-          startIcon={<Add />}
-          onClick={() => {
-            setEditBookObj(null);
-            setOpenDialog(true);
-          }}
-        ></Button>
-        {/* Add search box here */}
+        <AddBook />
         <TextField
           value={search}
           onChange={handleSearchChange}
           placeholder="Search by title or author…"
           variant="outlined"
-          sx={{ width: { xs: "100%", md: 400 } }}
+          fullWidth
         />
       </Box>
       <Tabs value={tab} onChange={(_, val) => setTab(val)} sx={{ mb: 3 }}>
@@ -117,15 +149,18 @@ export default function BookList() {
 
       <Grid container spacing={2}>
         {filteredBooks.map((book: Book) => (
-          <Grid container key={book.id}>
-            <Card sx={{ width: { xs: 160, md: 220 } }}>
+          <Grid key={book.id} style={{ position: "relative" }}>
+            <Card sx={{ width: { xs: 155, md: 220 } }}>
               {book.coverUrl ? (
                 <CardMedia
                   component="img"
-                  height="337"
                   image={book.coverUrl}
                   alt={book.title}
-                  sx={{ objectFit: "cover", backgroundColor: "#f0f0f0" }}
+                  sx={{
+                    objectFit: "cover",
+                    backgroundColor: "#f0f0f0",
+                    height: { xs: "160px", md: "337px" },
+                  }}
                 />
               ) : (
                 <Box
@@ -143,27 +178,96 @@ export default function BookList() {
                 </Box>
               )}
               <CardContent>
-                <Typography variant="h6" color={Colors.black} sx={{ mb: 1 }}>
-                  {book.title}
-                </Typography>
-                <Typography variant="subtitle1" color={Colors.black}>
-                  {book.author}
-                </Typography>
-                <Box mt={1}>
+                {/* Title */}
+                {editing &&
+                editing.id === book.id &&
+                editing.field === "title" ? (
+                  <TextField
+                    value={editValue}
+                    autoFocus
+                    onChange={(e) => setEditValue(e.target.value)}
+                    onBlur={() => handleEditSave(book)}
+                    onKeyDown={(e) =>
+                      handleEditKeyDown(
+                        e as KeyboardEvent<HTMLInputElement>,
+                        book
+                      )
+                    }
+                    variant="standard"
+                    fullWidth
+                    sx={{ mb: 1 }}
+                  />
+                ) : (
+                  <Typography
+                    variant="h6"
+                    color={Colors.black}
+                    sx={{
+                      mb: 1,
+                      cursor: "pointer",
+                      fontSize: { xs: "1em", md: "1.2em" },
+                      lineHeight: {
+                        xs: "1.4em !important",
+                        md: "1.5em !important",
+                      },
+                    }}
+                    onClick={() =>
+                      handleEditStart(book.id, "title", book.title)
+                    }
+                  >
+                    {book.title}
+                  </Typography>
+                )}
+                {/* Author */}
+                {editing &&
+                editing.id === book.id &&
+                editing.field === "author" ? (
+                  <TextField
+                    value={editValue}
+                    autoFocus
+                    onChange={(e) => setEditValue(e.target.value)}
+                    onBlur={() => handleEditSave(book)}
+                    onKeyDown={(e) =>
+                      handleEditKeyDown(
+                        e as KeyboardEvent<HTMLInputElement>,
+                        book
+                      )
+                    }
+                    variant="standard"
+                    fullWidth
+                  />
+                ) : (
+                  <Typography
+                    variant="subtitle1"
+                    color={Colors.black}
+                    sx={{ cursor: "pointer" }}
+                    onClick={() =>
+                      handleEditStart(book.id, "author", book.author)
+                    }
+                  >
+                    {book.author}
+                  </Typography>
+                )}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                    zIndex: 1,
+                  }}
+                >
                   <IconButton
-                    color="primary"
-                    onClick={() => {
-                      setEditBookObj(book);
-                      setOpenDialog(true);
+                    onClick={() => handleDelete(book.id)}
+                    sx={{
+                      height: "40px",
+                      color: "black",
+                      bgcolor: "white",
+                      "&:hover": {
+                        backgroundColor: "white",
+                        color: "#EB5757",
+                      },
                     }}
                   >
-                    <Edit />
-                  </IconButton>
-                  <IconButton
-                    color="error"
-                    onClick={() => handleDelete(book.id)}
-                  >
-                    <Delete />
+                    <ClearIcon />
                   </IconButton>
                 </Box>
               </CardContent>
@@ -171,11 +275,6 @@ export default function BookList() {
           </Grid>
         ))}
       </Grid>
-      <AddBook
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        editBookObj={editBookObj}
-      />
     </Box>
   );
 }

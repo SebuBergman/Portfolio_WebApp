@@ -7,12 +7,14 @@ import {
   Typography,
   Checkbox,
   IconButton,
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from "uuid";
 import { addTVShow } from "../store/tvShowSlice";
 import ReusableModal from "@features/ui/reusableModal";
 import { selectUser } from "@features/auth/store/authSlice";
+import { Add } from "@mui/icons-material";
 
 export default function AddTVShow() {
   const dispatch = useAppDispatch();
@@ -89,9 +91,7 @@ export default function AddTVShow() {
           zIndex: 2,
           color: "#222",
         }}
-      >
-        <CloseIcon />
-      </IconButton>
+      ></IconButton>
       <TextField
         label="TV Show Title"
         value={title}
@@ -130,9 +130,21 @@ export default function AddTVShow() {
 
   return (
     <>
-      <AppButton onClick={handleOpen} sx={{ mb: 2 }}>
-        Add TV Show
-      </AppButton>
+      <Button
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          "& .MuiButton-startIcon": {
+            marginRight: 0,
+            marginLeft: 0,
+          },
+          height: 56,
+        }}
+        variant="contained"
+        startIcon={<Add />}
+        onClick={handleOpen}
+      ></Button>
       <ReusableModal
         open={modalOpen}
         onClose={handleClose}

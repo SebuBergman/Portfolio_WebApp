@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@store/index";
 import ReusableModal from "@features/ui/reusableModal";
 import AppButton from "@features/ui/AppButton";
-import { Box, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 
 // Import styles
@@ -11,6 +11,7 @@ import "./styles.scss";
 import { addMovie, Movie } from "../store/movieSlice";
 import { selectUser } from "@features/auth/store/authSlice";
 import { formatDate } from "@app/services/date";
+import { Add } from "@mui/icons-material";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -125,22 +126,31 @@ export default function AddMovie() {
                 sx={{
                   display: "flex",
                   flexDirection: { xs: "column", sm: "row" },
-                  gap: 1,
+                  gap: 2,
                   flex: 1,
                 }}
               >
-                <span style={{ flex: 1, color: "#fff" }}>{movie.title} </span>
-                <span style={{ color: "#fff", fontSize: "0.9rem" }}>
-                  Release date: {formatDate(movie.release_date, "D.M.YYYY")}
-                </span>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: { xs: "column", sm: "row" },
+                    gap: 1,
+                    flex: 1,
+                  }}
+                >
+                  <span style={{ flex: 1, color: "#fff" }}>{movie.title} </span>
+                  <span style={{ color: "#fff", fontSize: "0.9rem" }}>
+                    Release date: {formatDate(movie.release_date, "D.M.YYYY")}
+                  </span>
+                </Box>
+                <AppButton
+                  type="button"
+                  onClick={() => handleAdd(movie)}
+                  sx={{ height: 40, fontWeight: 600 }}
+                >
+                  Add
+                </AppButton>
               </Box>
-              <AppButton
-                type="button"
-                onClick={() => handleAdd(movie)}
-                sx={{ marginLeft: 2, height: 40, fontWeight: 600 }}
-              >
-                Add
-              </AppButton>
             </li>
           ))}
         </ul>
@@ -150,9 +160,21 @@ export default function AddMovie() {
 
   return (
     <>
-      <AppButton fullWidth onClick={handleOpen}>
-        Add Movie
-      </AppButton>
+      <Button
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          "& .MuiButton-startIcon": {
+            marginRight: 0,
+            marginLeft: 0,
+          },
+          height: 56,
+        }}
+        variant="contained"
+        startIcon={<Add />}
+        onClick={handleOpen}
+      ></Button>
       <ReusableModal
         open={modalOpen}
         onClose={handleClose}

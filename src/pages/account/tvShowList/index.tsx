@@ -16,7 +16,7 @@ import {
   updateTVShowSeasons,
 } from "@tvShows/store/tvShowSlice";
 import AddTVShow from "@tvShows/components/addTVShow";
-import { Delete } from "@mui/icons-material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export default function TVShowList() {
   const dispatch = useAppDispatch();
@@ -66,25 +66,21 @@ export default function TVShowList() {
       <Box
         sx={{
           marginBottom: 2,
-          width: { xs: "100%", md: "85%" },
+          width: { xs: "100%", md: "80%" },
           display: "flex",
-          gap: { xs: 1, md: 1 },
+          gap: { xs: 1, md: 2 },
         }}
       >
-        <Box sx={{ display: "flex", flex: 1 }}>
-          <AddTVShow />
-        </Box>
-        <Box sx={{ display: "flex", flex: { xs: 2.8, md: 4 } }}>
-          {/* Search input */}
-          <TextField
-            label="Search TV Shows…"
-            variant="outlined"
-            fullWidth
-            sx={{ mb: 3 }}
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </Box>
+        <AddTVShow />
+        {/* Search input */}
+        <TextField
+          label="Search TV Shows…"
+          variant="outlined"
+          fullWidth
+          sx={{ mb: 3 }}
+          value={search}
+          onChange={handleSearchChange}
+        />
       </Box>
 
       <Box
@@ -127,12 +123,18 @@ export default function TVShowList() {
                 }}
               >
                 <IconButton
-                  color="error"
                   onClick={() => handleDelete(show.id)}
-                  aria-label="Delete TV Show"
-                  size="small"
+                  sx={{
+                    height: "40px",
+                    color: "black",
+                    bgcolor: "white",
+                    "&:hover": {
+                      backgroundColor: "white",
+                      color: "#EB5757",
+                    },
+                  }}
                 >
-                  <Delete />
+                  <ClearIcon />
                 </IconButton>
               </Box>
               {/* TV Show content */}

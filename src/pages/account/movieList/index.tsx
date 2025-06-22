@@ -10,10 +10,12 @@ import {
 import AddMovie from "@movies/components/AddMovie";
 import AppButton from "@features/ui/AppButton";
 import { Box, IconButton, TextField, Typography } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import { formatDate } from "@app/services/date";
+
+import ClearIcon from "@mui/icons-material/Clear";
+
 // Import styles
 import "./styles.scss";
-import { formatDate } from "@app/services/date";
 
 export default function MovieList() {
   const dispatch = useAppDispatch();
@@ -76,23 +78,19 @@ export default function MovieList() {
       <Box
         sx={{
           marginBottom: 2,
-          width: { xs: "100%", md: "85%" },
+          width: { xs: "100%", md: "80%" },
           display: "flex",
           gap: { xs: 1, md: 2 },
         }}
       >
-        <Box sx={{ display: "flex", flex: 1 }}>
-          <AddMovie />
-        </Box>
-        <Box sx={{ display: "flex", flex: 4 }}>
-          <TextField
-            type="text"
-            placeholder="Search movies..."
-            value={search}
-            onChange={handleSearchChange}
-            fullWidth
-          />
-        </Box>
+        <AddMovie />
+        <TextField
+          type="text"
+          placeholder="Search movies..."
+          value={search}
+          onChange={handleSearchChange}
+          fullWidth
+        />
       </Box>
       <Box
         sx={{
@@ -157,11 +155,18 @@ export default function MovieList() {
                 }}
               >
                 <IconButton
-                  color="error"
                   onClick={() => dispatch(deleteMovie(movie.id))}
-                  sx={{ height: "40px" }}
+                  sx={{
+                    height: "40px",
+                    color: "black",
+                    bgcolor: "white",
+                    "&:hover": {
+                      backgroundColor: "white",
+                      color: "#EB5757",
+                    },
+                  }}
                 >
-                  <Delete />
+                  <ClearIcon />
                 </IconButton>
               </Box>
             </li>

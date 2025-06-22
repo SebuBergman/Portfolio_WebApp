@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 
 // Book type definition
 export type Book = {
-  id?: string;
+  id: string;
   title: string;
   author: string;
   coverUrl?: string;

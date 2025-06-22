@@ -21,6 +21,9 @@ import { useBreakpoints } from "@hooks/useBreakpoints";
 
 import AccountSidebar from "./AccountSidebar";
 
+// Import styles
+import "./styles.scss";
+
 const DESKTOP_DRAWER_WIDTH = 288;
 const DESKTOP_MINIMIZED_DRAWER_WIDTH = 94;
 
@@ -74,7 +77,12 @@ export default function AccountLayout() {
   };
 
   return (
-    <Box sx={{ display: "flex", backgroundColor: "#F9F9F9" }}>
+    <Box
+      sx={{
+        display: "flex",
+        backgroundColor: "#F9F9F9",
+      }}
+    >
       {/* Desktop Drawer */}
       {md && (
         <>
@@ -112,16 +120,54 @@ export default function AccountLayout() {
         <>
           <AppBar
             position="fixed"
-            sx={{ boxShadow: "none", background: "transparent" }}
+            elevation={0}
+            sx={{
+              background: "transparent",
+              boxShadow: "none",
+              width: "auto !important", // <-- force it!
+              left: 0,
+              top: 0,
+              right: "auto",
+              zIndex: (theme) => theme.zIndex.drawer + 1,
+              p: 0,
+              minWidth: 0,
+              maxWidth: "none",
+              "&.MuiAppBar-root": {
+                width: "auto !important", // <--- double-force
+                minWidth: 0,
+                maxWidth: "none",
+                right: "auto",
+              },
+            }}
           >
-            <Toolbar sx={TOOLBAR_STYLES}>
+            <Toolbar
+              disableGutters
+              sx={{
+                minHeight: 56,
+                minWidth: "unset",
+                width: "auto",
+                px: 0,
+                pr: 0,
+                pl: 0,
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                mt: 1,
+                ml: 1,
+              }}
+            >
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
+                sx={{
+                  bgcolor: "#f9f9f9",
+                  color: "black",
+                  fontSize: 40,
+                  ml: 0,
+                }}
               >
-                <MenuIcon sx={{ color: "primary.main", fontSize: 40 }} />
+                <MenuIcon sx={{ fontSize: 40 }} />
               </IconButton>
             </Toolbar>
           </AppBar>

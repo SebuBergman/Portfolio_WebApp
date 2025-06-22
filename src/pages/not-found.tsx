@@ -1,5 +1,3 @@
-import Footer from "@features/footer";
-import Header from "@features/header";
 import { Box, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import pageNotFound from "@assets/images/page_not_found.webp";
