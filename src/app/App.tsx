@@ -13,6 +13,9 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Loader from "@features/ui/Loader";
 import { persistor } from "./store/index";
 import { ThemeProvider } from "@mui/material";
+import ReactGA from "react-ga";
+
+ReactGA.initialize(import.meta.env.TRACKING_ID);
 
 function App() {
   useAuthStateSubscription();
