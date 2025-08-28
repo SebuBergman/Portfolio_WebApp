@@ -14,10 +14,19 @@ import Loader from "@features/ui/Loader";
 import { persistor } from "./store/index";
 import { ThemeProvider } from "@mui/material";
 import ReactGA from "react-ga";
+import { useEffect } from "react";
 
-ReactGA.initialize(import.meta.env.TRACKING_ID);
+const TRACKING_ID = import.meta.env.VITE_TRACKING_ID;
 
 function App() {
+  useEffect(() => {
+    if (TRACKING_ID) {
+      ReactGA.initialize(TRACKING_ID);
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    } else {
+      console.warn("Google Analytics tracking ID not found");
+    }
+  }, []);
   useAuthStateSubscription();
 
   return (
