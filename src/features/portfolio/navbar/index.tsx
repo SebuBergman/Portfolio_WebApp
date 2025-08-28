@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -22,20 +22,18 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [visibleNavbar, setVisibleNavbar] = useState(false);
 
-  const toggleNavbarVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 800) {
-      setVisibleNavbar(true);
-    } else if (scrolled <= 800) {
-      setVisibleNavbar(false);
-    }
-  };
+  // Scroll listener
+  useEffect(() => {
+    const toggleNavbarVisible = () => {
+      const scrolled = document.documentElement.scrollTop;
+      setVisibleNavbar(scrolled > 800);
+    };
 
-  window.addEventListener("scroll", toggleNavbarVisible);
+    window.addEventListener("scroll", toggleNavbarVisible);
+    return () => window.removeEventListener("scroll", toggleNavbarVisible);
+  }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+  const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 
   const sidebar = (
     <motion.div

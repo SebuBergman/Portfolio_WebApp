@@ -1,32 +1,39 @@
 import { useRef } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 
 // Import styles
 import "./styles.scss";
 
-// Optional: If you want strict typing, specify the type for the variants prop
 interface ExpertiseProps {
-  variants: Variants; // from framer-motion, or use 'any' if you want to be more flexible
+  sectionContainer: Variants;
+  sectionItem: Variants;
 }
 
-export default function Expertise({ variants }: ExpertiseProps) {
+export default function Expertise({
+  sectionContainer,
+  sectionItem,
+}: ExpertiseProps) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   return (
     <motion.div
       id="Expertise"
-      variants={variants}
+      variants={sectionContainer}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
       ref={ref}
     >
-      <motion.div className="expertiseContainer" variants={variants} ref={ref}>
+      <motion.div
+        className="expertiseContainer"
+        variants={sectionContainer}
+        ref={ref}
+      >
         <motion.div className="title">
           <h1>My Expertise</h1>
         </motion.div>
         <div className="boxContainer">
-          <motion.div className="boxWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={sectionItem}>
             <div className="headingWrapper">
               <img src="desktop.svg" alt="desktop icon" />
               <h5>
@@ -44,7 +51,7 @@ export default function Expertise({ variants }: ExpertiseProps) {
               </div>
             </div>
           </motion.div>
-          <motion.div className="boxWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={sectionItem}>
             <div className="headingWrapper">
               <img src="react.svg" alt="react icon" />
               <h5>
@@ -63,7 +70,7 @@ export default function Expertise({ variants }: ExpertiseProps) {
               </div>
             </div>
           </motion.div>
-          <motion.div className="boxWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={sectionItem}>
             <div className="headingWrapper">
               <img src="responsive.svg" alt="computer and mobile screen icon" />
               <h5>
@@ -81,7 +88,7 @@ export default function Expertise({ variants }: ExpertiseProps) {
               </div>
             </div>
           </motion.div>
-          <motion.div className="boxWrapper" variants={variants}>
+          <motion.div className="boxWrapper" variants={sectionItem}>
             <div className="headingWrapper">
               <img src="responsive.svg" alt="computer and mobile screen icon" />
               <h5>

@@ -1,5 +1,5 @@
 import Tooltip from "@mui/material/Tooltip";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 import "../styles.scss";
 
 interface TechIconProps {

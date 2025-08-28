@@ -1,5 +1,5 @@
 import { useRef, useState, ChangeEvent, FormEvent } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants } from "motion/react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
@@ -9,7 +9,8 @@ import "./styles.scss";
 
 // Props interface for variants
 interface ContactProps {
-  variants: Variants;
+  sectionContainer: Variants;
+  sectionItem: Variants;
 }
 
 interface InputState {
@@ -18,7 +19,10 @@ interface InputState {
   msg: string;
 }
 
-export default function Contact({ variants }: ContactProps) {
+export default function Contact({
+  sectionContainer,
+  sectionItem,
+}: ContactProps) {
   const [input, setInput] = useState<InputState>({
     name: "",
     email: "",
@@ -74,14 +78,15 @@ export default function Contact({ variants }: ContactProps) {
     <motion.div
       id="Contact"
       className="contact"
+      variants={sectionContainer}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
       ref={ref}
     >
-      <motion.div className="contactContainer" variants={variants}>
-        <motion.h1 variants={variants}>Contact</motion.h1>
-        <motion.div className="item" variants={variants}>
+      <motion.div className="contactContainer" variants={sectionContainer}>
+        <motion.h1 variants={sectionItem}>Contact</motion.h1>
+        <motion.div className="item" variants={sectionItem}>
           <div className="contact_icons">
             <img className="contact_icon" src="/mail.png" alt="mail icon" />
             <span>
@@ -92,7 +97,7 @@ export default function Contact({ variants }: ContactProps) {
           </div>
         </motion.div>
       </motion.div>
-      <motion.div className="socialIcons" variants={variants}>
+      <motion.div className="socialIcons" variants={sectionItem}>
         <a
           href="https://www.linkedin.com/in/sebastian-bergman-01061679/"
           target="_blank"
@@ -115,11 +120,11 @@ export default function Contact({ variants }: ContactProps) {
         viewport={{ once: true }}
         ref={ref}
       >
-        <motion.h6 variants={variants}>
+        <motion.h6 variants={sectionItem}>
           Sebastian Bergman - Software developer focused on Full-stack
           development
         </motion.h6>
-        <motion.p variants={variants}>
+        <motion.p variants={sectionItem}>
           Hi! I’m Sebastian Bergman, a developer with a Bachelor's degree in
           Business Information Technology from Haaga-Helia University of Applied
           Sciences. I specialize in front-end development with <b>React</b>,{" "}
@@ -127,7 +132,7 @@ export default function Contact({ variants }: ContactProps) {
           full-stack capabilities with technologies like <b>MongoDB</b>,{" "}
           <b>FastAPI</b>, and <b>OpenAI APIs</b>.
         </motion.p>
-        <motion.p variants={variants}>
+        <motion.p variants={sectionItem}>
           I’ve worked on diverse projects ranging from sustainability platforms
           and mobile apps to AI agents and small business websites. My toolbox{" "}
           includes <b>React</b>, <b>JavaScript/TypeScript</b>, <b>Java</b>,{" "}
@@ -136,13 +141,13 @@ export default function Contact({ variants }: ContactProps) {
           with <b>Scrum</b>, <b>Kanban</b>, and deploying assets with{" "}
           <b>Amazon S3</b>.
         </motion.p>
-        <motion.p variants={variants}>
+        <motion.p variants={sectionItem}>
           Fluent in both English and Finnish, I’m always eager to learn new
           tools and tackle new challenges. Let’s connect and bring your next
           idea to life!
         </motion.p>
       </motion.div>
-      <motion.div className="formContainer" variants={variants}>
+      <motion.div className="formContainer" variants={sectionItem}>
         <motion.h3>Let's get in contact.</motion.h3>
         <motion.form ref={formRef} onSubmit={sendEmail}>
           <input

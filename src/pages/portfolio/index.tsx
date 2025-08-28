@@ -13,7 +13,12 @@ import Contact from "@features/portfolio/contact/";
 import "@app/app.scss";
 
 // Import variants data
-import { mediumVariant, slowVariant } from "@app/hooks/variants";
+import {
+  sectionItem,
+  sectionContainer,
+  techContainer,
+  techItem,
+} from "@app/hooks/variants";
 import { Box } from "@mui/material";
 
 export default function Portfolio() {
@@ -25,10 +30,19 @@ export default function Portfolio() {
         <ScrollButton />
       </section>
       <section className="portfolioContainer">
-        <Expertise variants={mediumVariant} />
-        <Tech />
-        <Projects variants={slowVariant} />
-        <Contact variants={mediumVariant} />
+        <Expertise
+          sectionContainer={sectionContainer}
+          sectionItem={sectionItem}
+        />
+        <Tech techContainer={techContainer} techItem={techItem} />
+        <Projects
+          sectionContainer={sectionContainer}
+          sectionItem={sectionItem}
+        />
+        <Contact
+          sectionContainer={sectionContainer}
+          sectionItem={sectionItem}
+        />
       </section>
     </Box>
   );

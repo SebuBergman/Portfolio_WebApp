@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "motion/react";
 import { Modal, Box, Typography, Button } from "@mui/material";
-import { slowVariant } from "@hooks/variants";
 
 import "./styles.scss";
 
@@ -21,9 +20,10 @@ interface SingleProps {
     aboutModal?: string;
     modalLink?: string;
   };
+  variants: Variants;
 }
 
-export default function Single({ item }: SingleProps) {
+export default function Single({ item, variants }: SingleProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
@@ -31,7 +31,7 @@ export default function Single({ item }: SingleProps) {
 
   return (
     <motion.section
-      variants={slowVariant}
+      variants={variants}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}

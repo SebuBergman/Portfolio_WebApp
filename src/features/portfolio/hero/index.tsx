@@ -1,10 +1,15 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import TypingText from "./typingtext";
 
 // Import styles
 import "./styles.scss";
 
 // Import variants data
-import { textVariant, sliderVariant } from "@hooks/variants";
+import {
+  textContainerVariant,
+  textItemVariant,
+  scrollButtonVariant,
+} from "@hooks/variants";
 
 export default function Hero() {
   return (
@@ -12,24 +17,27 @@ export default function Hero() {
       <div className="heroWrapper">
         <motion.div
           className="textContainer"
-          variants={textVariant}
+          variants={textContainerVariant}
           initial="initial"
           animate="animate"
         >
-          <motion.h2 variants={textVariant}>Sebastian Bergman</motion.h2>
-          <motion.h1 variants={textVariant}>
-            Software developer focused on Full-stack development
-          </motion.h1>
+          <div>
+            <motion.h2 variants={textItemVariant}>Sebastian Bergman</motion.h2>
+            <motion.h1 variants={textItemVariant}>
+              Software developer focused on Full-stack development
+            </motion.h1>
+            <TypingText />
+          </div>
           <motion.div className="buttons">
             <a href="#Projects">
-              <motion.button variants={textVariant}>Projects</motion.button>
+              <motion.button variants={textItemVariant}>Projects</motion.button>
             </a>
             <a href="#Contact">
-              <motion.button variants={textVariant}>Contact</motion.button>
+              <motion.button variants={textItemVariant}>Contact</motion.button>
             </a>
           </motion.div>
           <motion.img
-            variants={textVariant}
+            variants={scrollButtonVariant}
             animate="scrollButtonAnimation"
             src="scroll-icon.png"
             alt="scroll icon"
@@ -43,10 +51,6 @@ export default function Hero() {
             />
           </div>
         </div>
-        <motion.div className="slidingTextContainer">
-          Full-Stack developer with a passion for creating dynamic and
-          responsive web applications.
-        </motion.div>
       </div>
     </div>
   );
