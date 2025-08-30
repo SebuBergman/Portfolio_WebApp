@@ -7,4 +7,5 @@ export const AppRoutes = {
   tvShowList: "/leffakirjasto/tv-shows",
   movieList: "/leffakirjasto/movies",
   bookList: "/leffakirjasto/books",
+  vinylList: "/leffakirjasto/vinyls",
 };

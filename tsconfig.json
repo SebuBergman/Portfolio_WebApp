@@ -33,7 +33,8 @@
       "@hooks/*": ["src/app/hooks/*"],
       "@movies/*": ["src/features/movieLibrary/movies/*"],
       "@tvShows/*": ["src/features/movieLibrary/tvShows/*"],
-      "@books/*": ["src/features/movieLibrary/books/*"]
+      "@books/*": ["src/features/movieLibrary/books/*"],
+      "@vinyls/*": ["src/features/movieLibrary/vinyls/*"]
     }
   },
   "include": ["src"],

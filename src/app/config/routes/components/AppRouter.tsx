@@ -13,6 +13,7 @@ import MovieList from "@pages/account/movieList";
 import TVShowList from "@pages/account/tvShowList";
 import DashboardPage from "@pages/account/dashboard";
 import BookList from "@pages/account/bookList";
+import VinylList from "@pages/account/vinylList";
 
 export default function AppRouter() {
   return (
@@ -38,6 +39,7 @@ export default function AppRouter() {
         <Route path={AppRoutes.movieList} element={<MovieList />} />
         <Route path={AppRoutes.tvShowList} element={<TVShowList />} />
         <Route path={AppRoutes.bookList} element={<BookList />} />
+        <Route path={AppRoutes.vinylList} element={<VinylList />} />
       </Route>
       {/* Not Found Page */}
       <Route path="*" element={<NotFoundPage />} />
