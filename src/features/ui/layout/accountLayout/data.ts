@@ -1,6 +1,7 @@
 import MovieIcon from "@mui/icons-material/Movie";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import AlbumIcon from "@mui/icons-material/Album";
 
 import type { SvgIconTypeMap } from "@mui/material";
 import type { OverridableComponent } from "@mui/material/OverridableComponent";
@@ -28,5 +29,10 @@ export const ACCOUNT_LINKS: AccountLinks[] = [
     Icon: MenuBookIcon,
     text: "Books",
     path: AppRoutes.bookList,
+  },
+  {
+    Icon: AlbumIcon,
+    text: "Vinyls",
+    path: AppRoutes.vinylList,
   },
 ];
