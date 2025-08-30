@@ -14,6 +14,7 @@ import authReducer from "@features/auth/store/authSlice";
 import moviesReducer from "@movies/store/movieSlice";
 import tvShowsReducer from "@tvShows/store/tvShowSlice";
 import booksReducer from "@books/store/bookSlice";
+import vinylReducer from "@vinyls/store/vinylSlice";
 
 import storage from "redux-persist/lib/storage";
 
@@ -22,12 +23,13 @@ const rootReducer = combineReducers({
   movies: moviesReducer,
   tvShows: tvShowsReducer,
   books: booksReducer,
+  vinyls: vinylReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["movies", "tvShows", "books"],
+  whitelist: ["movies", "tvShows", "books", "vinyls"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
