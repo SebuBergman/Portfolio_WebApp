@@ -15,7 +15,7 @@ const projectsData = [
       "Styled-components",
       "Prop-types",
       "Mui Material",
-      "NextUI",
+      "HeroUI",
       "Swiper",
       "Firebase Authentication",
       "Firebase Firestore",

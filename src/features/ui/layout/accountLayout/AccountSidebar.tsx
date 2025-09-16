@@ -11,7 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link } from "@nextui-org/react";
+import { Link } from "@heroui/react";
 
 import { Colors, theme } from "@config/styles";
 import { selectUser } from "@features/auth/store/authSlice";

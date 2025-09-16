@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { Link } from "@nextui-org/react";
+import { Link } from "@heroui/react";
 import { Box, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
