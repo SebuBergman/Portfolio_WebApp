@@ -37,11 +37,13 @@ export default function AddBook() {
     e.preventDefault();
     if (!title.trim() || !author.trim()) return;
     setLoading(true);
+
     let coverUrl: string | undefined;
     if (cover && uid) {
       const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover);
       coverUrl = uploaded ?? undefined;
     }
+
     const newBook: Book = {
       id: uuidv4(),
       title,
@@ -49,7 +51,10 @@ export default function AddBook() {
       coverUrl,
       ownerId: uid,
     };
+
     await dispatch(addBook(newBook));
+
+    // Reset form
     setTitle("");
     setAuthor("");
     setCover(null);
