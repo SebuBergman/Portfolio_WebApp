@@ -67,7 +67,6 @@ export const updateMovie = createAsyncThunk<
   void,
   { id: string; title: string }
 >("movies/updateMovie", async ({ id, title }, { dispatch }) => {
-  console.log("Movie edited?:", id, title);
   await updateDoc(doc(firestore, "movies", id), { title });
   dispatch(fetchMovies());
 });

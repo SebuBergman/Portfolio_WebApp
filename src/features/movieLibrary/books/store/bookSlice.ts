@@ -97,7 +97,6 @@ const bookSlice = createSlice({
         state.error = action.error.message || null;
       })
       .addCase(addBook.fulfilled, (state, action: PayloadAction<Book>) => {
-        console.log("Book added to state", action.payload);
         state.books.push(action.payload);
       })
       .addCase(editBook.fulfilled, (state, action: PayloadAction<Book>) => {
