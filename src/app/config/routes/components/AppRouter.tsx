@@ -18,8 +18,6 @@ import VinylList from "@pages/account/vinylList";
 export default function AppRouter() {
   return (
     <Routes>
-      {/* BergmanWebWorks */}
-      {/*<Route path={AppRoutes.home} element={<FrontPage />} />*/}
       {/* Portfolio */}
       <Route path={AppRoutes.home} element={<Portfolio />} />
 
