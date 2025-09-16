@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import TypingText from "./typingtext";
+import TypingText from "./typingText";
 
 // Import styles
 import "./styles.scss";
