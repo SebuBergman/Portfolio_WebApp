@@ -19,6 +19,7 @@ import {
 import Grid from "@mui/material/Grid";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddVinyl from "@vinyls/components/addVinyl";
+import { Colors } from "@app/config/styles";
 
 type EditingState = { id: string; field: "title" | "artist" | "year" } | null;
 
@@ -108,7 +109,7 @@ export default function VinylList() {
       <Grid container spacing={2}>
         {filteredVinyls.map((v) => (
           <Grid key={v.id} style={{ position: "relative" }}>
-            <Card sx={{ width: { xs: 155, md: 220 } }}>
+            <Card sx={{ width: { xs: 150, md: 250 } }}>
               {v.coverUrl ? (
                 <CardMedia
                   component="img"
@@ -117,7 +118,7 @@ export default function VinylList() {
                   sx={{
                     objectFit: "cover",
                     backgroundColor: "#f0f0f0",
-                    height: { xs: 160, md: 337 },
+                    height: { xs: 150, md: 250 },
                   }}
                 />
               ) : (
@@ -153,6 +154,7 @@ export default function VinylList() {
                 ) : (
                   <Typography
                     variant="h6"
+                    color={Colors.black}
                     sx={{ mb: 1, cursor: "pointer" }}
                     onClick={() => handleEditStart(v.id, "title", v.title)}
                   >
@@ -177,6 +179,7 @@ export default function VinylList() {
                 ) : (
                   <Typography
                     variant="subtitle1"
+                    color={Colors.black}
                     sx={{ cursor: "pointer" }}
                     onClick={() => handleEditStart(v.id, "artist", v.artist)}
                   >
@@ -199,6 +202,7 @@ export default function VinylList() {
                 ) : (
                   <Typography
                     variant="body2"
+                    color={Colors.black}
                     sx={{ cursor: "pointer" }}
                     onClick={() => handleEditStart(v.id, "year", v.year || "")}
                   >

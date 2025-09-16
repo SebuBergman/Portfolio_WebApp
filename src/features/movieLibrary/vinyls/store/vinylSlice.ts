@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
+// Vinyl type definition
 export type Vinyl = {
   id: string;
   title: string;
@@ -24,21 +25,26 @@ export type Vinyl = {
 export const fetchVinyls = createAsyncThunk<Vinyl[]>(
   "vinyls/fetchVinyls",
   async () => {
-    const col = collection(firestore, "vinyls");
-    const snap = await getDocs(col);
-    return snap.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Vinyl));
+    const vinylCol = collection(firestore, "vinyls");
+    const vinylSnap = await getDocs(vinylCol);
+    return vinylSnap.docs.map(
+      (doc) => ({ id: doc.id, ...doc.data() } as Vinyl)
+    );
   }
 );
 
 export const addVinyl = createAsyncThunk<Vinyl, Vinyl>(
   "vinyls/addVinyl",
   async (vinyl) => {
-    const id = uuidv4();
-    const cleaned = Object.fromEntries(
-      Object.entries({ ...vinyl, id }).filter(([_, v]) => v !== undefined)
+    const vinylId = uuidv4();
+    // Remove undefined fields
+    const cleanedVinyl = Object.fromEntries(
+      Object.entries({ ...vinyl, id: vinylId }).filter(
+        ([_, v]) => v !== undefined
+      )
     );
-    await setDoc(doc(firestore, "vinyls", id), cleaned);
-    return { ...vinyl, id };
+    await setDoc(doc(firestore, "vinyls", vinylId), cleanedVinyl);
+    return { ...vinyl, id: vinylId };
   }
 );
 

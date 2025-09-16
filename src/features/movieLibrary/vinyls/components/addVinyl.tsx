@@ -18,7 +18,7 @@ export default function AddVinyl() {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [cover, setCover] = useState<File | null>(null);
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
   const handleOpen = () => setModalOpen(true);
@@ -29,16 +29,17 @@ export default function AddVinyl() {
     if (!title.trim() || !artist.trim()) return;
     setLoading(true);
 
-    let coverUrl: string | undefined = undefined;
+    let coverUrl: string | undefined;
     if (cover && uid) {
-      coverUrl = await uploadVinylCoverToFirebaseStorage(uid, cover);
+      const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
+      coverUrl = uploaded ?? undefined;
     }
 
     const newVinyl: Vinyl = {
       id: uuidv4(),
       title,
       artist,
-      year,
+      ...(year && year.trim() ? { year } : {}),
       coverUrl,
       ownerId: uid,
     };
@@ -80,8 +81,8 @@ export default function AddVinyl() {
       />
       <TextField
         label="Year"
-        value={year}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setYear(e.target.value)}
+        value={year ?? ""}
+        onChange={(e) => setYear(e.target.value || undefined)}
       />
       <Box>
         <label htmlFor="cover-upload">
