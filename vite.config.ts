@@ -22,6 +22,14 @@ export default defineConfig({
       ),
       "@books": path.resolve(__dirname, "./src/features/movieLibrary/books"),
       "@vinyls": path.resolve(__dirname, "./src/features/movieLibrary/vinyls"),
+      "@countdowns": path.resolve(
+        __dirname,
+        "./src/features/movieLibrary/countdowns"
+      ),
+      "@randomizers": path.resolve(
+        __dirname,
+        "./src/features/movieLibrary/randomizers"
+      ),
     },
   },
   plugins: [react()],

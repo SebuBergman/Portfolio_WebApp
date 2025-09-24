@@ -8,4 +8,6 @@ export const AppRoutes = {
   movieList: "/leffakirjasto/movies",
   bookList: "/leffakirjasto/books",
   vinylList: "/leffakirjasto/vinyls",
+  countdown: "/leffakirjasto/countdown",
+  randomizer: "/leffakirjasto/randomizer",
 };

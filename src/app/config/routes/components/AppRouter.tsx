@@ -14,6 +14,8 @@ import TVShowList from "@pages/account/tvShowList";
 import DashboardPage from "@pages/account/dashboard";
 import BookList from "@pages/account/bookList";
 import VinylList from "@pages/account/vinylList";
+import DayCountdown from "@pages/account/dayCountdown";
+import Randomizer from "@pages/account/randomizer";
 
 export default function AppRouter() {
   return (
@@ -38,6 +40,8 @@ export default function AppRouter() {
         <Route path={AppRoutes.tvShowList} element={<TVShowList />} />
         <Route path={AppRoutes.bookList} element={<BookList />} />
         <Route path={AppRoutes.vinylList} element={<VinylList />} />
+        <Route path={AppRoutes.randomizer} element={<Randomizer />} />
+        <Route path={AppRoutes.countdown} element={<DayCountdown />} />
       </Route>
       {/* Not Found Page */}
       <Route path="*" element={<NotFoundPage />} />

@@ -34,7 +34,9 @@
       "@movies/*": ["src/features/movieLibrary/movies/*"],
       "@tvShows/*": ["src/features/movieLibrary/tvShows/*"],
       "@books/*": ["src/features/movieLibrary/books/*"],
-      "@vinyls/*": ["src/features/movieLibrary/vinyls/*"]
+      "@vinyls/*": ["src/features/movieLibrary/vinyls/*"],
+      "@countdowns/*": ["src/features/movieLibrary/countdowns/*"],
+      "@randomizers/*": ["src/features/movieLibrary/randomizers/*"]
     }
   },
   "include": ["src"],
