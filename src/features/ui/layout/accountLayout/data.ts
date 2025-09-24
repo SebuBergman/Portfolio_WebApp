@@ -2,6 +2,8 @@ import MovieIcon from "@mui/icons-material/Movie";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AlbumIcon from "@mui/icons-material/Album";
+import HourglassBottomIcon from "@mui/icons-material/HourglassBottom";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 import type { SvgIconTypeMap } from "@mui/material";
 import type { OverridableComponent } from "@mui/material/OverridableComponent";
@@ -34,5 +36,15 @@ export const ACCOUNT_LINKS: AccountLinks[] = [
     Icon: AlbumIcon,
     text: "Vinyls",
     path: AppRoutes.vinylList,
+  },
+  {
+    Icon: ShuffleIcon,
+    text: "Randomizer",
+    path: AppRoutes.randomizer,
+  },
+  {
+    Icon: HourglassBottomIcon,
+    text: "Countdown",
+    path: AppRoutes.countdown,
   },
 ];
