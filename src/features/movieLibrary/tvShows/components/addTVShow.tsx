@@ -9,12 +9,12 @@ import {
   IconButton,
   Button,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from "uuid";
-import { addTVShow } from "../store/tvShowSlice";
-import ReusableModal from "@features/ui/reusableModal";
+import { addTVShow, TVShow } from "../store/tvShowSlice";
+import ReusableModal from "@features/ui/ReusableModal";
 import { selectUser } from "@features/auth/store/authSlice";
 import { Add } from "@mui/icons-material";
+import toast from "react-hot-toast";
 
 export default function AddTVShow() {
   const dispatch = useAppDispatch();
@@ -27,6 +27,7 @@ export default function AddTVShow() {
   const [ownedSeasons, setOwnedSeasons] = useState<{
     [seasonNumber: number]: boolean;
   }>({});
+  const [loading, setLoading] = useState(false);
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
@@ -51,24 +52,48 @@ export default function AddTVShow() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!title.trim() || seasonCount < 1) return;
-    const newShow = {
-      id: uuidv4(),
-      title,
-      seasons: Array.from({ length: seasonCount }, (_, i) => ({
+    setLoading(true);
+
+    const toastId = toast.loading(
+      "Wibbly wobbly... TV Show is materializing..."
+    );
+
+    try {
+      const newShow: TVShow = {
         id: uuidv4(),
-        seasonNumber: i + 1,
-        owned: !!ownedSeasons[i + 1],
-      })),
-      ownerId: uid,
-    };
-    dispatch(addTVShow(newShow));
-    setTitle("");
-    setSeasonCount(1);
-    setOwnedSeasons({});
-    handleClose();
+        title,
+        seasons: Array.from({ length: seasonCount }, (_, i) => ({
+          id: uuidv4(),
+          seasonNumber: i + 1,
+          owned: !!ownedSeasons[i + 1],
+        })),
+        ownerId: uid,
+      };
+
+      await dispatch(addTVShow(newShow));
+      toast.success("TV Show added successfully! Allons-y!", {
+        id: toastId,
+      });
+
+      // Reset form
+      setTitle("");
+      setSeasonCount(1);
+      setOwnedSeasons({});
+      setLoading(false);
+      handleClose();
+    } catch (error) {
+      toast.error(
+        "Failed to add TV Show. The TARDIS landed in the wrong timeline.",
+        {
+          id: toastId,
+        }
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const modalContent = (
@@ -95,7 +120,9 @@ export default function AddTVShow() {
       <TextField
         label="TV Show Title"
         value={title}
-        onChange={handleTitleChange}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setTitle(e.target.value)
+        }
         required
       />
       <TextField
@@ -122,7 +149,7 @@ export default function AddTVShow() {
           </Box>
         ))}
       </Box>
-      <AppButton type="submit" variant="contained">
+      <AppButton type="submit" variant="contained" disabled={loading || !title}>
         Add TV Show
       </AppButton>
     </Box>
@@ -151,7 +178,6 @@ export default function AddTVShow() {
         title="Add TV Show"
         subtitle="Add a new TV show and select which seasons you own."
         content={modalContent}
-        // No Save button; handled by form submit
       />
     </>
   );

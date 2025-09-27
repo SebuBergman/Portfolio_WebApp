@@ -5,18 +5,19 @@ import {
   Checkbox,
   Box,
   Typography,
-  IconButton,
+  Grid,
+  Card,
 } from "@mui/material";
 import { useEffect } from "react";
 import {
-  deleteTVShow,
   fetchTVShows,
   selectTVShows,
   TVShow,
   updateTVShowSeasons,
 } from "@tvShows/store/tvShowSlice";
-import AddTVShow from "@tvShows/components/addTVShow";
-import ClearIcon from "@mui/icons-material/Clear";
+import AddTVShow from "@tvShows/components/AddTVShow";
+import EditTVShow from "@tvShows/components/EditTVShow";
+import { Colors } from "@app/config/styles";
 
 export default function TVShowList() {
   const dispatch = useAppDispatch();
@@ -44,10 +45,6 @@ export default function TVShowList() {
     dispatch(updateTVShowSeasons({ id: show.id, seasons: updatedSeasons }));
   };
 
-  const handleDelete = (id?: string) => {
-    if (id) dispatch(deleteTVShow(id));
-  };
-
   return (
     <Box
       sx={{
@@ -55,100 +52,94 @@ export default function TVShowList() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        maxWidth: 900,
         margin: "auto",
       }}
       className="dashboard-section"
     >
-      <Typography variant="h4" mb={3}>
-        TV Shows
-      </Typography>
       <Box
         sx={{
-          marginBottom: 2,
-          width: { xs: "100%", md: "80%" },
           display: "flex",
-          gap: { xs: 1, md: 2 },
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "auto",
+          minWidth: { xs: "100%", md: "80%", lg: "60%" },
         }}
       >
-        <AddTVShow />
-        {/* Search input */}
-        <TextField
-          label="Search TV Shows…"
-          variant="outlined"
-          fullWidth
-          sx={{ mb: 3 }}
-          value={search}
-          onChange={handleSearchChange}
-        />
-      </Box>
-
-      <Box
-        sx={{
-          marginBottom: 2,
-          width: "100%",
-          display: "flex",
-          gap: 2,
-        }}
-      >
-        {/* TV Shows List */}
-        <ul
-          style={{
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
+        <Typography variant="h4" mb={3}>
+          TV Shows
+        </Typography>
+        <Box
+          sx={{
+            width: { xs: "100%", md: "80%" },
             display: "flex",
-            flexDirection: "column",
-            gap: "1.5rem",
-            width: "100%",
+            gap: { xs: 1, md: 2 },
+            marginBottom: 3,
           }}
         >
-          {filteredTVShows.map((show) => (
-            <li
-              key={show.id}
-              style={{
-                background: "#232527",
-                borderRadius: "0.7rem",
-                padding: "1rem 1.5rem",
-                boxShadow: "0 2px 12px rgba(0,0,0,0.07)",
-                position: "relative",
+          <AddTVShow />
+          {/* Search input */}
+          <TextField
+            placeholder="Search TV Shows…"
+            variant="outlined"
+            fullWidth
+            sx={{ mb: 3 }}
+            value={search}
+            onChange={handleSearchChange}
+          />
+        </Box>
+      </Box>
+
+      {/* Vinyl grid */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+          },
+          gap: { xs: 2, md: 2 },
+          width: { xs: "100%", md: "65%" },
+          justifyContent: "center",
+        }}
+      >
+        {filteredTVShows.map((show) => (
+          <Grid key={show.id} style={{ position: "relative" }}>
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "row", mb: "row" },
+                alignItems: "center",
+                gap: { xs: 2, md: 2 },
+                p: { xs: 3, md: 2 },
+                pt: { xs: 6, md: 2 },
               }}
             >
+              {/* TV Show content */}
+              <EditTVShow tvshow={show} showEditIcon={false}>
+                <Typography variant="h6" color={Colors.black}>
+                  {show.title}
+                </Typography>
+              </EditTVShow>
               <Box
                 sx={{
-                  position: "absolute",
-                  top: 8,
-                  right: 8,
-                  zIndex: 1,
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "repeat(3, 1fr)", // 3 per row on mobile
+                    sm: "repeat(4, 1fr)", // 4 per row on small screens
+                    md: "repeat(6, 1fr)", // 6 per row on desktop
+                  },
                 }}
               >
-                <IconButton
-                  onClick={() => handleDelete(show.id)}
-                  sx={{
-                    height: "40px",
-                    color: "black",
-                    bgcolor: "white",
-                    "&:hover": {
-                      backgroundColor: "white",
-                      color: "#EB5757",
-                    },
-                  }}
-                >
-                  <ClearIcon />
-                </IconButton>
-              </Box>
-              {/* TV Show content */}
-              <Typography variant="h6" sx={{ color: "#fff", mb: 1 }}>
-                {show.title}
-              </Typography>
-              <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
                 {show.seasons.map((season) => (
                   <Box
                     key={season.seasonNumber}
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      gap: 0.5,
+                      justifyContent: "flex-start",
+                      gap: 0,
+                      p: 1,
+                      borderRadius: 1,
                     }}
                   >
                     <Checkbox
@@ -158,9 +149,8 @@ export default function TVShowList() {
                       }
                       sx={{
                         color: "#729E65",
-                        "&.Mui-checked": {
-                          color: "#4e7c4a",
-                        },
+                        "&.Mui-checked": { color: "#4e7c4a" },
+                        p: 0.5,
                       }}
                     />
                     <Typography
@@ -176,9 +166,9 @@ export default function TVShowList() {
                   </Box>
                 ))}
               </Box>
-            </li>
-          ))}
-        </ul>
+            </Card>
+          </Grid>
+        ))}
       </Box>
     </Box>
   );

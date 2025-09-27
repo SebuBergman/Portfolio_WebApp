@@ -20,13 +20,14 @@ export interface TVShow {
   id: string;
   title: string;
   seasons: Season[];
+  ownerId?: string;
 }
 
-export interface TVShowsState {
+type TVShowsState = {
   tvShows: TVShow[];
   loading: boolean;
   error: string | null;
-}
+};
 
 const initialState: TVShowsState = {
   tvShows: [],
@@ -35,7 +36,7 @@ const initialState: TVShowsState = {
 };
 
 // ASYNC THUNKS
-export const fetchTVShows = createAsyncThunk(
+export const fetchTVShows = createAsyncThunk<TVShow[]>(
   "tvShows/fetchTVShows",
   async () => {
     const querySnapshot = await getDocs(collection(firestore, "tvshows"));
@@ -45,7 +46,7 @@ export const fetchTVShows = createAsyncThunk(
   }
 );
 
-export const addTVShow = createAsyncThunk(
+export const addTVShow = createAsyncThunk<TVShow, TVShow>(
   "tvShows/addTVShow",
   async (tvShow: TVShow) => {
     const seasonsWithIds = tvShow.seasons.map((s) => ({
@@ -62,6 +63,17 @@ export const addTVShow = createAsyncThunk(
   }
 );
 
+export const editTVShow = createAsyncThunk<TVShow, TVShow>(
+  "tvShows/updateShow",
+  async (tvshow) => {
+    const docRef = doc(firestore, "tvshows", tvshow.id);
+    await updateDoc(docRef, {
+      title: tvshow.title,
+    });
+    return tvshow;
+  }
+);
+
 export const updateTVShowSeasons = createAsyncThunk(
   "tvShows/updateTVShowSeasons",
   async ({ id, seasons }: { id: string; seasons: Season[] }) => {
@@ -71,7 +83,6 @@ export const updateTVShowSeasons = createAsyncThunk(
   }
 );
 
-// --- DELETE TV SHOW THUNK ---
 export const deleteTVShow = createAsyncThunk(
   "tvShows/deleteTVShow",
   async (id: string) => {
@@ -87,7 +98,6 @@ const tvShowsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetch
       .addCase(fetchTVShows.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -95,19 +105,23 @@ const tvShowsSlice = createSlice({
       .addCase(
         fetchTVShows.fulfilled,
         (state, action: PayloadAction<TVShow[]>) => {
-          state.loading = false;
           state.tvShows = action.payload;
+          state.loading = false;
         }
       )
       .addCase(fetchTVShows.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to fetch";
       })
-      // add
       .addCase(addTVShow.fulfilled, (state, action: PayloadAction<TVShow>) => {
         state.tvShows.push(action.payload);
       })
-      // update
+      .addCase(editTVShow.fulfilled, (state, action: PayloadAction<TVShow>) => {
+        const idx = state.tvShows.findIndex(
+          (tv) => tv.id === action.payload.id
+        );
+        if (idx > -1) state.tvShows[idx] = action.payload;
+      })
       .addCase(
         updateTVShowSeasons.fulfilled,
         (state, action: PayloadAction<{ id: string; seasons: Season[] }>) => {
@@ -117,7 +131,6 @@ const tvShowsSlice = createSlice({
           if (idx !== -1) state.tvShows[idx].seasons = action.payload.seasons;
         }
       )
-      // --- DELETE TV SHOW ---
       .addCase(
         deleteTVShow.fulfilled,
         (state, action: PayloadAction<string>) => {
@@ -129,5 +142,5 @@ const tvShowsSlice = createSlice({
   },
 });
 
-export const selectTVShows = (state: RootState) => state.tvShows.tvShows;
 export default tvShowsSlice.reducer;
+export const selectTVShows = (state: RootState) => state.tvShows.tvShows;
