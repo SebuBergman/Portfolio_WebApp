@@ -2,13 +2,13 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
 import AppButton from "@features/ui/AppButton";
 import { TextField, Box, Typography, IconButton, Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import { v4 as uuidv4 } from "uuid";
 import { addBook, Book } from "../store/bookSlice";
 import { uploadBookCoverToFirebaseStorage } from "@services/firebase/hooks/useStorage";
 import { selectUser } from "@features/auth/store/authSlice";
-import ReusableModal from "@features/ui/reusableModal";
+import ReusableModal from "@features/ui/ReusableModal";
 import { Add } from "@mui/icons-material";
+import toast from "react-hot-toast";
 
 export default function AddBook() {
   const dispatch = useAppDispatch();
@@ -38,28 +38,46 @@ export default function AddBook() {
     if (!title.trim() || !author.trim()) return;
     setLoading(true);
 
-    let coverUrl: string | undefined;
-    if (cover && uid) {
-      const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover);
-      coverUrl = uploaded ?? undefined;
+    const toastId = toast.loading(
+      "Scribing into the Red Book... Book is being added..."
+    );
+
+    try {
+      let coverUrl: string | undefined;
+      if (cover && uid) {
+        const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover);
+        coverUrl = uploaded ?? undefined;
+      }
+
+      const newBook: Book = {
+        id: uuidv4(),
+        title,
+        author,
+        coverUrl,
+        ownerId: uid,
+      };
+
+      await dispatch(addBook(newBook));
+      toast.success(
+        "Book added successfully! One more tale for the library of Minas Tirith.",
+        {
+          id: toastId,
+        }
+      );
+
+      // Reset form
+      setTitle("");
+      setAuthor("");
+      setCover(null);
+      setLoading(false);
+      handleClose();
+    } catch (error) {
+      toast.error("Failed to add Book. The pages were lost in Mordor.", {
+        id: toastId,
+      });
+    } finally {
+      setLoading(false);
     }
-
-    const newBook: Book = {
-      id: uuidv4(),
-      title,
-      author,
-      coverUrl,
-      ownerId: uid,
-    };
-
-    await dispatch(addBook(newBook));
-
-    // Reset form
-    setTitle("");
-    setAuthor("");
-    setCover(null);
-    setLoading(false);
-    handleClose();
   };
 
   const modalContent = (

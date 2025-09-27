@@ -20,6 +20,18 @@ export type Book = {
   ownerId?: string;
 };
 
+type BookState = {
+  books: Book[];
+  loading: boolean;
+  error: string | null;
+};
+
+const initialState: BookState = {
+  books: [],
+  loading: false,
+  error: null,
+};
+
 // Async thunks for CRUD
 export const fetchBooks = createAsyncThunk<Book[]>(
   "books/fetchBooks",
@@ -66,18 +78,6 @@ export const deleteBook = createAsyncThunk<string, string>(
     return id;
   }
 );
-
-type BookState = {
-  books: Book[];
-  loading: boolean;
-  error: string | null;
-};
-
-const initialState: BookState = {
-  books: [],
-  loading: false,
-  error: null,
-};
 
 const bookSlice = createSlice({
   name: "books",
