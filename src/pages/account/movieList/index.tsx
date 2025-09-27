@@ -1,28 +1,28 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "@store/index";
-import {
-  fetchMovies,
-  deleteMovie,
-  updateMovie,
-  selectMovies,
-  Movie,
-} from "@features/movieLibrary/movies/store/movieSlice";
-import AddMovie from "@movies/components/AddMovie";
-import AppButton from "@features/ui/AppButton";
-import { Box, IconButton, TextField, Typography } from "@mui/material";
-import { formatDate } from "@app/services/date";
 
-import ClearIcon from "@mui/icons-material/Clear";
+import { fetchMovies, selectMovies } from "@movies/store/movieSlice";
+import AddMovie from "@movies/components/AddMovie";
+import EditMovie from "@movies/components/EditMovie";
+
+import {
+  Box,
+  Card,
+  CardMedia,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { formatDate } from "@app/services/date";
 
 // Import styles
 import "./styles.scss";
+import { Colors } from "@app/config/styles";
 
 export default function MovieList() {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(selectMovies);
   const [search, setSearch] = useState("");
-  const [editId, setEditId] = useState<string | null>(null);
-  const [editData, setEditData] = useState<Partial<Movie>>({});
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -35,31 +35,6 @@ export default function MovieList() {
     movie.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const startEdit = (movie: Movie) => {
-    setEditId(movie.id);
-    setEditData(movie);
-  };
-
-  const handleEditChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEditData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const saveEdit = () => {
-    if (editId && editData.title) {
-      dispatch(
-        updateMovie({
-          id: editId,
-          title: editData.title,
-        })
-      );
-      setEditId(null);
-      setEditData({});
-    }
-  };
-
   return (
     <Box
       sx={{
@@ -67,111 +42,104 @@ export default function MovieList() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        maxWidth: 900,
         margin: "auto",
       }}
       className="dashboard-section"
     >
-      <Typography variant="h4" mb={3}>
-        Movies
-      </Typography>
-      <Box
-        sx={{
-          marginBottom: 2,
-          width: { xs: "100%", md: "80%" },
-          display: "flex",
-          gap: { xs: 1, md: 2 },
-        }}
-      >
-        <AddMovie />
-        <TextField
-          type="text"
-          placeholder="Search movies..."
-          value={search}
-          onChange={handleSearchChange}
-          fullWidth
-        />
-      </Box>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          width: "100%",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          mt: 2,
+          margin: "auto",
+          minWidth: { xs: "100%", md: "80%", lg: "60%" },
         }}
       >
-        <ul className="movieList">
-          {filteredMovies.map((movie) => (
-            <li key={movie.id} style={{ position: "relative" }}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.imageSrc}`}
-                alt={movie.title}
-                style={{ width: 80 }}
-              />
-              {editId === movie.id ? (
-                <span>
-                  <input
-                    name="title"
-                    value={editData.title || ""}
-                    onChange={handleEditChange}
-                    placeholder="Title"
-                  />
-                  <Box gap={2} display="flex" mt={1}>
-                    <AppButton isSmall onClick={saveEdit}>
-                      Save
-                    </AppButton>
-                    <AppButton isSmall onClick={() => setEditId(null)}>
-                      Cancel
-                    </AppButton>
-                  </Box>
-                </span>
-              ) : (
-                <Box
+        <Typography variant="h4" mb={3}>
+          Movies
+        </Typography>
+        <Box
+          sx={{
+            width: { xs: "100%", md: "80%" },
+            display: "flex",
+            gap: { xs: 1, md: 2 },
+            marginBottom: 3,
+          }}
+        >
+          <AddMovie />
+          <TextField
+            type="text"
+            placeholder="Search movies..."
+            value={search}
+            onChange={handleSearchChange}
+            fullWidth
+          />
+        </Box>
+      </Box>
+
+      {/* Vinyl grid */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            sm: "1fr 1fr",
+            md: "1fr",
+            lg: "1fr 1fr",
+            xl: "1fr 1fr 1fr",
+          },
+          gap: { xs: 2, md: 2 },
+          width: "100%",
+          justifyContent: "center",
+        }}
+      >
+        {filteredMovies.map((movie) => (
+          <Grid key={movie.id} style={{ position: "relative" }}>
+            <Card
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "row", mb: "row" },
+                alignItems: "center",
+                gap: 5,
+                p: 2,
+              }}
+            >
+              <Box>
+                <CardMedia
+                  component="img"
+                  src={`https://image.tmdb.org/t/p/w500${movie.imageSrc}`}
+                  alt={movie.title}
                   sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", mb: "row" },
-                    alignItems: { mb: "row" },
-                    gap: 1,
+                    backgroundColor: "#f0f0f0",
+                    width: { xs: 80, md: 140 },
                   }}
-                >
-                  <span
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", mb: "row" },
+                  gap: 1,
+                }}
+              >
+                <EditMovie movie={movie} showEditIcon={false}>
+                  <Typography
+                    variant="h6"
+                    color={Colors.black}
                     style={{ cursor: "pointer" }}
-                    onClick={() => startEdit(movie)}
                     title="Click to edit"
                   >
                     {movie.title}
-                  </span>
-                  <span>{formatDate(movie.releaseDate, "D.M.YYYY")}</span>
-                </Box>
-              )}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: 8,
-                  right: 8,
-                  zIndex: 1,
-                }}
-              >
-                <IconButton
-                  onClick={() => dispatch(deleteMovie(movie.id))}
-                  sx={{
-                    height: "40px",
-                    color: "black",
-                    bgcolor: "white",
-                    "&:hover": {
-                      backgroundColor: "white",
-                      color: "#EB5757",
-                    },
-                  }}
-                >
-                  <ClearIcon />
-                </IconButton>
+                  </Typography>
+                </EditMovie>
+                <Typography variant="h6" color={Colors.black}>
+                  {formatDate(movie.releaseDate, "D.M.YYYY")}
+                </Typography>
               </Box>
-            </li>
-          ))}
-        </ul>
+            </Card>
+          </Grid>
+        ))}
       </Box>
     </Box>
   );

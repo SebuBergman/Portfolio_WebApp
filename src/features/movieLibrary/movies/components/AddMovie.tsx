@@ -1,15 +1,15 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@store/index";
-import ReusableModal from "@features/ui/reusableModal";
 import AppButton from "@features/ui/AppButton";
 import { Box, Button, TextField } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
+import ReusableModal from "@features/ui/ReusableModal";
+import { addMovie, Movie } from "../store/movieSlice";
+import { selectUser } from "@features/auth/store/authSlice";
 
 // Import styles
 import "./styles.scss";
-import { addMovie, Movie } from "../store/movieSlice";
-import { selectUser } from "@features/auth/store/authSlice";
 import { formatDate } from "@app/services/date";
 import { Add } from "@mui/icons-material";
 
@@ -47,6 +47,7 @@ export default function AddMovie() {
     e.preventDefault();
     if (!query.trim()) return;
     setLoading(true);
+
     try {
       const res = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
@@ -55,23 +56,49 @@ export default function AddMovie() {
       );
       setResults(res.data.results || []);
     } catch (err) {
+      toast.error(
+        "Failed to find Movie. Perhaps it’s not the movie you’re looking for..."
+      );
       setResults([]);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleAdd = (movie: MovieDBMovie) => {
-    const newMovie: Movie = {
-      id: movie.id.toString(),
-      title: movie.title,
-      imageSrc: movie.poster_path,
-      releaseDate: movie.release_date,
-      isExpanded: false,
-      ownerId: uid,
-    };
-    dispatch(addMovie(newMovie));
-    toast.success(`Added "${movie.title}"!`);
+  const handleAdd = async (movie: MovieDBMovie) => {
+    setLoading(true);
+    const toastId = toast.loading(
+      "Summoning the Force... your Movie is being added..."
+    );
+
+    try {
+      const newMovie: Movie = {
+        id: movie.id.toString(),
+        title: movie.title,
+        imageSrc: movie.poster_path,
+        releaseDate: movie.release_date,
+        isExpanded: false,
+        ownerId: uid,
+      };
+
+      await dispatch(addMovie(newMovie));
+      toast.success(
+        "Movie added successfully! This one is strong with the Force.",
+        {
+          id: toastId,
+        }
+      );
+      setLoading(false);
+    } catch (error) {
+      toast.error(
+        "Failed to add Movie. Perhaps it’s not the movie you’re looking for...",
+        {
+          id: toastId,
+        }
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Content for the modal

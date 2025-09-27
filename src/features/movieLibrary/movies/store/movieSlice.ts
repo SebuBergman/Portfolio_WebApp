@@ -19,11 +19,11 @@ export interface Movie {
   ownerId?: string;
 }
 
-interface MoviesState {
+type MoviesState = {
   movies: Movie[];
   loading: boolean;
   error: string | null;
-}
+};
 
 const initialState: MoviesState = {
   movies: [],
@@ -54,22 +54,25 @@ export const addMovie = createAsyncThunk<void, Movie>(
   }
 );
 
-export const deleteMovie = createAsyncThunk<void, string>(
-  "movies/deleteMovie",
-  async (id, { dispatch }) => {
-    await deleteDoc(doc(firestore, "movies", id));
-    dispatch(fetchMovies());
+// Allow partial updates for updateMovie
+export const editMovie = createAsyncThunk<Movie, Movie>(
+  "movies/updateMovie",
+  async (movie) => {
+    const docRef = doc(firestore, "movies", movie.id);
+    await updateDoc(docRef, {
+      title: movie.title,
+    });
+    return movie;
   }
 );
 
-// Allow partial updates for updateMovie
-export const updateMovie = createAsyncThunk<
-  void,
-  { id: string; title: string }
->("movies/updateMovie", async ({ id, title }, { dispatch }) => {
-  await updateDoc(doc(firestore, "movies", id), { title });
-  dispatch(fetchMovies());
-});
+export const deleteMovie = createAsyncThunk<string, string>(
+  "movies/deleteMovie",
+  async (id) => {
+    await deleteDoc(doc(firestore, "movies", id));
+    return id;
+  }
+);
 
 const moviesSlice = createSlice({
   name: "movies",
@@ -91,7 +94,19 @@ const moviesSlice = createSlice({
       .addCase(fetchMovies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to fetch movies";
-      });
+      })
+      .addCase(editMovie.fulfilled, (state, action: PayloadAction<Movie>) => {
+        const idx = state.movies.findIndex((v) => v.id === action.payload.id);
+        if (idx > -1) state.movies[idx] = action.payload;
+      })
+      .addCase(
+        deleteMovie.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.movies = state.movies.filter(
+            (movie) => movie.id !== action.payload
+          );
+        }
+      );
   },
 });
 
