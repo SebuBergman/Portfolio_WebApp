@@ -21,6 +21,10 @@ export type Vinyl = {
   ownerId?: string;
 };
 
+type VinylState = { vinyls: Vinyl[]; loading: boolean; error: string | null };
+
+const initialState: VinylState = { vinyls: [], loading: false, error: null };
+
 // Async thunks
 export const fetchVinyls = createAsyncThunk<Vinyl[]>(
   "vinyls/fetchVinyls",
@@ -71,10 +75,6 @@ export const deleteVinyl = createAsyncThunk<string, string>(
   }
 );
 
-type VinylState = { vinyls: Vinyl[]; loading: boolean; error: string | null };
-
-const initialState: VinylState = { vinyls: [], loading: false, error: null };
-
 const vinylSlice = createSlice({
   name: "vinyls",
   initialState,
@@ -93,7 +93,7 @@ const vinylSlice = createSlice({
       )
       .addCase(fetchVinyls.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || null;
+        state.error = action.error.message || "Failed to fetch vinyls";
       })
       .addCase(addVinyl.fulfilled, (state, action: PayloadAction<Vinyl>) => {
         state.vinyls.push(action.payload);

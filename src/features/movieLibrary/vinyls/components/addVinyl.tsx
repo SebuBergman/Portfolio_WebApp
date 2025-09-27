@@ -5,9 +5,10 @@ import { TextField, Box, Typography, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { addVinyl, Vinyl } from "../store/vinylSlice";
 import { selectUser } from "@features/auth/store/authSlice";
-import ReusableModal from "@features/ui/reusableModal";
+import ReusableModal from "@features/ui/ReusableModal";
 import { Add } from "@mui/icons-material";
 import { uploadVinylCoverToFirebaseStorage } from "@services/firebase/hooks/useStorage";
+import toast from "react-hot-toast";
 
 export default function AddVinyl() {
   const dispatch = useAppDispatch();
@@ -29,30 +30,45 @@ export default function AddVinyl() {
     if (!title.trim() || !artist.trim()) return;
     setLoading(true);
 
-    let coverUrl: string | undefined;
-    if (cover && uid) {
-      const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
-      coverUrl = uploaded ?? undefined;
+    const toastId = toast.loading(
+      "Dropping the needle... Vinyl is being added..."
+    );
+
+    try {
+      let coverUrl: string | undefined;
+      if (cover && uid) {
+        const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
+        coverUrl = uploaded ?? undefined;
+      }
+
+      const newVinyl: Vinyl = {
+        id: uuidv4(),
+        title,
+        artist,
+        ...(year && year.trim() ? { year } : {}),
+        coverUrl,
+        ownerId: uid,
+      };
+
+      await dispatch(addVinyl(newVinyl));
+      toast.success("Vinyl added successfully! Crank it up to 11.", {
+        id: toastId,
+      });
+
+      // Reset form
+      setTitle("");
+      setArtist("");
+      setCover(null);
+      setYear("");
+      setLoading(false);
+      handleClose();
+    } catch (error) {
+      toast.error("Failed to add Vinyl. The record skipped again...", {
+        id: toastId,
+      });
+    } finally {
+      setLoading(false);
     }
-
-    const newVinyl: Vinyl = {
-      id: uuidv4(),
-      title,
-      artist,
-      ...(year && year.trim() ? { year } : {}),
-      coverUrl,
-      ownerId: uid,
-    };
-
-    await dispatch(addVinyl(newVinyl));
-
-    // Reset form
-    setTitle("");
-    setArtist("");
-    setCover(null);
-    setYear("");
-    setLoading(false);
-    handleClose();
   };
 
   const modalContent = (
