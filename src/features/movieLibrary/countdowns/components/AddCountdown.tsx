@@ -1,17 +1,17 @@
-import { useState } from "react";
-
+import { FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
 import { selectUser } from "@features/auth/store/authSlice";
-import ReusableModal from "@features/ui/reusableModal";
+import ReusableModal from "@features/ui/ReusableModal";
 import { Box, Button, TextField } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { addCountdown, Countdown } from "../store/countdownSlice";
 import { Add } from "@mui/icons-material";
 import AppButton from "@features/ui/AppButton";
-import { differenceInDays } from "@app/services/date/differenceInDays";
+import dayjs, { Dayjs } from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers";
 
-function AddCountdown() {
+export default function AddCountdown() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const uid = user?.uid;
@@ -19,31 +19,50 @@ function AddCountdown() {
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [eventName, setEventName] = useState("");
-  const [eventDate, setEventDate] = useState("");
+  const [eventDate, setEventDate] = useState<Dayjs | null>(dayjs());
 
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     if (!eventName || !eventDate) return;
     setLoading(true);
 
-    const daysRemaining = differenceInDays(new Date(eventDate), new Date());
-    const newCountdown: Countdown = {
-      id: uuidv4(),
-      eventName,
-      eventDate,
-      daysRemaining,
-      ownerId: uid,
-    };
+    const toastId = toast.loading(
+      "Flux capacitor charging... Countdown is being added..."
+    );
 
-    dispatch(addCountdown(newCountdown));
-    toast.success("Countdown added successfully!");
+    try {
+      if (eventDate) {
+        const newCountdown: Countdown = {
+          id: uuidv4(),
+          eventName,
+          eventDate: eventDate.toISOString(),
+          daysRemaining: eventDate.diff(dayjs(), "day"),
+          ownerId: uid,
+        };
+        await dispatch(addCountdown(newCountdown));
+        toast.success(
+          "Countdown added successfully! Great Scott, the future is set!",
+          {
+            id: toastId,
+          }
+        );
+      }
 
-    setEventName("");
-    setEventDate("");
-    setLoading(false);
-    handleClose();
+      // Reset form
+      setEventName("");
+      setEventDate(dayjs());
+      setLoading(false);
+      handleClose();
+    } catch (error) {
+      toast.error("Failed to add Countdown. Roads? We couldn’t get to them.", {
+        id: toastId,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const modalContent = (
@@ -60,15 +79,12 @@ function AddCountdown() {
         onChange={(e) => setEventName(e.target.value)}
         fullWidth
       />
-      <TextField
+      <DatePicker
         label="Event Date"
-        type="date"
         value={eventDate}
-        onChange={(e) => setEventDate(e.target.value)}
-        fullWidth
-        InputLabelProps={{
-          shrink: true,
-        }}
+        onChange={(newValue) => setEventDate(newValue)}
+        slotProps={{ textField: { fullWidth: true } }}
+        format="DD/MM/YYYY"
       />
       <AppButton
         type="submit"
@@ -110,5 +126,3 @@ function AddCountdown() {
     </>
   );
 }
-
-export default AddCountdown;

@@ -16,7 +16,6 @@ export interface Countdown {
   eventName: string;
   eventDate: string; // ISO string
   daysRemaining: number;
-  description?: string;
   ownerId?: string;
 }
 
@@ -35,9 +34,10 @@ const initialState: CountdownState = {
 export const fetchCountdowns = createAsyncThunk<Countdown[]>(
   "countdowns/fetchCountdowns",
   async () => {
-    const snapshot = await getDocs(collection(firestore, "countdowns"));
+    const countdownCol = collection(firestore, "countdowns");
+    const countdownSnap = await getDocs(countdownCol);
     const countdowns: Countdown[] = [];
-    snapshot.forEach((docSnap) => {
+    countdownSnap.forEach((docSnap) => {
       const data = docSnap.data() as Countdown;
       // recalc daysRemaining in case it's outdated in DB
       const daysRemaining = differenceInDays(
@@ -52,29 +52,36 @@ export const fetchCountdowns = createAsyncThunk<Countdown[]>(
   }
 );
 
-export const addCountdown = createAsyncThunk<void, Countdown>(
+export const addCountdown = createAsyncThunk<Countdown, Countdown>(
   "countdowns/addCountdown",
-  async (countdown, { dispatch }) => {
-    await setDoc(doc(firestore, "countdowns", countdown.id), countdown);
-    dispatch(fetchCountdowns());
+  async (countdown) => {
+    const countdownId = countdown.id;
+    await setDoc(doc(firestore, "countdowns", countdownId), countdown);
+    return { ...countdown, id: countdownId };
   }
 );
 
-export const deleteCountdown = createAsyncThunk<void, string>(
+export const editCountdown = createAsyncThunk<Countdown, Countdown>(
+  "countdowns/updateCountdown",
+  async (countdown) => {
+    if (!countdown.id) throw new Error("Countdown id is required");
+    const docRef = doc(firestore, "countdowns", countdown.id);
+    await updateDoc(docRef, {
+      eventName: countdown.eventName,
+      eventDate: countdown.eventDate,
+      daysRemaining: countdown.daysRemaining,
+    });
+    return countdown;
+  }
+);
+
+export const deleteCountdown = createAsyncThunk<string, string>(
   "countdowns/deleteCountdown",
-  async (id, { dispatch }) => {
+  async (id) => {
     await deleteDoc(doc(firestore, "countdowns", id));
-    dispatch(fetchCountdowns());
+    return id;
   }
 );
-
-export const updateCountdown = createAsyncThunk<
-  void,
-  { id: string; updates: Partial<Countdown> }
->("countdowns/updateCountdown", async ({ id, updates }, { dispatch }) => {
-  await updateDoc(doc(firestore, "countdowns", id), updates);
-  dispatch(fetchCountdowns());
-});
 
 const countdownSlice = createSlice({
   name: "countdowns",
@@ -96,7 +103,30 @@ const countdownSlice = createSlice({
       .addCase(fetchCountdowns.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to fetch countdowns";
-      });
+      })
+      .addCase(
+        addCountdown.fulfilled,
+        (state, action: PayloadAction<Countdown>) => {
+          state.countdowns.push(action.payload);
+        }
+      )
+      .addCase(
+        editCountdown.fulfilled,
+        (state, action: PayloadAction<Countdown>) => {
+          const idx = state.countdowns.findIndex(
+            (c) => c.id === action.payload.id
+          );
+          if (idx > -1) state.countdowns[idx] = action.payload;
+        }
+      )
+      .addCase(
+        deleteCountdown.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.countdowns = state.countdowns.filter(
+            (c) => c.id !== action.payload
+          );
+        }
+      );
   },
 });
 
