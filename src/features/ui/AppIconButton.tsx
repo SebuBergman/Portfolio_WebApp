@@ -1,7 +1,6 @@
 import React from "react";
 
-import { LoadingButton } from "@mui/lab";
-import { type SxProps, type Theme } from "@mui/material";
+import { Button, type SxProps, type Theme } from "@mui/material";
 
 interface Props {
   isSmall?: boolean;
@@ -16,7 +15,7 @@ interface Props {
 
 export default function AppIconButton(props: Props) {
   return (
-    <LoadingButton
+    <Button
       loading={props.isLoading}
       onClick={props.onClick}
       aria-label={props["aria-label"]}
@@ -31,6 +30,6 @@ export default function AppIconButton(props: Props) {
       }}
     >
       {props.children}
-    </LoadingButton>
+    </Button>
   );
 }

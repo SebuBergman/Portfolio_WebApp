@@ -5,7 +5,7 @@ import CloseIcon from "@mui/icons-material/Close";
 interface Props {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   subtitle?: string;
   content?: React.ReactNode;
   onSubmit?: () => void;
@@ -57,9 +57,15 @@ export default function ReusableModal({
           variant="contained"
           color="primary"
           onClick={onClose}
-          sx={{ mt: 2, mr: 2 }}
+          sx={{ mt: 2, mr: 2, px: 2, py: 1 }}
         >
-          Cancel
+          <Typography
+            component="span"
+            variant="button"
+            sx={{ textTransform: "none" }}
+          >
+            Cancel
+          </Typography>
         </Button>
         {onSubmit && (
           <Button
@@ -68,7 +74,13 @@ export default function ReusableModal({
             onClick={onSubmit}
             sx={{ mt: 2 }}
           >
-            Save
+            <Typography
+              component="span"
+              variant="button"
+              sx={{ textTransform: "none" }}
+            >
+              Save
+            </Typography>
           </Button>
         )}
       </Box>

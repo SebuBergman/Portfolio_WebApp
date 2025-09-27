@@ -1,4 +1,4 @@
-import { LoadingButton } from "@mui/lab";
+import { Button } from "@mui/material";
 import { type SxProps, type Theme, Typography } from "@mui/material";
 
 interface Props {
@@ -42,7 +42,7 @@ export default function AppButton({
   color,
 }: Props) {
   return (
-    <LoadingButton
+    <Button
       LinkComponent={LinkComponent}
       href={href}
       loading={loading}
@@ -65,9 +65,13 @@ export default function AppButton({
         ...sx,
       }}
     >
-      <Typography component="span" variant="button">
+      <Typography
+        component="span"
+        variant="button"
+        sx={{ textTransform: "none" }}
+      >
         {children}
       </Typography>
-    </LoadingButton>
+    </Button>
   );
 }
