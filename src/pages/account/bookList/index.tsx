@@ -21,10 +21,16 @@ export default function BookList() {
   const books = useAppSelector(selectBooks);
   const [tab, setTab] = useState(0);
   const [search, setSearch] = useState("");
+  const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
+    // Only fetch if we haven't fetched before and don't have data
+    if (!hasInitiallyFetched && books.length === 0) {
+      console.log("Fetching books from Firebase...");
+      dispatch(fetchBooks());
+      setHasInitiallyFetched(true);
+    }
+  }, [dispatch, hasInitiallyFetched, books.length]);
 
   // Sorting function for books (by author, then by title)
   const sortBooksByAuthorThenTitle = (books: Book[]) => {
@@ -111,7 +117,7 @@ export default function BookList() {
         <Tab label="Agatha Christie" />
       </Tabs>
 
-      {/* Vinyl grid */}
+      {/* Books grid */}
       <Box
         sx={{
           display: "grid",
@@ -131,9 +137,16 @@ export default function BookList() {
       >
         {filteredBooks.map((book: Book) => (
           <Grid key={book.id} style={{ position: "relative" }}>
-            <Card sx={{ width: { xs: "100%", md: "100%" }, height: "100%" }}>
-              {/* Clickable cover image */}
-              <EditBook book={book} showEditIcon={false}>
+            {/* Single EditBook wrapper for the entire card */}
+            <EditBook book={book} showEditIcon={false}>
+              <Card
+                sx={{
+                  width: { xs: "100%", md: "100%" },
+                  height: "100%",
+                  cursor: "pointer",
+                }}
+              >
+                {/* Cover image */}
                 {book.coverUrl ? (
                   <CardMedia
                     component="img"
@@ -162,17 +175,14 @@ export default function BookList() {
                     </Typography>
                   </Box>
                 )}
-              </EditBook>
 
-              <CardContent>
-                {/* Title */}
-                <EditBook book={book} showEditIcon={false}>
+                <CardContent>
+                  {/* Title */}
                   <Typography
                     variant="h6"
                     color={Colors.black}
                     sx={{
                       mb: 1,
-                      cursor: "pointer",
                       fontSize: { xs: "1em", md: "1.2em" },
                       lineHeight: {
                         xs: "1.4em !important",
@@ -182,19 +192,14 @@ export default function BookList() {
                   >
                     {book.title}
                   </Typography>
-                </EditBook>
-                {/* Author */}
-                <EditBook book={book} showEditIcon={false}>
-                  <Typography
-                    variant="subtitle1"
-                    color={Colors.black}
-                    sx={{ cursor: "pointer" }}
-                  >
+
+                  {/* Author */}
+                  <Typography variant="subtitle1" color={Colors.black}>
                     {book.author}
                   </Typography>
-                </EditBook>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </EditBook>
           </Grid>
         ))}
       </Box>

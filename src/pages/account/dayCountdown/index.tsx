@@ -28,10 +28,16 @@ export default function CountdownsList() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [countdownId, setCountdownId] = useState<string | null>(null);
   const [countdownName, setCountdownName] = useState<string>("");
+  const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchCountdowns());
-  }, [dispatch]);
+    // Only fetch if we haven't fetched before and don't have data
+    if (!hasInitiallyFetched && countdowns.length === 0) {
+      console.log("Fetching countdowns from Firebase...");
+      dispatch(fetchCountdowns());
+      setHasInitiallyFetched(true);
+    }
+  }, [dispatch, hasInitiallyFetched, countdowns.length]);
 
   const handleDeleteClick = (id: string, name: string) => {
     setCountdownId(id);
@@ -42,19 +48,19 @@ export default function CountdownsList() {
   const handleDeleteConfirm = async () => {
     if (countdownId) {
       const toastId = toast.loading(
-        "Casting into Mount Doom... Book is being deleted..."
+        "Time is unwinding... Countdown is being deleted..."
       );
       try {
         await dispatch(deleteCountdown(countdownId));
         toast.success(
-          "Book deleted successfully! Another chapter has closed.",
+          "Countdown deleted successfully! Time has stopped for this event.",
           {
             id: toastId,
           }
         );
         setDeleteDialogOpen(false);
       } catch (error) {
-        toast.error("Failed to delete Book. Gollum snatched it last second.", {
+        toast.error("Failed to delete countdown. Time refused to cooperate.", {
           id: toastId,
         });
       }
@@ -111,6 +117,7 @@ export default function CountdownsList() {
           </Typography>
         )}
       </Box>
+
       {/* Countdown grid */}
       <Box
         sx={{
@@ -128,6 +135,7 @@ export default function CountdownsList() {
         }}
       >
         {countdowns.map((cd) => {
+          // Recalculate days remaining with current date for accuracy
           const daysRemaining = dayjs(cd.eventDate).diff(dayjs(), "day");
           const isPast = daysRemaining < 0;
 
@@ -223,6 +231,7 @@ export default function CountdownsList() {
           );
         })}
       </Box>
+
       <DeleteDialog
         open={deleteDialogOpen}
         title={`Are you sure you want to delete: ${countdownName}?`}

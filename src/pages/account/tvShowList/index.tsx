@@ -23,10 +23,16 @@ export default function TVShowList() {
   const dispatch = useAppDispatch();
   const tvShows = useAppSelector(selectTVShows);
   const [search, setSearch] = useState("");
+  const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchTVShows());
-  }, [dispatch]);
+    // Only fetch if we haven't fetched before and don't have data
+    if (!hasInitiallyFetched && tvShows.length === 0) {
+      console.log("Fetching TV shows from Firebase...");
+      dispatch(fetchTVShows());
+      setHasInitiallyFetched(true);
+    }
+  }, [dispatch, hasInitiallyFetched, tvShows.length]);
 
   // Handle search input
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -90,7 +96,7 @@ export default function TVShowList() {
         </Box>
       </Box>
 
-      {/* Vinyl grid */}
+      {/* TV Shows grid */}
       <Box
         sx={{
           display: "grid",
@@ -107,16 +113,24 @@ export default function TVShowList() {
             <Card
               sx={{
                 display: "flex",
-                flexDirection: { xs: "row", mb: "row" },
-                alignItems: "center",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: { xs: "flex-start", sm: "center" },
                 gap: { xs: 2, md: 2 },
                 p: { xs: 3, md: 2 },
                 pt: { xs: 6, md: 2 },
               }}
             >
-              {/* TV Show content */}
               <EditTVShow tvshow={show} showEditIcon={false}>
-                <Typography variant="h6" color={Colors.black}>
+                {/* TV Show title */}
+                <Typography
+                  variant="h6"
+                  color={Colors.black}
+                  sx={{
+                    minWidth: { sm: "200px" },
+                    flexShrink: 0,
+                    mb: { xs: 1, sm: 0 },
+                  }}
+                >
                   {show.title}
                 </Typography>
               </EditTVShow>
@@ -128,6 +142,7 @@ export default function TVShowList() {
                     sm: "repeat(4, 1fr)", // 4 per row on small screens
                     md: "repeat(6, 1fr)", // 6 per row on desktop
                   },
+                  pointerEvents: "auto", // Ensure checkboxes are clickable
                 }}
               >
                 {show.seasons.map((season) => (
@@ -141,6 +156,7 @@ export default function TVShowList() {
                       p: 1,
                       borderRadius: 1,
                     }}
+                    onClick={(e) => e.stopPropagation()} // Prevent card click when clicking checkbox
                   >
                     <Checkbox
                       checked={season.owned}

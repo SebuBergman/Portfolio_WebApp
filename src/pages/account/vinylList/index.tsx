@@ -18,10 +18,16 @@ export default function VinylList() {
   const dispatch = useAppDispatch();
   const vinyls = useAppSelector(selectVinyls);
   const [search, setSearch] = useState("");
+  const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchVinyls());
-  }, [dispatch]);
+    // Only fetch if we haven't fetched before and don't have data
+    if (!hasInitiallyFetched && vinyls.length === 0) {
+      console.log("Fetching vinyls from Firebase...");
+      dispatch(fetchVinyls());
+      setHasInitiallyFetched(true);
+    }
+  }, [dispatch, hasInitiallyFetched, vinyls.length]);
 
   const filteredVinyls = vinyls
     .filter(
@@ -98,9 +104,10 @@ export default function VinylList() {
       >
         {filteredVinyls.map((v) => (
           <Grid key={v.id} style={{ position: "relative" }}>
-            <Card sx={{ width: { xs: "100%", md: "100%" }, height: "100%" }}>
-              {/* Clickable cover image */}
-              <EditVinyl vinyl={v} showEditIcon={false}>
+            <EditVinyl vinyl={v} showEditIcon={false}>
+              <Card sx={{ width: { xs: "100%", md: "100%" }, height: "100%" }}>
+                {/* Clickable cover image */}
+
                 {v.coverUrl ? (
                   <CardMedia
                     component="img"
@@ -129,11 +136,9 @@ export default function VinylList() {
                     </Typography>
                   </Box>
                 )}
-              </EditVinyl>
 
-              <CardContent>
-                {/* Title */}
-                <EditVinyl vinyl={v} showEditIcon={false}>
+                <CardContent>
+                  {/* Title */}
                   <Typography
                     variant="h6"
                     color={Colors.black}
@@ -141,9 +146,7 @@ export default function VinylList() {
                   >
                     {v.title}
                   </Typography>
-                </EditVinyl>
-                {/* Artist */}
-                <EditVinyl vinyl={v} showEditIcon={false}>
+                  {/* Artist */}
                   <Typography
                     variant="subtitle1"
                     color={Colors.black}
@@ -152,9 +155,8 @@ export default function VinylList() {
                   >
                     {v.artist}
                   </Typography>
-                </EditVinyl>
-                {/* Year */}
-                <EditVinyl vinyl={v} showEditIcon={false}>
+                  {/* Year */}
+
                   <Typography
                     variant="body2"
                     color={Colors.black}
@@ -162,9 +164,9 @@ export default function VinylList() {
                   >
                     {v.year}
                   </Typography>
-                </EditVinyl>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </EditVinyl>
           </Grid>
         ))}
       </Box>

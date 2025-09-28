@@ -23,10 +23,16 @@ export default function MovieList() {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(selectMovies);
   const [search, setSearch] = useState("");
+  const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchMovies());
-  }, [dispatch]);
+    // Only fetch if we haven't fetched before and don't have data
+    if (!hasInitiallyFetched && movies.length === 0) {
+      console.log("Fetching movies from Firebase...");
+      dispatch(fetchMovies());
+      setHasInitiallyFetched(true);
+    }
+  }, [dispatch, hasInitiallyFetched, movies.length]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
@@ -78,7 +84,7 @@ export default function MovieList() {
         </Box>
       </Box>
 
-      {/* Vinyl grid */}
+      {/* Movies grid */}
       <Box
         sx={{
           display: "grid",
@@ -124,12 +130,7 @@ export default function MovieList() {
                 }}
               >
                 <EditMovie movie={movie} showEditIcon={false}>
-                  <Typography
-                    variant="h6"
-                    color={Colors.black}
-                    style={{ cursor: "pointer" }}
-                    title="Click to edit"
-                  >
+                  <Typography variant="h6" color={Colors.black}>
                     {movie.title}
                   </Typography>
                 </EditMovie>
