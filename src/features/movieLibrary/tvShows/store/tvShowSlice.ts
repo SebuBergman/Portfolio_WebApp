@@ -16,6 +16,7 @@ export interface Season {
   seasonNumber: number;
   owned: boolean;
 }
+
 export interface TVShow {
   id: string;
   title: string;
@@ -27,24 +28,44 @@ type TVShowsState = {
   tvShows: TVShow[];
   loading: boolean;
   error: string | null;
+  lastFetched: number | null; // Add timestamp for caching
 };
 
 const initialState: TVShowsState = {
   tvShows: [],
   loading: false,
   error: null,
+  lastFetched: null,
 };
 
 // ASYNC THUNKS
-export const fetchTVShows = createAsyncThunk<TVShow[]>(
-  "tvShows/fetchTVShows",
-  async () => {
-    const querySnapshot = await getDocs(collection(firestore, "tvshows"));
-    return querySnapshot.docs.map(
-      (doc) => ({ id: doc.id, ...doc.data() } as TVShow)
-    );
+export const fetchTVShows = createAsyncThunk<
+  TVShow[],
+  void,
+  { state: RootState }
+>("tvShows/fetchTVShows", async (_, { getState }) => {
+  const state = getState();
+  const now = Date.now();
+  const fiveMinutes = 5 * 60 * 1000; // 5 minutes cache
+
+  // If we have data and it's fresh, don't fetch
+  if (
+    state.tvShows.tvShows.length > 0 &&
+    state.tvShows.lastFetched &&
+    now - state.tvShows.lastFetched < fiveMinutes
+  ) {
+    console.log("Using cached TV show data");
+    return state.tvShows.tvShows;
   }
-);
+
+  console.log("Fetching TV shows from Firebase...");
+  const querySnapshot = await getDocs(collection(firestore, "tvshows"));
+  const tvShows = querySnapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as TVShow)
+  );
+  console.log(`Fetched ${tvShows.length} TV shows from Firebase`);
+  return tvShows;
+});
 
 export const addTVShow = createAsyncThunk<TVShow, TVShow>(
   "tvShows/addTVShow",
@@ -59,6 +80,7 @@ export const addTVShow = createAsyncThunk<TVShow, TVShow>(
       id: showId,
       seasons: seasonsWithIds,
     });
+    console.log("Added TV show:", showId);
     return { ...tvShow, id: showId, seasons: seasonsWithIds };
   }
 );
@@ -70,15 +92,18 @@ export const editTVShow = createAsyncThunk<TVShow, TVShow>(
     await updateDoc(docRef, {
       title: tvshow.title,
     });
+    console.log("Updated TV show:", tvshow.id);
     return tvshow;
   }
 );
 
+// CRITICAL: Keep this exactly as it was - this handles the season checkbox updates
 export const updateTVShowSeasons = createAsyncThunk(
   "tvShows/updateTVShowSeasons",
   async ({ id, seasons }: { id: string; seasons: Season[] }) => {
     const showDoc = doc(firestore, "tvshows", id);
     await updateDoc(showDoc, { seasons });
+    console.log("Updated seasons for TV show:", id);
     return { id, seasons };
   }
 );
@@ -88,6 +113,7 @@ export const deleteTVShow = createAsyncThunk(
   async (id: string) => {
     const showDoc = doc(firestore, "tvshows", id);
     await deleteDoc(showDoc);
+    console.log("Deleted TV show:", id);
     return id;
   }
 );
@@ -95,7 +121,12 @@ export const deleteTVShow = createAsyncThunk(
 const tvShowsSlice = createSlice({
   name: "tvShows",
   initialState,
-  reducers: {},
+  reducers: {
+    // Add a manual cache invalidation action
+    invalidateCache: (state) => {
+      state.lastFetched = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTVShows.pending, (state) => {
@@ -107,6 +138,7 @@ const tvShowsSlice = createSlice({
         (state, action: PayloadAction<TVShow[]>) => {
           state.tvShows = action.payload;
           state.loading = false;
+          state.lastFetched = Date.now(); // Update cache timestamp
         }
       )
       .addCase(fetchTVShows.rejected, (state, action) => {
@@ -115,13 +147,16 @@ const tvShowsSlice = createSlice({
       })
       .addCase(addTVShow.fulfilled, (state, action: PayloadAction<TVShow>) => {
         state.tvShows.push(action.payload);
+        // Don't invalidate cache - just update local state
       })
       .addCase(editTVShow.fulfilled, (state, action: PayloadAction<TVShow>) => {
         const idx = state.tvShows.findIndex(
           (tv) => tv.id === action.payload.id
         );
         if (idx > -1) state.tvShows[idx] = action.payload;
+        // Don't invalidate cache - just update local state
       })
+      // CRITICAL: Keep this exactly as it was - handles season updates
       .addCase(
         updateTVShowSeasons.fulfilled,
         (state, action: PayloadAction<{ id: string; seasons: Season[] }>) => {
@@ -129,6 +164,7 @@ const tvShowsSlice = createSlice({
             (tv) => tv.id === action.payload.id
           );
           if (idx !== -1) state.tvShows[idx].seasons = action.payload.seasons;
+          // Don't invalidate cache - season updates are local state changes
         }
       )
       .addCase(
@@ -137,10 +173,12 @@ const tvShowsSlice = createSlice({
           state.tvShows = state.tvShows.filter(
             (tv) => tv.id !== action.payload
           );
+          // Don't invalidate cache - just update local state
         }
       );
   },
 });
 
+export const { invalidateCache } = tvShowsSlice.actions;
 export default tvShowsSlice.reducer;
 export const selectTVShows = (state: RootState) => state.tvShows.tvShows;

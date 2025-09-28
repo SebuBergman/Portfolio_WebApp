@@ -24,21 +24,42 @@ type BookState = {
   books: Book[];
   loading: boolean;
   error: string | null;
+  lastFetched: number | null;
 };
 
 const initialState: BookState = {
   books: [],
   loading: false,
   error: null,
+  lastFetched: null,
 };
 
 // Async thunks for CRUD
-export const fetchBooks = createAsyncThunk<Book[]>(
+export const fetchBooks = createAsyncThunk<Book[], void, { state: RootState }>(
   "books/fetchBooks",
-  async () => {
+  async (_, { getState }) => {
+    const state = getState();
+    const now = Date.now();
+    const fiveMinutes = 5 * 60 * 1000; // 5 minutes cache
+
+    // If we have data and it's fresh, don't fetch
+    if (
+      state.books.books.length > 0 &&
+      state.books.lastFetched &&
+      now - state.books.lastFetched < fiveMinutes
+    ) {
+      console.log("Using cached book data");
+      return state.books.books;
+    }
+
+    console.log("Fetching books from Firebase...");
     const booksCol = collection(firestore, "books");
     const booksSnap = await getDocs(booksCol);
-    return booksSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Book));
+    const books = booksSnap.docs.map(
+      (doc) => ({ id: doc.id, ...doc.data() } as Book)
+    );
+    console.log(`Fetched ${books.length} books from Firebase`);
+    return books;
   }
 );
 
@@ -53,6 +74,7 @@ export const addBook = createAsyncThunk<Book, Book>(
       )
     );
     await setDoc(doc(firestore, "books", bookId), cleanedBook);
+    console.log("Added book:", bookId);
     return { ...book, id: bookId };
   }
 );
@@ -67,6 +89,7 @@ export const editBook = createAsyncThunk<Book, Book>(
       author: book.author,
       coverUrl: book.coverUrl,
     });
+    console.log("Updated book:", book.id);
     return book;
   }
 );
@@ -75,6 +98,7 @@ export const deleteBook = createAsyncThunk<string, string>(
   "books/deleteBook",
   async (id) => {
     await deleteDoc(doc(firestore, "books", id));
+    console.log("Deleted book:", id);
     return id;
   }
 );
@@ -82,7 +106,12 @@ export const deleteBook = createAsyncThunk<string, string>(
 const bookSlice = createSlice({
   name: "books",
   initialState,
-  reducers: {},
+  reducers: {
+    // Add a manual cache invalidation action
+    invalidateCache: (state) => {
+      state.lastFetched = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBooks.pending, (state) => {
@@ -91,6 +120,7 @@ const bookSlice = createSlice({
       .addCase(fetchBooks.fulfilled, (state, action: PayloadAction<Book[]>) => {
         state.books = action.payload;
         state.loading = false;
+        state.lastFetched = Date.now(); // Update cache timestamp
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.loading = false;
@@ -109,5 +139,6 @@ const bookSlice = createSlice({
   },
 });
 
+export const { invalidateCache } = bookSlice.actions;
 export default bookSlice.reducer;
 export const selectBooks = (state: RootState) => state.books.books;
