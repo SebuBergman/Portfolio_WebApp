@@ -5,11 +5,10 @@ import {
   ReactNode,
   KeyboardEvent,
 } from "react";
-import { useAppDispatch, useAppSelector } from "@app/store";
+import { useAppDispatch } from "@app/store";
 import AppButton from "@features/ui/AppButton";
 import { TextField, Box, IconButton } from "@mui/material";
 import { deleteVinyl, editVinyl, Vinyl } from "../store/vinylSlice";
-import { selectUser } from "@features/auth/store/authSlice";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Edit } from "@mui/icons-material";
 import toast from "react-hot-toast";
@@ -27,15 +26,12 @@ export default function EditVinyl({
   showEditIcon = true,
 }: EditVinylProps) {
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
-  const uid = user?.uid;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [vinylId, setVinylId] = useState("");
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
-  const [cover, setCover] = useState<File | null>(null);
   const [year, setYear] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -44,13 +40,11 @@ export default function EditVinyl({
     setTitle(vinyl.title);
     setArtist(vinyl.artist);
     setYear(vinyl.year);
-    setCover(null);
     setModalOpen(true);
   };
 
   const handleClose = () => {
     setModalOpen(false);
-    setCover(null);
   };
 
   const handleDeleteClick = () => {
