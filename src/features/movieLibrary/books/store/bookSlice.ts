@@ -48,7 +48,7 @@ export const fetchBooks = createAsyncThunk<Book[], void, { state: RootState }>(
       state.books.lastFetched &&
       now - state.books.lastFetched < fiveMinutes
     ) {
-      console.log("Using cached book data");
+      //console.log("Using cached book data");
       return state.books.books;
     }
 
@@ -58,7 +58,7 @@ export const fetchBooks = createAsyncThunk<Book[], void, { state: RootState }>(
     const books = booksSnap.docs.map(
       (doc) => ({ id: doc.id, ...doc.data() } as Book)
     );
-    console.log(`Fetched ${books.length} books from Firebase`);
+    //console.log(`Fetched ${books.length} books from Firebase`);
     return books;
   }
 );
@@ -74,7 +74,7 @@ export const addBook = createAsyncThunk<Book, Book>(
       )
     );
     await setDoc(doc(firestore, "books", bookId), cleanedBook);
-    console.log("Added book:", bookId);
+    //console.log("Added book:", bookId);
     return { ...book, id: bookId };
   }
 );
@@ -89,7 +89,7 @@ export const editBook = createAsyncThunk<Book, Book>(
       author: book.author,
       coverUrl: book.coverUrl,
     });
-    console.log("Updated book:", book.id);
+    //console.log("Updated book:", book.id);
     return book;
   }
 );
@@ -98,7 +98,7 @@ export const deleteBook = createAsyncThunk<string, string>(
   "books/deleteBook",
   async (id) => {
     await deleteDoc(doc(firestore, "books", id));
-    console.log("Deleted book:", id);
+    //console.log("Deleted book:", id);
     return id;
   }
 );

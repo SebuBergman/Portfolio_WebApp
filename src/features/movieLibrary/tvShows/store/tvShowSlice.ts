@@ -54,16 +54,16 @@ export const fetchTVShows = createAsyncThunk<
     state.tvShows.lastFetched &&
     now - state.tvShows.lastFetched < fiveMinutes
   ) {
-    console.log("Using cached TV show data");
+    //console.log("Using cached TV show data");
     return state.tvShows.tvShows;
   }
 
-  console.log("Fetching TV shows from Firebase...");
+  //console.log("Fetching TV shows from Firebase...");
   const querySnapshot = await getDocs(collection(firestore, "tvshows"));
   const tvShows = querySnapshot.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as TVShow)
   );
-  console.log(`Fetched ${tvShows.length} TV shows from Firebase`);
+  //console.log(`Fetched ${tvShows.length} TV shows from Firebase`);
   return tvShows;
 });
 
@@ -80,7 +80,7 @@ export const addTVShow = createAsyncThunk<TVShow, TVShow>(
       id: showId,
       seasons: seasonsWithIds,
     });
-    console.log("Added TV show:", showId);
+    //console.log("Added TV show:", showId);
     return { ...tvShow, id: showId, seasons: seasonsWithIds };
   }
 );
@@ -92,7 +92,7 @@ export const editTVShow = createAsyncThunk<TVShow, TVShow>(
     await updateDoc(docRef, {
       title: tvshow.title,
     });
-    console.log("Updated TV show:", tvshow.id);
+    //console.log("Updated TV show:", tvshow.id);
     return tvshow;
   }
 );
@@ -103,7 +103,7 @@ export const updateTVShowSeasons = createAsyncThunk(
   async ({ id, seasons }: { id: string; seasons: Season[] }) => {
     const showDoc = doc(firestore, "tvshows", id);
     await updateDoc(showDoc, { seasons });
-    console.log("Updated seasons for TV show:", id);
+    //console.log("Updated seasons for TV show:", id);
     return { id, seasons };
   }
 );
@@ -113,7 +113,7 @@ export const deleteTVShow = createAsyncThunk(
   async (id: string) => {
     const showDoc = doc(firestore, "tvshows", id);
     await deleteDoc(showDoc);
-    console.log("Deleted TV show:", id);
+    //console.log("Deleted TV show:", id);
     return id;
   }
 );

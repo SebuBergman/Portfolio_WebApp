@@ -51,17 +51,17 @@ export const fetchVinyls = createAsyncThunk<
     state.vinyls.lastFetched &&
     now - state.vinyls.lastFetched < fiveMinutes
   ) {
-    console.log("Using cached vinyl data");
+    //console.log("Using cached vinyl data");
     return state.vinyls.vinyls;
   }
 
-  console.log("Fetching vinyls from Firebase...");
+  //console.log("Fetching vinyls from Firebase...");
   const vinylCol = collection(firestore, "vinyls");
   const vinylSnap = await getDocs(vinylCol);
   const vinyls = vinylSnap.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as Vinyl)
   );
-  console.log(`Fetched ${vinyls.length} vinyls from Firebase`);
+  //console.log(`Fetched ${vinyls.length} vinyls from Firebase`);
   return vinyls;
 });
 
@@ -76,7 +76,7 @@ export const addVinyl = createAsyncThunk<Vinyl, Vinyl>(
       )
     );
     await setDoc(doc(firestore, "vinyls", vinylId), cleanedVinyl);
-    console.log("Added vinyl:", vinylId);
+    //console.log("Added vinyl:", vinylId);
     return { ...vinyl, id: vinylId };
   }
 );
@@ -92,7 +92,7 @@ export const editVinyl = createAsyncThunk<Vinyl, Vinyl>(
       coverUrl: vinyl.coverUrl,
       year: vinyl.year,
     });
-    console.log("Updated vinyl:", vinyl.id);
+    //console.log("Updated vinyl:", vinyl.id);
     return vinyl;
   }
 );
@@ -101,7 +101,7 @@ export const deleteVinyl = createAsyncThunk<string, string>(
   "vinyls/deleteVinyl",
   async (id) => {
     await deleteDoc(doc(firestore, "vinyls", id));
-    console.log("Deleted vinyl:", id);
+    //console.log("Deleted vinyl:", id);
     return id;
   }
 );

@@ -48,11 +48,11 @@ export const fetchCountdowns = createAsyncThunk<
     state.countdowns.lastFetched &&
     now - state.countdowns.lastFetched < fiveMinutes
   ) {
-    console.log("Using cached countdown data");
+    //console.log("Using cached countdown data");
     return state.countdowns.countdowns;
   }
 
-  console.log("Fetching countdowns from Firebase...");
+  //console.log("Fetching countdowns from Firebase...");
   const countdownCol = collection(firestore, "countdowns");
   const countdownSnap = await getDocs(countdownCol);
   const countdowns: Countdown[] = [];
@@ -69,7 +69,7 @@ export const fetchCountdowns = createAsyncThunk<
 
   // Sort by nearest date
   countdowns.sort((a, b) => a.daysRemaining - b.daysRemaining);
-  console.log(`Fetched ${countdowns.length} countdowns from Firebase`);
+  //console.log(`Fetched ${countdowns.length} countdowns from Firebase`);
   return countdowns;
 });
 
@@ -78,7 +78,7 @@ export const addCountdown = createAsyncThunk<Countdown, Countdown>(
   async (countdown) => {
     const countdownId = countdown.id;
     await setDoc(doc(firestore, "countdowns", countdownId), countdown);
-    console.log("Added countdown:", countdownId);
+    //console.log("Added countdown:", countdownId);
     return { ...countdown, id: countdownId };
   }
 );
@@ -93,7 +93,7 @@ export const editCountdown = createAsyncThunk<Countdown, Countdown>(
       eventDate: countdown.eventDate,
       daysRemaining: countdown.daysRemaining,
     });
-    console.log("Updated countdown:", countdown.id);
+    //console.log("Updated countdown:", countdown.id);
     return countdown;
   }
 );
@@ -102,7 +102,7 @@ export const deleteCountdown = createAsyncThunk<string, string>(
   "countdowns/deleteCountdown",
   async (id) => {
     await deleteDoc(doc(firestore, "countdowns", id));
-    console.log("Deleted countdown:", id);
+    //console.log("Deleted countdown:", id);
     return id;
   }
 );

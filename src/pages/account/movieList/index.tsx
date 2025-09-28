@@ -28,7 +28,7 @@ export default function MovieList() {
   useEffect(() => {
     // Only fetch if we haven't fetched before and don't have data
     if (!hasInitiallyFetched && movies.length === 0) {
-      console.log("Fetching movies from Firebase...");
+      //console.log("Fetching movies from Firebase...");
       dispatch(fetchMovies());
       setHasInitiallyFetched(true);
     }

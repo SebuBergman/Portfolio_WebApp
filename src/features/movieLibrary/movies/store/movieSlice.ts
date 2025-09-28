@@ -49,11 +49,11 @@ export const fetchMovies = createAsyncThunk<
     state.movies.lastFetched &&
     now - state.movies.lastFetched < fiveMinutes
   ) {
-    console.log("Using cached movie data");
+    //console.log("Using cached movie data");
     return state.movies.movies;
   }
 
-  console.log("Fetching movies from Firebase...");
+  //console.log("Fetching movies from Firebase...");
   const snapshot = await getDocs(collection(firestore, "movies"));
   const movies: Movie[] = [];
   snapshot.forEach((doc) => {
@@ -61,7 +61,7 @@ export const fetchMovies = createAsyncThunk<
   });
   // Sort alphabetically
   movies.sort((a, b) => a.title.localeCompare(b.title));
-  console.log(`Fetched ${movies.length} movies from Firebase`);
+  //console.log(`Fetched ${movies.length} movies from Firebase`);
   return movies;
 });
 
@@ -70,7 +70,7 @@ export const addMovie = createAsyncThunk<Movie, Movie>(
   "movies/addMovie",
   async (movie) => {
     await setDoc(doc(firestore, "movies", movie.id), movie);
-    console.log("Added movie:", movie.id);
+    //console.log("Added movie:", movie.id);
     return movie;
   }
 );
@@ -83,7 +83,7 @@ export const editMovie = createAsyncThunk<Movie, Movie>(
     await updateDoc(docRef, {
       title: movie.title,
     });
-    console.log("Updated movie:", movie.id);
+    //console.log("Updated movie:", movie.id);
     return movie;
   }
 );
@@ -92,7 +92,7 @@ export const deleteMovie = createAsyncThunk<string, string>(
   "movies/deleteMovie",
   async (id) => {
     await deleteDoc(doc(firestore, "movies", id));
-    console.log("Deleted movie:", id);
+    //console.log("Deleted movie:", id);
     return id;
   }
 );

@@ -26,7 +26,7 @@ export default function BookList() {
   useEffect(() => {
     // Only fetch if we haven't fetched before and don't have data
     if (!hasInitiallyFetched && books.length === 0) {
-      console.log("Fetching books from Firebase...");
+      //console.log("Fetching books from Firebase...");
       dispatch(fetchBooks());
       setHasInitiallyFetched(true);
     }

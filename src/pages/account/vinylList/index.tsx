@@ -23,7 +23,7 @@ export default function VinylList() {
   useEffect(() => {
     // Only fetch if we haven't fetched before and don't have data
     if (!hasInitiallyFetched && vinyls.length === 0) {
-      console.log("Fetching vinyls from Firebase...");
+      //console.log("Fetching vinyls from Firebase...");
       dispatch(fetchVinyls());
       setHasInitiallyFetched(true);
     }
