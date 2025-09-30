@@ -27,7 +27,7 @@ export default function TVShowList() {
 
   useEffect(() => {
     // Only fetch if we haven't fetched before and don't have data
-    if (!hasInitiallyFetched && tvShows.length === 0) {
+    if (!hasInitiallyFetched) {
       //console.log("Fetching TV shows from Firebase...");
       dispatch(fetchTVShows());
       setHasInitiallyFetched(true);

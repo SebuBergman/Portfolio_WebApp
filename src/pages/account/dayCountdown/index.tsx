@@ -32,7 +32,7 @@ export default function CountdownsList() {
 
   useEffect(() => {
     // Only fetch if we haven't fetched before and don't have data
-    if (!hasInitiallyFetched && countdowns.length === 0) {
+    if (!hasInitiallyFetched) {
       //console.log("Fetching countdowns from Firebase...");
       dispatch(fetchCountdowns());
       setHasInitiallyFetched(true);
