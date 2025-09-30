@@ -4,6 +4,7 @@ import {
   Avatar,
   Box,
   ButtonBase,
+  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -22,6 +23,8 @@ import { useAppSelector } from "@store/index";
 
 import { ACCOUNT_LINKS } from "./data";
 import { AppRoutes } from "@app/config/routes";
+import SidebarRefreshButton from "@features/ui/RefreshButton";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 interface Props {
   onClose: () => void;
@@ -54,7 +57,7 @@ export default function AccountSidebar({ isMinimized, onClose }: Props) {
       }}
     >
       <Box>
-        <Stack mb={6} alignItems={"center"}>
+        <Stack mb={{ xs: 4, md: 6 }} alignItems={"center"}>
           <Link href={AppRoutes.home}>
             <AppLogo isMinimized={isMinimized} />
           </Link>
@@ -66,7 +69,13 @@ export default function AccountSidebar({ isMinimized, onClose }: Props) {
           gap={3}
           justifyContent={isMinimized ? "center" : "flex-start"}
         >
-          <Avatar sx={{ height: 48, width: 48, background: Colors.disabled }}>
+          <Avatar
+            sx={{
+              height: { xs: 40, md: 48 },
+              width: { xs: 40, md: 48 },
+              background: Colors.disabled,
+            }}
+          >
             {userInitial}
           </Avatar>
           {!isMinimized && (
@@ -122,6 +131,12 @@ export default function AccountSidebar({ isMinimized, onClose }: Props) {
             </ListItem>
           ))}
         </List>
+      </Box>
+      <Box>
+        <IconButton>
+          <SettingsIcon />
+        </IconButton>
+        <SidebarRefreshButton />
       </Box>
       <ButtonBase
         onClick={onLogout}
