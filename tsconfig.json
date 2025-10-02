@@ -36,7 +36,7 @@
       "@books/*": ["src/features/movieLibrary/books/*"],
       "@vinyls/*": ["src/features/movieLibrary/vinyls/*"],
       "@countdowns/*": ["src/features/movieLibrary/countdowns/*"],
-      "@randomizers/*": ["src/features/movieLibrary/randomizers/*"]
+      "@randomizer/*": ["src/features/movieLibrary/randomizer/*"]
     }
   },
   "include": ["src"],

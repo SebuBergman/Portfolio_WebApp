@@ -26,9 +26,9 @@ export default defineConfig({
         __dirname,
         "./src/features/movieLibrary/countdowns"
       ),
-      "@randomizers": path.resolve(
+      "@randomizer": path.resolve(
         __dirname,
-        "./src/features/movieLibrary/randomizers"
+        "./src/features/movieLibrary/randomizer"
       ),
     },
   },
