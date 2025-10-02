@@ -133,26 +133,35 @@ export default function AccountSidebar({ isMinimized, onClose }: Props) {
         </List>
       </Box>
       <Box>
-        <IconButton>
-          <SettingsIcon />
-        </IconButton>
-        <SidebarRefreshButton />
-      </Box>
-      <ButtonBase
-        onClick={onLogout}
-        sx={{ height: 51, py: 1, px: 2, width: "fit-content", borderRadius: 2 }}
-      >
-        <LogoutIcon sx={{ color: "text.secondary", mr: isMinimized ? 0 : 4 }} />
-        {!isMinimized && (
-          <Typography
-            component="span"
-            variant="body1"
-            sx={{ color: Colors.black }}
+        <Box>
+          <SidebarRefreshButton />
+        </Box>
+        <Box>
+          <ButtonBase
+            onClick={onLogout}
+            sx={{
+              height: 51,
+              py: 1,
+              px: 2,
+              width: "fit-content",
+              borderRadius: 2,
+            }}
           >
-            Logout
-          </Typography>
-        )}
-      </ButtonBase>
+            <LogoutIcon
+              sx={{ color: "text.secondary", mr: isMinimized ? 0 : 4 }}
+            />
+            {!isMinimized && (
+              <Typography
+                component="span"
+                variant="body1"
+                sx={{ color: Colors.black }}
+              >
+                Logout
+              </Typography>
+            )}
+          </ButtonBase>
+        </Box>
+      </Box>
     </Stack>
   );
 }

@@ -1,4 +1,4 @@
-import { IconButton, Tooltip } from "@mui/material";
+import { ButtonBase } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import { useAppDispatch } from "@store/index";
 import { fetchBooks } from "@books/store/bookSlice";
@@ -19,16 +19,18 @@ export default function SidebarRefreshButton() {
   };
 
   return (
-    <Tooltip title="Refresh Library">
-      <IconButton
-        onClick={handleRefresh}
-        sx={{
-          color: "black",
-          "&:hover": { color: "#729E65" },
-        }}
-      >
-        <RefreshIcon />
-      </IconButton>
-    </Tooltip>
+    <ButtonBase
+      onClick={handleRefresh}
+      sx={{
+        height: 51,
+        py: 1,
+        px: 2,
+        width: "fit-content",
+        borderRadius: 2,
+        color: "black",
+      }}
+    >
+      <RefreshIcon />
+    </ButtonBase>
   );
 }
