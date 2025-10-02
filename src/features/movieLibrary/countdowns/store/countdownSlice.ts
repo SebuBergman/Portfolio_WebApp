@@ -9,7 +9,6 @@ import {
 } from "firebase/firestore";
 import { firestore } from "@services/firebase";
 import { RootState } from "@app/store";
-import { differenceInDays } from "@app/services/date/differenceInDays";
 
 export interface Countdown {
   id: string;
@@ -33,6 +32,20 @@ const initialState: CountdownState = {
   lastFetched: null,
 };
 
+// Fixed function to calculate days remaining correctly
+const calculateDaysRemaining = (eventDate: string): number => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Start of today
+
+  const target = new Date(eventDate);
+  target.setHours(0, 0, 0, 0); // Start of target day
+
+  const diffTime = target.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays;
+};
+
 export const fetchCountdowns = createAsyncThunk<
   Countdown[],
   void,
@@ -48,11 +61,9 @@ export const fetchCountdowns = createAsyncThunk<
     state.countdowns.lastFetched &&
     now - state.countdowns.lastFetched < fiveMinutes
   ) {
-    //console.log("Using cached countdown data");
     return state.countdowns.countdowns;
   }
 
-  //console.log("Fetching countdowns from Firebase...");
   const countdownCol = collection(firestore, "countdowns");
   const countdownSnap = await getDocs(countdownCol);
   const countdowns: Countdown[] = [];
@@ -60,16 +71,12 @@ export const fetchCountdowns = createAsyncThunk<
   countdownSnap.forEach((docSnap) => {
     const data = docSnap.data() as Countdown;
     // Recalc daysRemaining in case it's outdated in DB
-    const daysRemaining = differenceInDays(
-      new Date(data.eventDate),
-      new Date()
-    );
+    const daysRemaining = calculateDaysRemaining(data.eventDate);
     countdowns.push({ ...data, daysRemaining });
   });
 
   // Sort by nearest date
   countdowns.sort((a, b) => a.daysRemaining - b.daysRemaining);
-  //console.log(`Fetched ${countdowns.length} countdowns from Firebase`);
   return countdowns;
 });
 
@@ -78,7 +85,6 @@ export const addCountdown = createAsyncThunk<Countdown, Countdown>(
   async (countdown) => {
     const countdownId = countdown.id;
     await setDoc(doc(firestore, "countdowns", countdownId), countdown);
-    //console.log("Added countdown:", countdownId);
     return { ...countdown, id: countdownId };
   }
 );
@@ -93,7 +99,6 @@ export const editCountdown = createAsyncThunk<Countdown, Countdown>(
       eventDate: countdown.eventDate,
       daysRemaining: countdown.daysRemaining,
     });
-    //console.log("Updated countdown:", countdown.id);
     return countdown;
   }
 );
@@ -102,7 +107,6 @@ export const deleteCountdown = createAsyncThunk<string, string>(
   "countdowns/deleteCountdown",
   async (id) => {
     await deleteDoc(doc(firestore, "countdowns", id));
-    //console.log("Deleted countdown:", id);
     return id;
   }
 );
@@ -117,12 +121,8 @@ const countdownSlice = createSlice({
     },
     // Add an action to refresh days remaining without Firebase call
     refreshDaysRemaining: (state) => {
-      const now = new Date();
       state.countdowns.forEach((countdown) => {
-        countdown.daysRemaining = differenceInDays(
-          new Date(countdown.eventDate),
-          now
-        );
+        countdown.daysRemaining = calculateDaysRemaining(countdown.eventDate);
       });
       // Re-sort after updating days remaining
       state.countdowns.sort((a, b) => a.daysRemaining - b.daysRemaining);
