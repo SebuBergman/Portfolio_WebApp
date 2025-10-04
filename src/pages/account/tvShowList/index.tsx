@@ -117,7 +117,7 @@ export default function TVShowList() {
                 alignItems: { xs: "flex-start", sm: "center" },
                 gap: { xs: 2, md: 2 },
                 p: { xs: 3, md: 2 },
-                pt: { xs: 6, md: 2 },
+                pt: { xs: 3, md: 2 },
               }}
             >
               <EditTVShow tvshow={show} showEditIcon={false}>

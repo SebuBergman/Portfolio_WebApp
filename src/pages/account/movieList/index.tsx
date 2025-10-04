@@ -118,7 +118,7 @@ export default function MovieList() {
                   alt={movie.title}
                   sx={{
                     backgroundColor: "#f0f0f0",
-                    width: { xs: 80, md: 140 },
+                    width: { xs: 120, md: 140 },
                   }}
                 />
               </Box>

@@ -200,7 +200,7 @@ export default function CountdownsList() {
                     sx={{
                       color: "#aaa",
                       fontWeight: 500,
-                      fontSize: { xs: "1.2rem", md: "1.8rem" },
+                      fontSize: { xs: "1.1rem", md: "1.8rem" },
                     }}
                   >
                     {isPast ? "days ago" : "days left"}

@@ -106,8 +106,6 @@ export default function VinylList() {
           <Grid key={v.id} style={{ position: "relative" }}>
             <EditVinyl vinyl={v} showEditIcon={false}>
               <Card sx={{ width: { xs: "100%", md: "100%" }, height: "100%" }}>
-                {/* Clickable cover image */}
-
                 {v.coverUrl ? (
                   <CardMedia
                     component="img"
@@ -118,7 +116,8 @@ export default function VinylList() {
                       width: "100%",
                       aspectRatio: "2 / 2",
                       objectFit: "cover",
-                      borderRadius: 2,
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
                     }}
                   />
                 ) : (
@@ -142,7 +141,7 @@ export default function VinylList() {
                   <Typography
                     variant="h6"
                     color={Colors.black}
-                    sx={{ mb: 1, cursor: "pointer" }}
+                    sx={{ mb: 1, cursor: "pointer", wordWrap: "break-word" }}
                   >
                     {v.title}
                   </Typography>

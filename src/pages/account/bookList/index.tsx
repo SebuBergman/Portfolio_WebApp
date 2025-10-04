@@ -157,7 +157,8 @@ export default function BookList() {
                       width: "100%",
                       aspectRatio: "2 / 3",
                       objectFit: "cover",
-                      borderRadius: 2,
+                      borderTopLeftRadius: 2,
+                      borderTopRightRadius: 2,
                     }}
                   />
                 ) : (
