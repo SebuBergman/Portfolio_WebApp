@@ -175,7 +175,7 @@ export default function EditVinyl({
   return (
     <>
       {children ? (
-        <Box onClick={handleOpen} sx={{ cursor: "pointer" }}>
+        <Box onClick={handleOpen} sx={{ cursor: "pointer", height: "100%" }}>
           {children}
         </Box>
       ) : null}
