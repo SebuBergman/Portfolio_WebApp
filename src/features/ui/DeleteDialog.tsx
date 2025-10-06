@@ -12,6 +12,7 @@ interface DeleteDialogProps {
   description?: string;
   onCancel: () => void;
   onConfirm: () => void;
+  content?: React.ReactNode;
 }
 
 export default function DeleteDialog({
@@ -20,6 +21,7 @@ export default function DeleteDialog({
   description,
   onCancel,
   onConfirm,
+  content,
 }: DeleteDialogProps) {
   return (
     <Dialog open={open} onClose={onCancel} maxWidth="sm" fullWidth>
