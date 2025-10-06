@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 
 import { MOVIE_LIBRARY } from "@config/constants";
 import { Colors } from "@config/styles";
-import Logo from "../Logo.png";
 
 interface Props {
   isMinimized?: boolean;

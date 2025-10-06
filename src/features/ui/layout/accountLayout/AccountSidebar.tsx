@@ -4,7 +4,6 @@ import {
   Avatar,
   Box,
   ButtonBase,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -24,7 +23,6 @@ import { useAppSelector } from "@store/index";
 import { ACCOUNT_LINKS } from "./data";
 import { AppRoutes } from "@app/config/routes";
 import SidebarRefreshButton from "@features/ui/RefreshButton";
-import SettingsIcon from "@mui/icons-material/Settings";
 
 interface Props {
   onClose: () => void;
