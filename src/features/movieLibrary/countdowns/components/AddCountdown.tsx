@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@app/store";
 import { selectUser } from "@features/auth/store/authSlice";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Box, Button, TextField } from "@mui/material";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 import { addCountdown, Countdown } from "../store/countdownSlice";
 import { Add } from "@mui/icons-material";
@@ -112,16 +112,6 @@ export default function AddCountdown() {
         title="Add Countdown"
         subtitle="Create a new countdown event."
         content={modalContent}
-      />
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          duration: 5000,
-          style: {
-            padding: "20px",
-            fontSize: "24px",
-          },
-        }}
       />
     </>
   );

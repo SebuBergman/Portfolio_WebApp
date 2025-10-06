@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@store/index";
 import AppButton from "@features/ui/AppButton";
 import { Box, Button, TextField } from "@mui/material";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import ReusableModal from "@features/ui/ReusableModal";
 import { addMovie, Movie } from "../store/movieSlice";
 import { selectUser } from "@features/auth/store/authSlice";
@@ -209,16 +209,6 @@ export default function AddMovie() {
         subtitle="Search for a movie from MovieDB and add it to your list."
         content={modalContent}
         // No Save button; all actions are in modalContent
-      />
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          duration: 5000,
-          style: {
-            padding: "20px",
-            fontSize: "24px",
-          },
-        }}
       />
     </>
   );
