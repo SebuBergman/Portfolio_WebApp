@@ -68,7 +68,7 @@ export default function AppButton({
       <Typography
         component="span"
         variant="button"
-        sx={{ textTransform: "none" }}
+        sx={{ textTransform: "none", height: "24px" }}
       >
         {children}
       </Typography>
