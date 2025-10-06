@@ -13,6 +13,8 @@ import ReusableModal from "@features/ui/ReusableModal";
 import { Edit } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import DeleteDialog from "@features/ui/DeleteDialog";
+import AppIconButton from "@features/ui/AppIconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface EditVinylProps {
   vinyl: Vinyl;
@@ -167,7 +169,13 @@ export default function EditVinyl({
         >
           Update Vinyl
         </AppButton>
-        <AppButton onClick={handleDeleteClick}>Delete</AppButton>
+        <AppIconButton
+          onClick={handleDeleteClick}
+          aria-label="Delete Movie"
+          variant="contained"
+        >
+          <DeleteIcon />
+        </AppIconButton>
       </Box>
     </Box>
   );

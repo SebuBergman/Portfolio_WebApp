@@ -7,12 +7,14 @@ import {
 } from "react";
 import { useAppDispatch } from "@app/store";
 import AppButton from "@features/ui/AppButton";
+import AppIconButton from "@features/ui/AppIconButton";
 import { TextField, Box, IconButton } from "@mui/material";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Edit } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import { deleteMovie, editMovie, Movie } from "../store/movieSlice";
 import DeleteDialog from "@features/ui/DeleteDialog";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface EditTVShowProps {
   movie: Movie;
@@ -140,7 +142,13 @@ export default function EditMovie({
         >
           Update Movie
         </AppButton>
-        <AppButton onClick={handleDeleteClick}>Delete</AppButton>
+        <AppIconButton
+          onClick={handleDeleteClick}
+          aria-label="Delete Movie"
+          variant="contained"
+        >
+          <DeleteIcon />
+        </AppIconButton>
       </Box>
     </Box>
   );

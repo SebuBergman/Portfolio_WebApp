@@ -13,6 +13,8 @@ import { Edit } from "@mui/icons-material";
 import toast from "react-hot-toast";
 import { deleteTVShow, editTVShow, TVShow } from "../store/tvShowSlice";
 import DeleteDialog from "@features/ui/DeleteDialog";
+import AppIconButton from "@features/ui/AppIconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface EditTVShowProps {
   tvshow: TVShow;
@@ -142,7 +144,13 @@ export default function EditTVShow({
         >
           Update TV Show
         </AppButton>
-        <AppButton onClick={handleDeleteClick}>Delete</AppButton>
+        <AppIconButton
+          onClick={handleDeleteClick}
+          aria-label="Delete Movie"
+          variant="contained"
+        >
+          <DeleteIcon />
+        </AppIconButton>
       </Box>
     </Box>
   );

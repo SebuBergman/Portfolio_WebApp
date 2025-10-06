@@ -5,16 +5,16 @@ import {
   ReactNode,
   KeyboardEvent,
 } from "react";
-import { useAppDispatch, useAppSelector } from "@app/store";
+import { useAppDispatch } from "@app/store";
 import AppButton from "@features/ui/AppButton";
 import { TextField, Box, IconButton } from "@mui/material";
-import { selectUser } from "@features/auth/store/authSlice";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Edit } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import toast from "react-hot-toast";
 import { Book, deleteBook, editBook } from "../store/bookSlice";
 import DeleteDialog from "@features/ui/DeleteDialog";
+import AppIconButton from "@features/ui/AppIconButton";
 
 interface EditBookProps {
   book: Book;
@@ -28,28 +28,23 @@ export default function EditBook({
   showEditIcon = true,
 }: EditBookProps) {
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectUser);
-  const uid = user?.uid;
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [bookId, setBookId] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [cover, setCover] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleOpen = () => {
     setBookId(book.id);
     setTitle(book.title);
     setAuthor(book.author);
-    setCover(null);
     setModalOpen(true);
   };
 
   const handleClose = () => {
     setModalOpen(false);
-    setCover(null);
   };
 
   const handleDeleteClick = () => {
@@ -163,18 +158,13 @@ export default function EditBook({
         >
           Update Book
         </AppButton>
-        <IconButton
+        <AppIconButton
           onClick={handleDeleteClick}
-          sx={{
-            color: "red",
-            "&:hover": {
-              backgroundColor: "white",
-              color: "red",
-            },
-          }}
+          aria-label="Delete Movie"
+          variant="contained"
         >
           <DeleteIcon />
-        </IconButton>
+        </AppIconButton>
       </Box>
     </Box>
   );
