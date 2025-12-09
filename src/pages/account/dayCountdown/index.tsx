@@ -126,27 +126,40 @@ export default function CountdownsList() {
 
                 {/* Left column: Days remaining */}
                 <Box sx={{ textAlign: "center", padding: 2 }}>
-                  <Typography
-                    variant="h2"
-                    sx={{
-                      fontWeight: 800,
-                      color: isPast ? "#e57373" : "#81c784",
-                      lineHeight: 1,
-                      fontSize: { xs: "2.8rem", md: "5rem" },
-                    }}
-                  >
-                    {Math.abs(daysRemaining)}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      color: "#aaa",
-                      fontWeight: 500,
-                      fontSize: { xs: "1.1rem", md: "1.8rem" },
-                    }}
-                  >
-                    {isPast ? "days ago" : "days left"}
-                  </Typography>
+                  {(() => {
+                    const absDays = Math.abs(daysRemaining);
+                    const years = Math.floor(absDays / 365);
+                    const remainingDays = absDays % 365;
+
+                    return (
+                      <>
+                        <Typography
+                          variant="h2"
+                          sx={{
+                            fontWeight: 800,
+                            color: isPast ? "#e57373" : "#81c784",
+                            lineHeight: 1.1,
+                            fontSize: { xs: "2.2rem", md: "3.5rem" },
+                          }}
+                        >
+                          {years > 0
+                            ? `${years}y ${remainingDays}d`
+                            : `${remainingDays}`}
+                        </Typography>
+
+                        <Typography
+                          variant="h5"
+                          sx={{
+                            color: "#aaa",
+                            fontWeight: 500,
+                            fontSize: { xs: "1rem", md: "1.4rem" },
+                          }}
+                        >
+                          {isPast ? "ago" : "days left"}
+                        </Typography>
+                      </>
+                    );
+                  })()}
                 </Box>
 
                 {/* Right column: Event date + name */}
