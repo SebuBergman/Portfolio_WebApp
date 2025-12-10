@@ -1,6 +1,5 @@
 import { GlobalStyles } from "@app/config/styles/Global";
 
-import { HeroUIProvider } from "@heroui/react";
 import { theme } from "@config/styles";
 import { useAuthStateSubscription } from "@services/firebase";
 
