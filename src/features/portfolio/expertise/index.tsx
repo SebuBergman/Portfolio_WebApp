@@ -92,7 +92,8 @@ export default function Expertise({
             <div className="headingWrapper">
               <img src="responsive.svg" alt="computer and mobile screen icon" />
               <h5>
-                <span className="heading-underline-rose">Backend & APIs</span>
+                <span className="heading-underline-rose">Backend & </span>
+                APIs
               </h5>
             </div>
             <div className="textContainer">
