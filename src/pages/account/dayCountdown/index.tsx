@@ -138,7 +138,7 @@ export default function CountdownsList() {
                           sx={{
                             fontWeight: 800,
                             color: isPast ? "#e57373" : "#81c784",
-                            lineHeight: 1.1,
+                            lineHeight: { xs: 1.25, md: 1.2 },
                             fontSize: { xs: "2.2rem", md: "3.5rem" },
                           }}
                         >
