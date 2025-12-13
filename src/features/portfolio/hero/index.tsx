@@ -46,7 +46,7 @@ export default function Hero() {
         <div className="imageContainer">
           <div className="imageWrapper">
             <motion.img
-              src="/PictureSebu.jpg"
+              src="/PictureSebu.webp"
               alt="image of the pages author"
             />
           </div>
