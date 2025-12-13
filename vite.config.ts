@@ -33,4 +33,19 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    minify: "esbuild",
+
+    // Additional options:
+    target: "es2015", // browser target
+    cssMinify: true, // minify CSS too
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor code for better caching
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
+  },
 });
