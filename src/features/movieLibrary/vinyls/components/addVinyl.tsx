@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useCallback, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
 import AppButton from "@features/ui/AppButton";
 import { TextField, Box, Typography, Button } from "@mui/material";
@@ -19,114 +19,176 @@ export default function AddVinyl() {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [cover, setCover] = useState<File | null>(null);
-  const [year, setYear] = useState<string | undefined>(undefined);
+  const [year, setYear] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
-  const handleOpen = () => setModalOpen(true);
-  const handleClose = () => setModalOpen(false);
+  // Memoized callbacks
+  const handleOpen = useCallback(() => setModalOpen(true), []);
+  const handleClose = useCallback(() => {
+    setModalOpen(false);
+    // Don't reset form immediately to avoid flash
+  }, []);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!title.trim() || !artist.trim()) return;
-    setLoading(true);
+  // Reset form function
+  const resetForm = useCallback(() => {
+    setTitle("");
+    setArtist("");
+    setCover(null);
+    setYear("");
+  }, []);
 
-    const toastId = toast.loading(
-      "Dropping the needle... Vinyl is being added..."
-    );
+  // Memoized validation
+  const isFormValid = useMemo(() => {
+    return title.trim().length > 0 && artist.trim().length > 0;
+  }, [title, artist]);
 
-    try {
-      let coverUrl: string | undefined;
-      if (cover && uid) {
-        const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
-        coverUrl = uploaded ?? undefined;
+  const handleSubmit = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+      if (!isFormValid) return;
+
+      setLoading(true);
+      const toastId = toast.loading(
+        "Dropping the needle... Vinyl is being added..."
+      );
+
+      try {
+        let coverUrl: string | undefined;
+        if (cover && uid) {
+          const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
+          coverUrl = uploaded ?? undefined;
+        }
+
+        const newVinyl: Vinyl = {
+          id: uuidv4(),
+          title: title.trim(),
+          artist: artist.trim(),
+          ...(year && year.trim() ? { year: year.trim() } : {}),
+          coverUrl,
+          ownerId: uid,
+        };
+
+        await dispatch(addVinyl(newVinyl));
+        toast.success("Vinyl added successfully! Crank it up to 11.", {
+          id: toastId,
+        });
+
+        resetForm();
+        handleClose();
+      } catch (error) {
+        console.error("Failed to add vinyl:", error);
+        toast.error("Failed to add Vinyl. The record skipped again...", {
+          id: toastId,
+        });
+      } finally {
+        setLoading(false);
       }
+    },
+    [
+      isFormValid,
+      cover,
+      uid,
+      title,
+      artist,
+      year,
+      dispatch,
+      resetForm,
+      handleClose,
+    ]
+  );
 
-      const newVinyl: Vinyl = {
-        id: uuidv4(),
-        title,
-        artist,
-        ...(year && year.trim() ? { year } : {}),
-        coverUrl,
-        ownerId: uid,
-      };
+  // Memoized change handlers
+  const handleTitleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  }, []);
 
-      await dispatch(addVinyl(newVinyl));
-      toast.success("Vinyl added successfully! Crank it up to 11.", {
-        id: toastId,
-      });
+  const handleArtistChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setArtist(e.target.value);
+  }, []);
 
-      // Reset form
-      setTitle("");
-      setArtist("");
-      setCover(null);
-      setYear("");
-      setLoading(false);
-      handleClose();
-    } catch (error) {
-      toast.error("Failed to add Vinyl. The record skipped again...", {
-        id: toastId,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const handleYearChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setYear(e.target.value);
+  }, []);
 
-  const modalContent = (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      display="flex"
-      flexDirection="column"
-      gap={2}
-    >
-      <TextField
-        label="Vinyl Title"
-        value={title}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setTitle(e.target.value)
-        }
-        required
-      />
-      <TextField
-        label="Artist"
-        value={artist}
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setArtist(e.target.value)
-        }
-        required
-      />
-      <TextField
-        label="Year"
-        value={year ?? ""}
-        onChange={(e) => setYear(e.target.value || undefined)}
-      />
-      <Box>
-        <label htmlFor="cover-upload">
-          <input
-            id="cover-upload"
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setCover(e.target.files?.[0] ?? null)
-            }
-          />
-          <Button component="span" variant="contained" disabled={loading}>
-            Choose Cover
-          </Button>
-        </label>
-        {cover && (
-          <Typography variant="caption">Selected: {cover.name}</Typography>
-        )}
-      </Box>
-      <AppButton
-        type="submit"
-        variant="contained"
-        disabled={loading || !title || !artist}
+  const handleCoverChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setCover(file);
+  }, []);
+
+  // Memoized modal content to prevent recreation on every render
+  const modalContent = useMemo(
+    () => (
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        display="flex"
+        flexDirection="column"
+        gap={2}
       >
-        Add Vinyl
-      </AppButton>
-    </Box>
+        <TextField
+          label="Vinyl Title"
+          value={title}
+          onChange={handleTitleChange}
+          required
+          disabled={loading}
+          autoFocus
+        />
+        <TextField
+          label="Artist"
+          value={artist}
+          onChange={handleArtistChange}
+          required
+          disabled={loading}
+        />
+        <TextField
+          label="Year"
+          value={year}
+          onChange={handleYearChange}
+          disabled={loading}
+          placeholder="e.g., 1975"
+        />
+        <Box>
+          <label htmlFor="cover-upload">
+            <input
+              id="cover-upload"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleCoverChange}
+              disabled={loading}
+            />
+            <Button component="span" variant="contained" disabled={loading}>
+              Choose Cover
+            </Button>
+          </label>
+          {cover && (
+            <Typography variant="caption" sx={{ ml: 2 }}>
+              Selected: {cover.name}
+            </Typography>
+          )}
+        </Box>
+        <AppButton
+          type="submit"
+          variant="contained"
+          disabled={loading || !isFormValid}
+        >
+          {loading ? "Adding..." : "Add Vinyl"}
+        </AppButton>
+      </Box>
+    ),
+    [
+      handleSubmit,
+      title,
+      artist,
+      year,
+      cover,
+      loading,
+      isFormValid,
+      handleTitleChange,
+      handleArtistChange,
+      handleYearChange,
+      handleCoverChange,
+    ]
   );
 
   return (
@@ -145,7 +207,8 @@ export default function AddVinyl() {
         variant="contained"
         startIcon={<Add />}
         onClick={handleOpen}
-      ></Button>
+        aria-label="Add vinyl"
+      />
       <ReusableModal
         open={modalOpen}
         onClose={handleClose}

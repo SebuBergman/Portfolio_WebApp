@@ -1,14 +1,13 @@
-import { useState, ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "@store/index";
 import {
-  TextField,
-  Checkbox,
-  Box,
-  Typography,
-  Grid,
-  Card,
-} from "@mui/material";
-import { useEffect } from "react";
+  useState,
+  ChangeEvent,
+  useEffect,
+  useMemo,
+  memo,
+  useCallback,
+} from "react";
+import { useAppDispatch, useAppSelector } from "@store/index";
+import { TextField, Checkbox, Box, Typography, Card } from "@mui/material";
 import {
   fetchTVShows,
   selectTVShows,
@@ -19,37 +18,135 @@ import AddTVShow from "@tvShows/components/AddTVShow";
 import EditTVShow from "@tvShows/components/EditTVShow";
 import { Colors } from "@app/config/styles";
 
+// Memoized TV Show Card Component
+const TVShowCard = memo(
+  ({
+    show,
+    onCheckboxChange,
+  }: {
+    show: TVShow;
+    onCheckboxChange: (show: TVShow, seasonNumber: number) => void;
+  }) => (
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        alignItems: { xs: "flex-start", sm: "center" },
+        gap: { xs: 2, md: 2 },
+        p: { xs: 3, md: 2 },
+        pt: { xs: 3, md: 2 },
+      }}
+    >
+      <EditTVShow tvshow={show} showEditIcon={false}>
+        <Typography
+          variant="h6"
+          color={Colors.black}
+          sx={{
+            minWidth: { sm: "200px" },
+            flexShrink: 0,
+            mb: { xs: 1, sm: 0 },
+          }}
+        >
+          {show.title}
+        </Typography>
+      </EditTVShow>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(3, 1fr)",
+            sm: "repeat(4, 1fr)",
+            md: "repeat(6, 1fr)",
+          },
+          pointerEvents: "auto",
+        }}
+      >
+        {show.seasons.map((season) => (
+          <Box
+            key={season.seasonNumber}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: 0,
+              p: 1,
+              borderRadius: 1,
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Checkbox
+              checked={season.owned}
+              onChange={() => onCheckboxChange(show, season.seasonNumber)}
+              sx={{
+                color: "#729E65",
+                "&.Mui-checked": { color: "#4e7c4a" },
+                p: 0.5,
+              }}
+            />
+            <Typography
+              component="span"
+              sx={{
+                color: season.owned ? "#729E65" : "#fff",
+                fontWeight: 500,
+                userSelect: "none",
+              }}
+            >
+              S{season.seasonNumber}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    </Card>
+  )
+);
+
+TVShowCard.displayName = "TVShowCard";
+
 export default function TVShowList() {
   const dispatch = useAppDispatch();
   const tvShows = useAppSelector(selectTVShows);
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
+  // Debounce search input
   useEffect(() => {
-    // Only fetch if we haven't fetched before and don't have data
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // Fetch TV shows only once
+  useEffect(() => {
     if (!hasInitiallyFetched) {
-      //console.log("Fetching TV shows from Firebase...");
       dispatch(fetchTVShows());
       setHasInitiallyFetched(true);
     }
-  }, [dispatch, hasInitiallyFetched, tvShows.length]);
+  }, [dispatch, hasInitiallyFetched]);
 
   // Handle search input
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
 
-  // Search filter
-  const filteredTVShows = tvShows.filter((show) =>
-    show.title.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Toggle owned for a season and update Firebase
-  const handleCheckboxChange = (show: TVShow, seasonNumber: number) => {
-    const updatedSeasons = show.seasons.map((s) =>
-      s.seasonNumber === seasonNumber ? { ...s, owned: !s.owned } : s
+  // Memoized filtering
+  const filteredTVShows = useMemo(() => {
+    const searchLower = debouncedSearch.toLowerCase();
+    return tvShows.filter((show) =>
+      show.title.toLowerCase().includes(searchLower)
     );
-    dispatch(updateTVShowSeasons({ id: show.id, seasons: updatedSeasons }));
-  };
+  }, [tvShows, debouncedSearch]);
+
+  // Memoized checkbox handler
+  const handleCheckboxChange = useCallback(
+    (show: TVShow, seasonNumber: number) => {
+      const updatedSeasons = show.seasons.map((s) =>
+        s.seasonNumber === seasonNumber ? { ...s, owned: !s.owned } : s
+      );
+      dispatch(updateTVShowSeasons({ id: show.id, seasons: updatedSeasons }));
+    },
+    [dispatch]
+  );
 
   return (
     <Box
@@ -84,7 +181,6 @@ export default function TVShowList() {
           }}
         >
           <AddTVShow />
-          {/* Search input */}
           <TextField
             placeholder="Search TV Shows…"
             variant="outlined"
@@ -109,81 +205,9 @@ export default function TVShowList() {
         }}
       >
         {filteredTVShows.map((show) => (
-          <Grid key={show.id} style={{ position: "relative" }}>
-            <Card
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
-                alignItems: { xs: "flex-start", sm: "center" },
-                gap: { xs: 2, md: 2 },
-                p: { xs: 3, md: 2 },
-                pt: { xs: 3, md: 2 },
-              }}
-            >
-              <EditTVShow tvshow={show} showEditIcon={false}>
-                {/* TV Show title */}
-                <Typography
-                  variant="h6"
-                  color={Colors.black}
-                  sx={{
-                    minWidth: { sm: "200px" },
-                    flexShrink: 0,
-                    mb: { xs: 1, sm: 0 },
-                  }}
-                >
-                  {show.title}
-                </Typography>
-              </EditTVShow>
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: {
-                    xs: "repeat(3, 1fr)", // 3 per row on mobile
-                    sm: "repeat(4, 1fr)", // 4 per row on small screens
-                    md: "repeat(6, 1fr)", // 6 per row on desktop
-                  },
-                  pointerEvents: "auto", // Ensure checkboxes are clickable
-                }}
-              >
-                {show.seasons.map((season) => (
-                  <Box
-                    key={season.seasonNumber}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                      gap: 0,
-                      p: 1,
-                      borderRadius: 1,
-                    }}
-                    onClick={(e) => e.stopPropagation()} // Prevent card click when clicking checkbox
-                  >
-                    <Checkbox
-                      checked={season.owned}
-                      onChange={() =>
-                        handleCheckboxChange(show, season.seasonNumber)
-                      }
-                      sx={{
-                        color: "#729E65",
-                        "&.Mui-checked": { color: "#4e7c4a" },
-                        p: 0.5,
-                      }}
-                    />
-                    <Typography
-                      component="span"
-                      sx={{
-                        color: season.owned ? "#729E65" : "#fff",
-                        fontWeight: 500,
-                        userSelect: "none",
-                      }}
-                    >
-                      S{season.seasonNumber}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Card>
-          </Grid>
+          <div key={show.id} style={{ position: "relative" }}>
+            <TVShowCard show={show} onCheckboxChange={handleCheckboxChange} />
+          </div>
         ))}
       </Box>
     </Box>

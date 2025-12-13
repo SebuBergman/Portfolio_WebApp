@@ -1,6 +1,6 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, useMemo, ChangeEvent, memo } from "react";
 import { useAppDispatch, useAppSelector } from "@app/store";
-import { fetchVinyls, selectVinyls } from "@vinyls/store/vinylSlice";
+import { fetchVinyls, selectVinyls, Vinyl } from "@vinyls/store/vinylSlice";
 import {
   Box,
   TextField,
@@ -9,35 +9,110 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { Colors } from "@app/config/styles";
 import AddVinyl from "@vinyls/components/AddVinyl";
 import EditVinyl from "@vinyls/components/EditVinyl";
+
+// Memoized Vinyl Card Component
+const VinylCard = memo(({ vinyl }: { vinyl: Vinyl }) => (
+  <EditVinyl vinyl={vinyl} showEditIcon={false}>
+    <Card sx={{ width: "100%", height: "100%", cursor: "pointer" }}>
+      {vinyl.coverUrl ? (
+        <CardMedia
+          component="img"
+          loading="lazy"
+          image={vinyl.coverUrl}
+          alt={vinyl.title}
+          sx={{
+            backgroundColor: "#f0f0f0",
+            width: "100%",
+            aspectRatio: "2 / 2",
+            objectFit: "cover",
+            borderTopLeftRadius: 2,
+            borderTopRightRadius: 2,
+          }}
+        />
+      ) : (
+        <Box
+          sx={{
+            height: 200,
+            backgroundColor: "#e0e0e0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="subtitle2" color="text.secondary">
+            No Cover
+          </Typography>
+        </Box>
+      )}
+
+      <CardContent>
+        <Typography
+          variant="h6"
+          color={Colors.black}
+          sx={{ mb: 1, cursor: "pointer", wordWrap: "break-word" }}
+        >
+          {vinyl.title}
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          color={Colors.black}
+          sx={{ cursor: "pointer" }}
+        >
+          {vinyl.artist}
+        </Typography>
+        <Typography
+          variant="body2"
+          color={Colors.black}
+          sx={{ cursor: "pointer" }}
+        >
+          {vinyl.year}
+        </Typography>
+      </CardContent>
+    </Card>
+  </EditVinyl>
+));
+
+VinylCard.displayName = "VinylCard";
 
 export default function VinylList() {
   const dispatch = useAppDispatch();
   const vinyls = useAppSelector(selectVinyls);
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [hasInitiallyFetched, setHasInitiallyFetched] = useState(false);
 
+  // Debounce search input
   useEffect(() => {
-    // Only fetch if we haven't fetched before and don't have data
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // Fetch vinyls only once
+  useEffect(() => {
     if (!hasInitiallyFetched) {
-      //console.log("Fetching vinyls from Firebase...");
       dispatch(fetchVinyls());
       setHasInitiallyFetched(true);
     }
-  }, [dispatch, hasInitiallyFetched, vinyls.length]);
+  }, [dispatch, hasInitiallyFetched]);
 
-  const filteredVinyls = vinyls
-    .filter(
-      (v) =>
-        v.artist.toLowerCase().includes(search.toLowerCase()) ||
-        v.title.toLowerCase().includes(search.toLowerCase())
-    )
-    .sort((a, b) =>
-      a.artist.toLowerCase().localeCompare(b.artist.toLowerCase())
-    );
+  // Memoized filtering and sorting
+  const filteredVinyls = useMemo(() => {
+    const searchLower = debouncedSearch.toLowerCase();
+    return vinyls
+      .filter(
+        (v) =>
+          v.artist.toLowerCase().includes(searchLower) ||
+          v.title.toLowerCase().includes(searchLower)
+      )
+      .sort((a, b) =>
+        a.artist.toLowerCase().localeCompare(b.artist.toLowerCase())
+      );
+  }, [vinyls, debouncedSearch]);
 
   return (
     <Box
@@ -103,70 +178,9 @@ export default function VinylList() {
         }}
       >
         {filteredVinyls.map((v) => (
-          <Grid key={v.id} style={{ position: "relative" }}>
-            <EditVinyl vinyl={v} showEditIcon={false}>
-              <Card sx={{ width: { xs: "100%", md: "100%" }, height: "100%" }}>
-                {v.coverUrl ? (
-                  <CardMedia
-                    component="img"
-                    image={v.coverUrl}
-                    alt={v.title}
-                    sx={{
-                      backgroundColor: "#f0f0f0",
-                      width: "100%",
-                      aspectRatio: "2 / 2",
-                      objectFit: "cover",
-                      borderTopLeftRadius: 2,
-                      borderTopRightRadius: 2,
-                    }}
-                  />
-                ) : (
-                  <Box
-                    sx={{
-                      height: 200,
-                      backgroundColor: "#e0e0e0",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography variant="subtitle2" color="text.secondary">
-                      No Cover
-                    </Typography>
-                  </Box>
-                )}
-
-                <CardContent>
-                  {/* Title */}
-                  <Typography
-                    variant="h6"
-                    color={Colors.black}
-                    sx={{ mb: 1, cursor: "pointer", wordWrap: "break-word" }}
-                  >
-                    {v.title}
-                  </Typography>
-                  {/* Artist */}
-                  <Typography
-                    variant="subtitle1"
-                    color={Colors.black}
-                    sx={{ cursor: "pointer" }}
-                    onClick={() => {}}
-                  >
-                    {v.artist}
-                  </Typography>
-                  {/* Year */}
-
-                  <Typography
-                    variant="body2"
-                    color={Colors.black}
-                    sx={{ cursor: "pointer" }}
-                  >
-                    {v.year}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </EditVinyl>
-          </Grid>
+          <div key={v.id} style={{ position: "relative" }}>
+            <VinylCard vinyl={v} />
+          </div>
         ))}
       </Box>
     </Box>
