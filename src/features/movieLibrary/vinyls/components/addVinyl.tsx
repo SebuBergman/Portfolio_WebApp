@@ -7,7 +7,10 @@ import { addVinyl, Vinyl } from "../store/vinylSlice";
 import { selectUser } from "@features/auth/store/authSlice";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Add } from "@mui/icons-material";
-import { uploadVinylCoverToFirebaseStorage } from "@services/firebase/hooks/useStorage";
+import {
+  uploadVinylCoverToFirebaseStorage,
+  validateImage,
+} from "@services/firebase/hooks/useStorage";
 import toast from "react-hot-toast";
 
 export default function AddVinyl() {
@@ -21,12 +24,13 @@ export default function AddVinyl() {
   const [cover, setCover] = useState<File | null>(null);
   const [year, setYear] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   // Memoized callbacks
   const handleOpen = useCallback(() => setModalOpen(true), []);
   const handleClose = useCallback(() => {
     setModalOpen(false);
-    // Don't reset form immediately to avoid flash
+    setUploadProgress(0);
   }, []);
 
   // Reset form function
@@ -35,6 +39,7 @@ export default function AddVinyl() {
     setArtist("");
     setCover(null);
     setYear("");
+    setUploadProgress(0);
   }, []);
 
   // Memoized validation
@@ -55,8 +60,16 @@ export default function AddVinyl() {
       try {
         let coverUrl: string | undefined;
         if (cover && uid) {
-          const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover);
-          coverUrl = uploaded ?? undefined;
+          const uploaded = await uploadVinylCoverToFirebaseStorage(uid, cover, {
+            maxWidth: 1000,
+            maxHeight: 1000,
+            quality: 0.85,
+            outputFormat: "image/webp",
+            onProgress: (progress) => {
+              setUploadProgress(progress);
+            },
+          });
+          coverUrl = uploaded;
         }
 
         const newVinyl: Vinyl = {
@@ -112,6 +125,16 @@ export default function AddVinyl() {
 
   const handleCoverChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
+
+    if (file) {
+      // Validate image before setting
+      const validation = validateImage(file, 10); // 10MB max
+      if (!validation.valid) {
+        toast.error(validation.error || "Invalid image file");
+        return;
+      }
+    }
+
     setCover(file);
   }, []);
 
@@ -166,6 +189,14 @@ export default function AddVinyl() {
               Selected: {cover.name}
             </Typography>
           )}
+          {loading && uploadProgress > 0 && uploadProgress < 100 && (
+            <Typography
+              variant="caption"
+              sx={{ ml: 2, display: "block", mt: 1 }}
+            >
+              Uploading: {uploadProgress.toFixed(0)}%
+            </Typography>
+          )}
         </Box>
         <AppButton
           type="submit"
@@ -183,6 +214,7 @@ export default function AddVinyl() {
       year,
       cover,
       loading,
+      uploadProgress,
       isFormValid,
       handleTitleChange,
       handleArtistChange,

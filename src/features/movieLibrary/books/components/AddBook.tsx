@@ -4,7 +4,10 @@ import AppButton from "@features/ui/AppButton";
 import { TextField, Box, Typography, IconButton, Button } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 import { addBook, Book } from "../store/bookSlice";
-import { uploadBookCoverToFirebaseStorage } from "@services/firebase/hooks/useStorage";
+import {
+  uploadBookCoverToFirebaseStorage,
+  validateImage,
+} from "@services/firebase/hooks/useStorage";
 import { selectUser } from "@features/auth/store/authSlice";
 import ReusableModal from "@features/ui/ReusableModal";
 import { Add } from "@mui/icons-material";
@@ -20,15 +23,20 @@ export default function AddBook() {
   const [author, setAuthor] = useState("");
   const [cover, setCover] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   // Memoized callbacks
   const handleOpen = useCallback(() => setModalOpen(true), []);
-  const handleClose = useCallback(() => setModalOpen(false), []);
+  const handleClose = useCallback(() => {
+    setModalOpen(false);
+    setUploadProgress(0);
+  }, []);
 
   const resetForm = useCallback(() => {
     setTitle("");
     setAuthor("");
     setCover(null);
+    setUploadProgress(0);
   }, []);
 
   const handleTitleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +48,18 @@ export default function AddBook() {
   }, []);
 
   const handleCoverChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setCover(e.target.files?.[0] ?? null);
+    const file = e.target.files?.[0] ?? null;
+
+    if (file) {
+      // Validate image before setting
+      const validation = validateImage(file, 10); // 10MB max
+      if (!validation.valid) {
+        toast.error(validation.error || "Invalid image file");
+        return;
+      }
+    }
+
+    setCover(file);
   }, []);
 
   // Memoized validation
@@ -61,8 +80,16 @@ export default function AddBook() {
       try {
         let coverUrl: string | undefined;
         if (cover && uid) {
-          const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover);
-          coverUrl = uploaded ?? undefined;
+          const uploaded = await uploadBookCoverToFirebaseStorage(uid, cover, {
+            maxWidth: 1000,
+            maxHeight: 1000,
+            quality: 0.85,
+            outputFormat: "image/webp",
+            onProgress: (progress) => {
+              setUploadProgress(progress);
+            },
+          });
+          coverUrl = uploaded;
         }
 
         const newBook: Book = {
@@ -169,6 +196,11 @@ export default function AddBook() {
           {cover && (
             <Typography variant="caption">Selected: {cover.name}</Typography>
           )}
+          {loading && uploadProgress > 0 && uploadProgress < 100 && (
+            <Typography variant="caption" sx={{ display: "block", mt: 1 }}>
+              Uploading: {uploadProgress.toFixed(0)}%
+            </Typography>
+          )}
         </Box>
         <AppButton
           type="submit"
@@ -186,6 +218,7 @@ export default function AddBook() {
       author,
       cover,
       loading,
+      uploadProgress,
       isFormValid,
       handleTitleChange,
       handleAuthorChange,
