@@ -1,6 +1,22 @@
 const projectsData = [
   {
     id: 1,
+    title: "Promaint-lehti",
+    img: "/promaint_lehti.webp",
+    alt: "screenshot of Promaint-lehti application",
+    desc: "A custom WordPress magazine theme built for content-driven publishing.",
+    aboutProject:
+      "The theme includes a front page template for latest articles and highlights, category archive pages, single post templates, and a full search experience. It features responsive navigation with mobile and desktop menus, a structured footer, and reusable template parts. Two sidebars are supported: an ads-only sidebar and a combined editorial + ads sidebar with sections for Recommended, Sponsored content, Opinion, and Issue Archive. An Issue Archive allows editors to link magazine issues with cover images and teaser text, managed directly through WordPress menus.",
+    tags: ["Wordpress", "PHP", "HTML", "CSS"],
+    linktosite: "https://www.promaintlehti.fi/",
+    youtubeID: "PpG7rtFujiA",
+    aboutModal:
+      "This project is a fully custom WordPress magazine theme designed to support editorial workflows and advertising needs. It includes templates for the front page, category archives, and single articles, along with built-in search functionality. The layout is fully responsive with dedicated mobile navigation and desktop menus. The theme uses a modular template-parts structure for reusable components and includes two sidebars: one for ads only, and one combining editorial sections such as Recommended, Sponsored content, Opinion, and the Issue Archive. The Issue Archive lets editors connect magazine issues with cover images and short descriptions, all managed via WordPress menus without hard-coding.",
+    modalLink: "Visit Website",
+    imageSize: "100%",
+  },
+  {
+    id: 2,
     title: "EcoHub",
     img: "/ecohub.webp",
     alt: "screenshot of EcoHub application",
@@ -28,7 +44,7 @@ const projectsData = [
     imageSize: "100%",
   },
   {
-    id: 2,
+    id: 3,
     title: "AI Assistant",
     img: "/AI_assistant.webp",
     alt: "screenshot of The email assistant application",
@@ -55,7 +71,7 @@ const projectsData = [
     imageSize: "85%",
   },
   {
-    id: 3,
+    id: 4,
     title: "RAG Agent",
     img: "/rag_agent.webp",
     alt: "screenshot of The RAG Agent application",
@@ -86,7 +102,7 @@ const projectsData = [
     imageSize: "75%",
   },
   {
-    id: 4,
+    id: 5,
     title: "avone.fi",
     img: "/avone.webp",
     alt: "screenshot of avone.fi application",
@@ -102,7 +118,7 @@ const projectsData = [
     imageSize: "90%",
   },
   {
-    id: 5,
+    id: 6,
     title: "tukikeskustelut.com",
     img: "/tukikeskustelut.webp",
     alt: "screenshot of tukikeskustelut.fi application",
@@ -118,7 +134,7 @@ const projectsData = [
     imageSize: "90%",
   },
   {
-    id: 6,
+    id: 7,
     title: "Mint",
     img: "/Mint.webp",
     alt: "screenshot of mint web application",
@@ -141,7 +157,7 @@ const projectsData = [
     imageSize: "100%",
   },
   {
-    id: 7,
+    id: 8,
     title: "Music player",
     img: "/sebmusic_player.webp",
     alt: "screenshot of music player application",
@@ -164,7 +180,7 @@ const projectsData = [
     imageSize: "85%",
   },
   {
-    id: 8,
+    id: 9,
     title: "leffakirjasto",
     img: "/leffakirjasto.webp",
     alt: "screenshot of leffakirjasto application",
