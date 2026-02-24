@@ -1,8 +1,8 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "@store/index";
-
 import { loginUser, registerUser } from "./authActions";
+
+import type { RootState } from "@app/store";
 
 interface UserInfo {
   uid: string;

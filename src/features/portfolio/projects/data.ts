@@ -9,7 +9,7 @@ const projectsData = [
       "The theme includes a front page template for latest articles and highlights, category archive pages, single post templates, and a full search experience. It features responsive navigation with mobile and desktop menus, a structured footer, and reusable template parts. Two sidebars are supported: an ads-only sidebar and a combined editorial + ads sidebar with sections for Recommended, Sponsored content, Opinion, and Issue Archive. An Issue Archive allows editors to link magazine issues with cover images and teaser text, managed directly through WordPress menus.",
     tags: ["Wordpress", "PHP", "HTML", "CSS"],
     linktosite: "https://www.promaintlehti.fi/",
-    youtubeID: "PpG7rtFujiA",
+    youtubeID: "",
     aboutModal:
       "This project is a fully custom WordPress magazine theme designed to support editorial workflows and advertising needs. It includes templates for the front page, category archives, and single articles, along with built-in search functionality. The layout is fully responsive with dedicated mobile navigation and desktop menus. The theme uses a modular template-parts structure for reusable components and includes two sidebars: one for ads only, and one combining editorial sections such as Recommended, Sponsored content, Opinion, and the Issue Archive. The Issue Archive lets editors connect magazine issues with cover images and short descriptions, all managed via WordPress menus without hard-coding.",
     modalLink: "Visit Website",
