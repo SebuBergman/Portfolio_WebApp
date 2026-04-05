@@ -33,8 +33,8 @@ const TVShowCard = memo(
         flexDirection: { xs: "column", sm: "row" },
         alignItems: { xs: "flex-start", sm: "center" },
         gap: { xs: 2, md: 2 },
-        p: { xs: 3, md: 2 },
-        pt: { xs: 3, md: 2 },
+        p: { xs: 2.5, md: 2 },
+        pt: { xs: 2.5, md: 2 },
       }}
     >
       <EditTVShow tvshow={show} showEditIcon={false}>

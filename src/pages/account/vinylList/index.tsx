@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Colors } from "@app/config/styles";
-import AddVinyl from "@vinyls/components/AddVinyl";
+import AddVinyl from "@vinyls/components/addVinyl";
 import EditVinyl from "@vinyls/components/EditVinyl";
 
 // Memoized Vinyl Card Component
@@ -26,7 +26,7 @@ const VinylCard = memo(({ vinyl }: { vinyl: Vinyl }) => (
           sx={{
             backgroundColor: "#f0f0f0",
             width: "100%",
-            aspectRatio: "2 / 2",
+            aspectRatio: "1 / 1",
             objectFit: "cover",
             borderTopLeftRadius: 2,
             borderTopRightRadius: 2,
@@ -166,13 +166,13 @@ export default function VinylList() {
         sx={{
           display: "grid",
           gridTemplateColumns: {
-            xs: "1fr 1fr",
-            sm: "1fr 1fr 1fr",
+            xs: "1fr",
+            sm: "1fr 1fr",
             md: "1fr 1fr 1fr",
             lg: "1fr 1fr 1fr 1fr",
             xl: "1fr 1fr 1fr 1fr 1fr",
           },
-          gap: { xs: 2, md: 2 },
+          gap: { xs: 1.5, md: 2 },
           width: "100%",
           justifyContent: "center",
         }}

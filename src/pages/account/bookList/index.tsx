@@ -114,8 +114,8 @@ export default function BookList() {
       tab === 0
         ? books
         : books.filter((book: Book) =>
-            book.author.toLowerCase().includes("agatha christie")
-          );
+          book.author.toLowerCase().includes("agatha christie")
+        );
 
     // Filter by search (both title and author)
     const searchLower = debouncedSearch.toLowerCase();
@@ -200,7 +200,7 @@ export default function BookList() {
             xxl: "1fr 1fr 1fr 1fr 1fr",
             xxxl: "1fr 1fr 1fr 1fr 1fr 1fr",
           },
-          gap: { xs: 2, md: 2 },
+          gap: { xs: 1, md: 2 },
           width: "100%",
           justifyContent: "center",
         }}
