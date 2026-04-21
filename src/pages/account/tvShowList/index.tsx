@@ -86,7 +86,7 @@ const TVShowCard = memo(
             <Typography
               component="span"
               sx={{
-                color: season.owned ? "#729E65" : "#fff",
+                color: season.owned ? "#729E65" : "#999",
                 fontWeight: 500,
                 userSelect: "none",
               }}

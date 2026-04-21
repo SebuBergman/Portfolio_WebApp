@@ -7,7 +7,7 @@ export default function Dashboard() {
         Leffakirjasto
       </Typography>
       <Typography variant="h4" gutterBottom>
-        Your personal library for movies, TV shows, and books.
+        Personal library for movies, TV shows, books and Vinyls. You can also find a randomizer and Countdown
       </Typography>
       <Typography variant="body1" gutterBottom sx={{ mt: 5 }}>
         Feel free to use the sidebar to navigate through the app.
